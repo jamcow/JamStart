@@ -50,8 +50,6 @@
         background: $COLOR-Base url('/assets/img/arrow_left.png') 0 0 no-repeat;
         @include button-create($COLOR-Base, $COLOR-Base);
         background-size: contain;
-
-        @include themer(background-color);
     }
 
     .cardfader__control--prev,

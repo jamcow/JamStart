@@ -48,7 +48,7 @@ $BUTTON-AltgrBg2:                             $COLOR-Secondary !default;
 
 $BUTTON-AltDarkBgColor:                       transparent !default;
 $BUTTON-AltDarkHoverBgColor:                  transparent !default;
-$BUTTON-AltDarkTextColor:                     $COLOR-BaseDark !default;
+$BUTTON-AltDarkTextColor:                     $COLOR-Primary !default;
 $BUTTON-AltDarkBg1:                           $BUTTON-AltDarkTextColor !default;
 $BUTTON-AltDarkBg2:                           $BUTTON-AltDarkTextColor !default;
 
@@ -126,7 +126,6 @@ $BUTTON-BorderWidth:                          2;
 
         & > span {
             position: relative;
-            display: block;
             border-radius: 8px;
             z-index: 2;
             @include padding($TYPE-FontSize, $TYPE-LineHeight /2);

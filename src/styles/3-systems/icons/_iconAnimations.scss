@@ -85,12 +85,12 @@ $ICON_SWITCH-Viewport-Ratio:            $ICON_SWITCH-Viewport-Height / $ICON_SWI
     }
 
     .icon--switch__dotoff {
-        fill: $COLOR-GG-GreyLighter;
+        fill: $COLOR-GreyLighter;
         opacity: 1;
     }
 
     .icon--switch__dot {
-        fill: $COLOR-GG-GreyLighter;
+        fill: $COLOR-GreyLighter;
         opacity: 0;
     }
 
@@ -164,16 +164,16 @@ $ICON_SWITCH-Viewport-Ratio:            $ICON_SWITCH-Viewport-Height / $ICON_SWI
     color: $COLOR-White;
 
     .icon--switch__border {
-        stroke: $COLOR-GG-Grey;
+        stroke: $COLOR-Grey;
         stroke-opacity: 0.5;
     }
 
     .icon--switch__dot {
-        fill: $COLOR-GG-Grey;
+        fill: $COLOR-Grey;
     }
 
     &.active {
-        color: $COLOR-GG-BlueDark;
+        color: $COLOR-BlueDark;
 
         .icon--switch__border {
             stroke: inherit;

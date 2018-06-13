@@ -25,6 +25,8 @@ $COLOR-Secondary:               $COLOR-IndigoDark !default;
 $COLOR-Tertiary:                $COLOR-Blue !default;
 $COLOR-Accent:                  $COLOR-CyanDark !default;
 $COLOR-Base:                    $COLOR-PurpleDark !default;
+$COLOR-BaseLight:               $COLOR-White !default;
+$COLOR-BaseDark:                $COLOR-Primary !default;
 
 // GLOBAL BORDER CURVE
 // ----------------------------------------------------
@@ -207,8 +209,8 @@ $breakpoints: im-to-em(
         'largest': 1900px,
         'menu-small': 760px,
         'menu-medium': 980px,
-        'menu-large': 1074px
-        'gridmax': $GRID-MaxWidth * 1px,
+        'menu-large': 1074px,
+        'menu-xlarge': 1124px
     )
 ) !default;
 

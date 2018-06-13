@@ -43,6 +43,11 @@
 //    <use class="icon" xlink:href="/Assets/img/symbols.svg#icon--warning"></use>
 //</svg>
 
+// VARIABLES
+// ----------------------------------------------------
+$ICON-counter:                        $COLOR-GreyDark;
+$ICON-counter-bg:                     $COLOR-Yellow;
+
 // BASE
 // ----------------------------------------------------
 
@@ -58,28 +63,13 @@
 
 .icon {
     .counter {
-        fill: $COLOR-GG-GreyDark;
+        fill: $ICON-counter;
         font-size: rem(12.8);
         @include font-family($TYPE-FontFamily, $FONTLOADER-FontFamily, 400);
     }
 
     .counter-bg {
-        fill: $COLOR-GG-Yellow;
-
-        &.sm {
-            width: 16px;
-            // x: 16px;
-        }
-
-        &.md {
-            width: 20px;
-            // x: 14px;
-        }
-
-        &.lg {
-            width: 28px;
-            // x: 10px;
-        }
+        fill: $ICON-counter-bg;
     }
 }
 

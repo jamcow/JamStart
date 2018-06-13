@@ -217,7 +217,7 @@ $nav--actions-link-color-hover:         $COLOR-GreyDark;
         .nav__link {
             @include padding(10, 8);
 
-            @include media(screen, ">menu-xlarge") {
+            @include media(screen, ">menu-large") {
                 transition: none;
                 @include padding-x(15);
 
