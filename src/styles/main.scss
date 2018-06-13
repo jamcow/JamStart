@@ -1,0 +1,6 @@
+$testcolor: red;
+
+h1 {
+    color: $testcolor;
+    background-color: fade-out(complement($testcolor), 0.4);
+}

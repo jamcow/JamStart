@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "at-rule-empty-line-before": [ "always", {
+      "except": [
+        "blockless-after-same-name-blockless"
+      ],
+      "ignore": ["inside-block",
+        "after-comment",
+        "first-nested"]
+    } ],
+    "indentation": 4,
+    "color-hex-length": "long"
+  }
+}
