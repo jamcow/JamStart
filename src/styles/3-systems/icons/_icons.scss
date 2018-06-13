@@ -45,8 +45,6 @@
 
 // VARIABLES
 // ----------------------------------------------------
-$ICON-counter:                        $COLOR-GreyDark;
-$ICON-counter-bg:                     $COLOR-Yellow;
 
 // BASE
 // ----------------------------------------------------
@@ -59,18 +57,6 @@ $ICON-counter-bg:                     $COLOR-Yellow;
     stroke-width: 0;
     stroke: currentColor;
     fill: currentColor;
-}
-
-.icon {
-    .counter {
-        fill: $ICON-counter;
-        font-size: rem(12.8);
-        @include font-family($TYPE-FontFamily, $FONTLOADER-FontFamily, 400);
-    }
-
-    .counter-bg {
-        fill: $ICON-counter-bg;
-    }
 }
 
 // Sprite icon (with image)

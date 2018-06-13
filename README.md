@@ -23,7 +23,7 @@ or
 yarn upgrade-interactive --latest
 get very latest
 
-# Setup
+## Setup
 Configure the paths
 Navigate to folder and run command "yarn install"
 

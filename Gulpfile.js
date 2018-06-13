@@ -64,7 +64,7 @@ portfinder.basePort = 3000;
 /// -------------------------------------
 const cleancssOptionsBeautify = {
     // https://github.com/jakubpawlowicz/clean-css
-    format: 'beautify',
+    // format: 'beautify',
     level: {
         1: {
             specialComments: '1'
@@ -172,7 +172,7 @@ gulp.task('styles_only', function () {
             postcss_cssnext(cssnextOptions),
             postcss_pseudoelements({single: false}),
         ]))
-        .pipe(cleanCSS(cleancssOptionsMinify, (details) => {
+        .pipe(cleanCSS(cleancssOptionsBeautify, (details) => {
             if (details.errors.length > 0) {
                 console.error(`\nCleanCSS Errors: ${details.errors}`);
             }
@@ -209,7 +209,6 @@ gulp.task('styles_production', function () {
         .pipe(gulp.dest(css_output, { "mode": "0777" }))
         .pipe(browserSync.stream());
 });
-
 
 gulp.task('clean', function() {
     if (argv.site) {
