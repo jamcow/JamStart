@@ -1,0 +1,30 @@
+﻿/// <reference path="../main.scss" />
+
+////
+/// SLIDER
+////
+
+@if $COMPONENT-SLIDER {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .slider {
+        .slider__traywrapper {
+            overflow: hidden;
+
+            .slider__tray {
+                overflow-x: scroll;
+                padding-bottom: 25px;
+
+                .slider__cards {
+                    // Width is overridden by javascript on page load
+                    width: 99999px;
+                    position: relative;
+
+                    @include clearfix;
+                }
+            }
+        }
+    }
+}

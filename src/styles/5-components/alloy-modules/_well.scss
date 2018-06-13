@@ -1,0 +1,69 @@
+/// <reference path="../main.scss" />
+
+////
+/// WELL
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$WELL-BgColor: $COLOR-GreyLight;
+$WELL-InfoBgColor: $COLOR-BlueLighter;
+$WELL-WarnBgColor: $COLOR-OrangeLighter;
+$WELL-DangerBgColor: $COLOR-RedLighter;
+$WELL-SuccessBgColor: $COLOR-GreenLighter;
+
+@if $COMPONENT-WELL {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .well {
+        background-color: $WELL-BgColor;
+        display: block;
+
+        @include padding($TYPE-LineHeight/2, $TYPE-FontSize);
+        @include margin($TYPE-LineHeight, 0, $TYPE-LineHeight, 0);
+        @include border-radius;
+    }
+
+    // STATUSES
+    // ----------------------------------------------------
+
+    .well {
+        &.info {
+            background-color: $WELL-InfoBgColor;
+        }
+
+        &.warn {
+            background-color: $WELL-WarnBgColor;
+        }
+
+        &.danger {
+            background-color: $WELL-DangerBgColor;
+        }
+
+        &.success {
+            background-color: $WELL-SuccessBgColor;
+        }
+
+        &.xsmall {
+            @include font-size($TYPE-SIZE-XXS - 2);
+            @include padding($TYPE-LineHeight/4, $TYPE-FontSize);
+        }
+
+        &.small {
+            @include font-size($TYPE-SIZE-XXS);
+            @include padding($TYPE-LineHeight/3, $TYPE-FontSize);
+        }
+
+        &.large {
+            @include font-size($TYPE-SIZE-L);
+            @include padding($TYPE-LineHeight*0.75, $TYPE-FontSize);
+        }
+
+        &.xlarge {
+            @include font-size($TYPE-SIZE-XL);
+            @include padding($TYPE-LineHeight, $TYPE-FontSize);
+        }
+    }
+}

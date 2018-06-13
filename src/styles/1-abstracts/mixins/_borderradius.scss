@@ -1,0 +1,35 @@
+/// <reference path="../../main.scss" />
+////
+/// Border Radius Group
+/// group CSS3
+////
+
+/// Border Radius Single
+/// @param {*} $pixel [$STYLE-BorderRadius]
+/// @example
+///   @include border-radius(8);
+///   // border-radius: 0.5rem;
+@mixin border-radius($pixel: $STYLE-BorderRadius) {
+    @if $STYLE-RoundedCorners {
+        border-radius: rem($pixel);
+    }
+
+    @else {
+        border-radius: 0;
+    }
+}
+
+/// Border Radius Custom
+/// @param {*} $topLeft [0]
+/// @param {*} $topRight [null]
+/// @param {*} $bottomLeft [null]
+/// @param {*} $bottomRight [null]
+/// @example
+///   @include border-radius-custom(10, 20, 30, 40);
+///   // border-radius: 0.5rem;
+@mixin border-radius-custom($topLeft:0, $topRight: null, $bottomLeft: null, $bottomRight: null) {
+    $values: ($topLeft, $topRight, $bottomLeft, $bottomRight);
+    $remMap: unitmap($values, rem);
+
+    border-radius: $remMap;
+}

@@ -1,0 +1,71 @@
+﻿/// <reference path="../main.scss" />
+
+////
+/// CARDFADER
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$CARDFADERCONTROL-ActiveColor:      $COLOR-Primary !default;
+$CARDFADERCONTROL-InactiveColor:    $COLOR-Secondary !default;
+$CARDFADER-Width:                   100% !default;
+$CARDFADER-MaxWidth:                em($GRID-MaxWidth) !default;
+$CARDFADER-Margin-Left:             auto !default;
+$CARDFADER-Margin-Right:            auto !default;
+$CARDFADER-Animation:               $ANIM-Curve !default;
+
+@if $COMPONENT-CARDFADER {
+
+    // BASE
+    // ----------------------------------------------------
+
+    /// @TODO: config width and heights
+    .cardfader {
+        width: $CARDFADER-Width;
+        max-width: $CARDFADER-MaxWidth;
+        margin-left: $CARDFADER-Margin-Left;
+        margin-right: $CARDFADER-Margin-Right;
+        position: relative;
+    }
+
+    .cardfader__card {
+        background-size: cover;
+        opacity: 1;
+        width: 100%;
+
+        &.ng-hide-add,
+        &.ng-hide-remove {
+            transition: opacity 0.35s $CARDFADER-Animation;
+        }
+
+        // Ensure hidden banners are moved in to the correct position
+        &.ng-hide {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+    }
+
+    .cardfader__controls {
+        //
+    }
+
+    .cardfader__control {
+        text-decoration: none;
+
+        &:not(.icon) {
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+            background-color: $CARDFADERCONTROL-InactiveColor;
+            display: inline-block;
+            margin: 5px;
+
+            &.current {
+                background-color: $CARDFADERCONTROL-ActiveColor;
+            }
+        }
+    }
+}

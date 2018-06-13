@@ -1,0 +1,293 @@
+/// <reference path="../main.scss" />
+
+////
+/// VARIABLES
+/// SENSIBLE SETUP DEFAULTS
+////
+
+/// DEBUG (check for missing alt, empty elements, depreciation)
+// ----------------------------------------------------
+$DEBUGGER: 						false !default;
+$A11YDEBUG: 					false !default;
+
+$BOOL-flexsupport:              true !default;
+$BOOL-cssgridsupport:           true !default;
+
+// Thing to query the @Supports with
+// If we use the variable, we can globally "remove" flexbox or grid in order to test older browsers
+$SUPPORTS-flex:                         wrap;//@supports (flex-wrap: $SUPPORTS-flex) {...}
+$SUPPORTS-grid:                         grid;//@supports (display: $SUPPORTS-grid) {...}
+
+/// DEFAULT GLOBAL COLOURS
+// ----------------------------------------------------
+$COLOR-Primary:                 $COLOR-RedDark !default;
+$COLOR-Secondary:               $COLOR-IndigoDark !default;
+$COLOR-Tertiary:                $COLOR-Blue !default;
+$COLOR-Accent:                  $COLOR-CyanDark !default;
+$COLOR-Base:                    $COLOR-PurpleDark !default;
+
+// GLOBAL BORDER CURVE
+// ----------------------------------------------------
+$STYLE-RoundedCorners:          true !default; // Rounds buttons, alerts, pagination, wells
+$STYLE-BorderRadius:            12 !default;
+$STYLE-BodyBgColor:             $COLOR-White !default;
+$STYLE-Select-BgColor:          $COLOR-Accent !default;
+$STYLE-Fieldset-Border:         $COLOR-GreyLight !default;
+
+// ANNIMATION CURVES for transition animation property
+// ----------------------------------------------------
+$ANIM-Curve:					cubic-bezier(0.4, 0, 0.2, 1) !default;
+$ANIM-Exit:                     cubic-bezier(0, 0, 0.6, 1) !default;
+$ANIM-Entrance:                 cubic-bezier(0.4, 0, 1, 1) !default;
+
+// DEPTH for box shadow property
+// ----------------------------------------------------
+$DEPTH-Level0:                  0 0 0 0 #{rgba($COLOR-Black, 0)};
+$DEPTH-Level1:                  0 1px 4px 0 #{rgba($COLOR-Black, 0.37)};
+$DEPTH-Level2:                  0 6px 10px 0 #{rgba($COLOR-Black, 0.3)}, 0 2px 2px 0 #{rgba($COLOR-Black, 0.2)};
+$DEPTH-Level3:                  0 13px 25px 0 #{rgba($COLOR-Black, 0.3)}, 0 11px 7px 0 #{rgba($COLOR-Black, 0.19)};
+$DEPTH-Level4:                  0 20px 40px 0 #{rgba($COLOR-Black, 0.3)}, 0 14px 12px 0 #{rgba($COLOR-Black, 0.17)};
+$DEPTH-Level5:                  0 27px 55px 0 #{rgba($COLOR-Black, 0.3)}, 0 17px 17px 0 #{rgba($COLOR-Black, 0.15)};
+
+// Z-INDEX
+// ----------------------------------------------------
+$Z-INDEX-Level0:				0;		// Page
+$Z-INDEX-Level1:				100;	// Page
+$Z-INDEX-Level2:				200;	// Page
+$Z-INDEX-Level3:				300;	// Page
+$Z-INDEX-Level4:				400;	// Alerts
+$Z-INDEX-Level5:				500;	// Navigation
+$Z-INDEX-Level6:				600;	// Header
+$Z-INDEX-Level7:				700;	// Takeover
+$Z-INDEX-Level8:				800;	// Flyout
+$Z-INDEX-Level9:				900;	// Toast
+$Z-INDEX-Level10:				2000;	// System
+
+// TYPOGRAPHY
+// ----------------------------------------------------
+$TYPE-BaseFontSize:             16;// For calculations
+$TYPE-FontSize:                 16 !default;
+$TYPE-LineHeight:               24 !default;
+$TYPE-FONT-Weight:              400 !default;
+$TYPE-root-sizing:              false !default;
+
+// Wide Fonts - Larger x-height, so appear wider and taller
+$TYPE-FONT-SansSerifWide:       Verdana, Geneva, sans-serif !default;
+$TYPE-FONT-SerifWide:           Georgia, Utopia, Charter, serif !default;
+// Narrow Fonts - More traditional, with smaller x-height
+$TYPE-FONT-SansSerifNarrow:     Helvetica, Arial, sans-serif !default;
+$TYPE-FONT-SerifNarrow:         'Times New Roman', Times, serif !default;
+
+$TYPE-FontFamily:               $TYPE-FONT-SansSerifNarrow !default;
+$TYPE-AltFontFamily:            $TYPE-FONT-SansSerifNarrow !default;
+$TYPE-HeadingsFontFamily:       $TYPE-FONT-SerifNarrow !default;
+$TYPE-HeadingsAltFontFamily:    $TYPE-FONT-SerifNarrow !default;
+$TYPE-ScriptFontFamily:         $TYPE-FONT-SerifNarrow !default;
+$TYPE-ScriptAltFontFamily:      $TYPE-FONT-SerifNarrow !default;
+$TYPE-MonoSpaceFontFamily:      Consolas, monospace !default;
+$TYPE-CodeFontFamily:           Monaco, 'Courier New', Courier, monospace, serif !default;
+
+$TYPE-FontColor:                $COLOR-Black !default;
+$TYPE-AltFontColor:             $TYPE-FontColor !default;
+$TYPE-HeadingsColor:            $COLOR-Secondary !default;
+$TYPE-HeadingsAltColor:         $TYPE-HeadingsColor !default;
+$TYPE-ScriptColor:              $COLOR-Secondary !default;
+$TYPE-ScriptAltColor:           $TYPE-ScriptColor !default;
+
+$TYPE-SIZE-XXXXL:               60 !default;// XXXXL Omega
+$TYPE-SIZE-XXXL:                40 !default;// XXXL Alpha
+$TYPE-SIZE-XXL:                 28 !default;// XXL Beta
+$TYPE-SIZE-XL:                  22 !default;// XL Gamma
+$TYPE-SIZE-L:                   18 !default;// L Delta
+$TYPE-SIZE-M:                   16 !default;// M Epsilon
+$TYPE-SIZE-S:                   15 !default;// S Zeta
+$TYPE-SIZE-XS:                  14 !default;// XS Eta
+$TYPE-SIZE-XXS:                 12 !default;// XXS Iota
+
+// LINKS
+// ----------------------------------------------------
+$STYLE-LinkColor-Link:              $COLOR-Tertiary !default;
+$STYLE-LinkColor-Visited:           $STYLE-LinkColor-Link !default;
+$STYLE-LinkColor-Hover:             $STYLE-LinkColor-Link !default;
+$STYLE-LinkColor-Focus:             darken($STYLE-LinkColor-Link, 5) !default;
+$STYLE-LinkColor-Active:            darken($STYLE-LinkColor-Link, 10) !default;
+
+$STYLE-LinkAltColor-Link:           $COLOR-Secondary !default;
+$STYLE-LinkAltColor-Visited:        $STYLE-LinkAltColor-Link !default;
+$STYLE-LinkAltColor-Hover:          $STYLE-LinkAltColor-Link !default;
+$STYLE-LinkAltColor-Focus:          darken($STYLE-LinkAltColor-Link, 5) !default;
+$STYLE-LinkAltColor-Active:         darken($STYLE-LinkAltColor-Link, 10) !default;
+
+$STYLE-LinkOnDarkColor-Link:        $COLOR-White !default;
+$STYLE-LinkOnDarkColor-Visited:     $STYLE-LinkOnDarkColor-Link !default;
+$STYLE-LinkOnDarkColor-Hover:       darken($STYLE-LinkOnDarkColor-Link, 5) !default;
+$STYLE-LinkOnDarkColor-Focus:       darken($STYLE-LinkOnDarkColor-Link, 10) !default;
+$STYLE-LinkOnDarkColor-Active:      darken($STYLE-LinkOnDarkColor-Link, 15) !default;
+
+$STYLE-LinkOnLightColor-Link:       $COLOR-Black !default;
+$STYLE-LinkOnLightColor-Visited:    $STYLE-LinkOnLightColor-Link !default;
+$STYLE-LinkOnLightColor-Hover:      lighten($STYLE-LinkOnLightColor-Link, 5) !default;
+$STYLE-LinkOnLightColor-Focus:      lighten($STYLE-LinkOnLightColor-Link, 10) !default;
+$STYLE-LinkOnLightColor-Active:     lighten($STYLE-LinkOnLightColor-Link, 15) !default;
+
+/// THEME COLOURS (use in 0-settings/_variables.scss template)
+/// ----------------------------------------------------
+/// Optional colour theming for body or modules
+//
+// @import "themes";
+
+/// COMPONENT Overrides
+///
+/// BUTTONS
+// ----------------------------------------------------
+// $BUTTON-BgColor:                $COLOR-RedDarkest;
+// $BUTTON-HoverBgColor:             darken($BUTTON-BgColor, 10%);
+// $BUTTON-TextColor:              contrast-color($BUTTON-BgColor);
+//
+// $BUTTON-AltBgColor:             $COLOR-GreyDarker;
+// $BUTTON-AltHoverBgColor:          darken($BUTTON-AltBgColor, 10%);
+// $BUTTON-AltTextColor:           contrast-color($BUTTON-AltBgColor);
+$BUTTON-GENERATE-Altgr:             false !default;
+$BUTTON-GENERATE-States:            false !default;
+$BUTTON-GENERATE-Group:             false !default;
+$BUTTON-GENERATE-ToTop:             false !default;
+$BUTTON-GENERATE-MobileMainnav:     false !default;
+
+/// GRID COLUMNS (only used in Grid-float)
+// ----------------------------------------------------
+/// Column sizes for each media size
+/// @example c__x--1-y
+/// @example o__x--1-z
+$grid_columns: (
+    //(media_size, (num of columns), (offsets)
+    ("sm", (2, 3), null),
+    ("md", (2, 3, 4, 5, 6), (2, 3, 4, 5)),
+    ("lg", (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12))
+) !default;
+
+// GRID
+// ----------------------------------------------------
+$GRID-MaxWidth:                 1220 !default;
+
+$GRID-GutterWidth:              24 !default;
+$GRID-GutterWidth-Md:           18 !default;
+$GRID-GutterWidth-Sm:           12 !default;
+$GRID-GutterWidth-Lg:           50 - $GRID-GutterWidth;
+$GRID-GutterWidth-Xl:           50;
+
+$GRID-GutterHeight:             24 !default;
+$GRID-GutterHeight-Md:          18 !default;
+$GRID-GutterHeight-Sm:          12 !default;
+$GRID-GutterHeight-Lg:              $GRID-GutterWidth-Lg;
+$GRID-GutterHeight-Xl:              $GRID-GutterWidth-Xl;
+
+$GRID-Padding:                  0 !default;
+$GRID-Padding-Md:               0 !default;
+$GRID-Padding-Sm:               0 !default;
+
+$GRID-Padding:                  $GRID-GutterWidth / 2 !default;
+$GRID-Padding-Md:               $GRID-GutterWidth-Md / 2 !default;
+$GRID-Padding-Sm:               $GRID-GutterWidth-Sm / 2 !default;
+
+// not using these yet
+// $GRID-Columns:                  12 !default;
+// $GRID-Columns-Medium:           8 !default;
+// $GRID-Columns-Small:            3 !default;
+
+// BREAKPOINTS
+// ----------------------------------------------------
+$breakpoints: im-to-em(
+    (
+        'smallest': 340px,
+        'small': 600px,
+        'medium': 800px,
+        'large': 980px,
+        'gridmax': $GRID-MaxWidth * 1px,
+        'larger': 1260px,
+        'largest': 1900px,
+        'menu-small': 760px,
+        'menu-medium': 980px,
+        'menu-large': 1074px
+        'gridmax': $GRID-MaxWidth * 1px,
+    )
+) !default;
+
+// PATHS
+// ----------------------------------------------------
+$PATH-Assets:                   "/assets" !default;
+$PATH-Images:                   "#{$PATH-Assets}/img/" !default;
+$PATH-Fonts:                    "#{$PATH-Assets}/fonts" !default;
+
+/// Components, Systems & Modules
+/// ----------------------------------------------------
+$SYSTEM-FONTLOADER:             true !default;
+
+$COMPONENT-ACCORDION:           true !default;
+$COMPONENT-ALERT:               true !default;
+$COMPONENT-ANGULAR:             true !default;
+$COMPONENT-ANIMATIONS:          true !default;
+$COMPONENT-ANIMATIONS--example: true !default;
+$COMPONENT-ARTICLE:             true !default;
+$COMPONENT-BADGE:               true !default;
+$COMPONENT-BANNER:              true !default;
+$COMPONENT-BLURMASK:            true !default;
+$COMPONENT-BOX:                 true !default;
+$COMPONENT-BREADCRUMB:          true !default;
+$COMPONENT-BROWSEHAPPY:         true !default;
+$COMPONENT-BUTTON:              true !default;
+$COMPONENT-CARD:                true !default;
+$COMPONENT-CARDFADER:           true !default;
+$COMPONENT-CARDSLIDER:          true !default;
+$COMPONENT-CITE:                true !default;
+$COMPONENT-CREATOR:             true !default;
+$COMPONENT-FLASH:               true !default;
+$COMPONENT-FLEXGRID:                true !default;
+$COMPONENT-FLIP:                true !default;
+$COMPONENT-FOCUS:               true !default;
+$COMPONENT-GRIDDER:             true !default;
+$COMPONENT-HOVERCARD:           true !default;
+$COMPONENT-IDENT:               true !default;
+$COMPONENT-IMAGE:               true !default;
+$COMPONENT-INK:                 true !default;
+$COMPONENT-LABEL:               true !default;
+$COMPONENT-LINKS:               true !default;
+$COMPONENT-LIST:                true !default;
+$COMPONENT-MAINNAV:             true !default;
+$COMPONENT-MAP:                 true !default;
+$COMPONENT-MEDIA:               true !default;
+$COMPONENT-MENU:                true !default;
+$COMPONENT-MODAL:               true !default;
+$COMPONENT-MODELESS:            true !default;
+$COMPONENT-NAV:                 true !default;
+$COMPONENT-NAVLIST:             true !default;
+$COMPONENT-OVERLAY:             true !default;
+$COMPONENT-PAGE:                true !default;
+$COMPONENT-PAGINATION:          true !default;
+$COMPONENT-PANEL:               true !default;
+$COMPONENT-PARALLAX:            true !default;
+$COMPONENT-POLYFILL--objectfill:    true !default;
+$COMPONENT-POPOVER:             true !default;
+$COMPONENT-RTE:                 true !default;
+$COMPONENT-SCROLLBAR:           true !default;
+$COMPONENT-SCROLLSPY:           true !default;
+$COMPONENT-SECTION:             true !default;
+$COMPONENT-SIDEMENU:            true !default;
+$COMPONENT-SLIDER:              true !default;
+$COMPONENT-STAGE:               true !default;
+$COMPONENT-STORY:               true !default;
+$COMPONENT-TABLE:               true !default;
+$COMPONENT-TABS:                true !default;
+$COMPONENT-TAGS:                true !default;
+$COMPONENT-TOAST--2:            true !default;
+$COMPONENT-TOAST:               true !default;
+$COMPONENT-TOOLTIP:             true !default;
+$COMPONENT-TWITTER:             true !default;
+$COMPONENT-WELL:                true !default;
+$COMPONENT-WRAPS:               true !default;
+
+/// Utility classes
+/// ----------------------------------------------------
+$UTILITY-HELPERS-depth:         true !default;
+$UTILITY-RESPONSIVE:            true !default;
+$UTILITY-COLUMNS:               true !default;
+$UTILITY-PRETTYPRINT:           true !default;

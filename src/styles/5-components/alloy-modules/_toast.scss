@@ -1,0 +1,230 @@
+/// <reference path="../main.scss" />
+
+////
+/// TOAST
+/// @TODO: could be newer than Toaster
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$TOAST-Color: $COLOR-White;
+$TOAST-BgColor: $COLOR-Grey;
+$TOAST-ProgressColor: $COLOR-GreyDark;
+$TOAST-InfoBgColor: $COLOR-Blue;
+$TOAST-InfoProgressColor: $COLOR-BlueDark;
+$TOAST-SuccessBgColor: $COLOR-Green;
+$TOAST-SuccessProgressColor: $COLOR-GreenDark;
+$TOAST-WarnBgColor: $COLOR-Orange;
+$TOAST-WarnProgressColor: $COLOR-OrangeDark;
+$TOAST-DangerBgColor: $COLOR-Red;
+$TOAST-DangerProgressColor: $COLOR-RedDark;
+$TOAST-Anim: $ANIM-Curve;
+
+@if $COMPONENT-TOAST {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .toast {
+        color: $TOAST-Color;
+        background-color: $TOAST-BgColor;
+        position: relative;
+        max-width: 300px;
+
+        @include padding($TYPE-FontSize);
+
+        + .toast {
+            @include margin-top(10);
+        }
+
+        &.popup {
+            position: fixed;
+            bottom: -100px;
+            right: 20px;
+            z-index: $Z-INDEX-Level9;
+
+            @include transition(bottom, 0.5s, $TOAST-Anim);
+            @include depth-3;
+            @include margin-left(20);
+
+            &.activating {
+                bottom: 20px;
+            }
+
+            &.active {
+                bottom: 20px;
+            }
+
+            &.inactive {
+                //
+            }
+        }
+
+        &.info {
+            background-color: $TOAST-InfoBgColor;
+
+            .toast__close {
+                color: lighten($TOAST-InfoBgColor, 20%);
+
+                &:link,
+                &:visited {
+                    color: lighten($TOAST-InfoBgColor, 20%);
+                }
+
+                &:hover,
+                &:focus {
+                    color: darken($TOAST-InfoBgColor, 20%);
+                }
+
+                &:active {
+                    color: darken($TOAST-InfoBgColor, 40%);
+                }
+            }
+
+            .toast__progress {
+                background-color: $TOAST-InfoProgressColor;
+            }
+        }
+
+        &.success {
+            background-color: $TOAST-SuccessBgColor;
+
+            .toast__close {
+                color: lighten($TOAST-SuccessBgColor, 20%);
+
+                &:link,
+                &:visited {
+                    color: lighten($TOAST-SuccessBgColor, 20%);
+                }
+
+                &:hover,
+                &:focus {
+                    color: darken($TOAST-SuccessBgColor, 20%);
+                }
+
+                &:active {
+                    color: darken($TOAST-SuccessBgColor, 40%);
+                }
+            }
+
+            .toast__progress {
+                background-color: $TOAST-SuccessProgressColor;
+            }
+        }
+
+        &.warn {
+            background-color: $TOAST-WarnBgColor;
+
+            .toast__close {
+                color: lighten($TOAST-WarnBgColor, 20%);
+
+                &:link,
+                &:visited {
+                    color: lighten($TOAST-WarnBgColor, 20%);
+                }
+
+                &:hover,
+                &:focus {
+                    color: darken($TOAST-WarnBgColor, 20%);
+                }
+
+                &:active {
+                    color: darken($TOAST-WarnBgColor, 40%);
+                }
+            }
+
+            .toast__progress {
+                background-color: $TOAST-WarnProgressColor;
+            }
+        }
+
+        &.danger {
+            background-color: $TOAST-DangerBgColor;
+
+            .toast__close {
+                color: lighten($TOAST-DangerBgColor, 20%);
+
+                &:link,
+                &:visited {
+                    color: lighten($TOAST-DangerBgColor, 20%);
+                }
+
+                &:hover,
+                &:focus {
+                    color: darken($TOAST-DangerBgColor, 20%);
+                }
+
+                &:active {
+                    color: darken($TOAST-DangerBgColor, 40%);
+                }
+            }
+
+            .toast__progress {
+                background-color: $TOAST-DangerProgressColor;
+            }
+        }
+    }
+
+    .toast__icon {
+        float: left;
+        line-height: 1;
+
+        @include padding-top(8);
+        @include margin-right(10);
+    }
+
+    .toast,
+    .toast__content {
+        overflow: hidden;
+        _overflow: visible;
+        zoom: 1;
+    }
+
+    .toast__content {
+        @include padding(2, 20, 0, 0);
+    }
+
+    .toast__close {
+        color: lighten($TOAST-BgColor, 20%);
+        font-weight: bold;
+        text-decoration: none;
+        float: right;
+        display: block;
+        line-height: 1;
+
+        @include padding-top(1);
+        @include font-size($TYPE-LineHeight);
+
+        &:link,
+        &:visited {
+            color: lighten($TOAST-BgColor, 20%);
+        }
+
+        &:hover,
+        &:focus {
+            color: darken($TOAST-BgColor, 20%);
+        }
+
+        &:active {
+            color: darken($TOAST-BgColor, 40%);
+        }
+    }
+
+    .toast__progress {
+        background-color: $TOAST-ProgressColor;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+    }
+
+    // MOBILE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        .toast {
+            max-width: none;
+        }
+    }
+}

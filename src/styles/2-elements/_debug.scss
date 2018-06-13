@@ -1,0 +1,222 @@
+/// <reference path="../main.scss" />
+
+////
+/// DEBUG
+/// Also add the a11y.css for highlighting a11y errors
+////
+
+$debateable: false;
+
+@if $DEBUGGER {
+    %debug-warn {
+        animation: bork-warn 0.6s infinite;
+    }
+
+    %debug-severe {
+        animation: bork-severe 0.6s infinite;
+    }
+
+    // VARIABLES
+    // ----------------------------------------------------
+
+    $DEBUG-Animation: $ANIM-Curve !default;
+
+    @keyframes bork-severe {
+        0% { outline-color: white; }
+        100% { outline-color: red; }
+    }
+
+    @keyframes bork-warn {
+        0% { outline-color: white; }
+        100% { outline-color: orange; }
+    }
+
+    // BASE
+    // ----------------------------------------------------
+
+    .debugger {
+        background-color: grey;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        max-width: 300px;
+        z-index: $Z-INDEX-Level10;
+        width: 100%;
+        opacity: 0.9;
+
+        @include depth-1;
+        @include padding($TYPE-LineHeight/2);
+    }
+
+    .debugger__body {
+        max-height: 300px;
+        overflow-y: scroll;
+
+        &.opening {
+            @include transition(height, 0.1s, $DEBUG-Animation);
+        }
+
+        &.closing {
+            @include transition(height, 0.1s, $DEBUG-Animation);
+        }
+
+        &.open {
+            height: 100%;
+        }
+
+        &.closed {
+            height: 0;
+        }
+    }
+
+    .debugger__toggle {
+        text-decoration: none;
+    }
+
+    .list__debugger {
+        pointer-events: none;
+
+        .list__item {
+            color: grey;
+
+            @include font-size($TYPE-SIZE-XXS);
+        }
+
+        .start {
+            color: green;
+        }
+
+        .trace {
+            color: rebeccapurple;
+        }
+
+        .debug {
+            color: red;
+        }
+
+        .info {
+            color: blue;
+        }
+
+        .warn {
+            color: orange;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .fatal {
+            color: red;
+        }
+
+        .off {
+            color: grey;
+        }
+    }
+
+    // MOBILE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        .debugger {
+            display: none;
+        }
+    }
+
+    // INLINE STYLE
+    // ----------------------------------------------------
+
+    *[style] {
+        @if $debateable {
+            outline: 5px solid yellow !important;
+
+            @extend %debug-warn;
+        }
+    }
+
+    // IMAGES
+    // ----------------------------------------------------
+
+    img {
+        outline: 5px solid red !important;
+
+        @extend %debug-severe;
+    }
+
+    img[alt] {
+        outline: none !important;
+    }
+
+    img[alt=""] {
+        @if $debateable {
+            outline-color: yellow !important;
+
+            @extend %debug-warn;
+        }
+    }
+
+    // LINKS
+    // ----------------------------------------------------
+
+    a[href="#"] {
+        outline: 5px solid red !important;
+
+        @extend %debug-severe;
+    }
+
+    // EMPTY ELEMENTS
+    // ----------------------------------------------------
+
+    [class=""],
+    [id=""],
+    p:empty,
+    a:empty,
+    // span:empty,
+    ul:empty,
+    ol:empty,
+    li:empty,
+    dl:empty,
+    dt:empty,
+    dd:empty,
+    table:empty,
+    td:empty,
+    th:empty,
+    thead:empty,
+    tbody:empty {
+        outline: 5px solid yellow !important;
+
+        @extend %debug-warn;
+    }
+
+    // DEPRECIATED IN HTML5
+    // ----------------------------------------------------
+    /* stylelint-disable */
+    basefont,
+    big,
+    center,
+    font,
+    strike,
+    tt,
+    frame,
+    frameset,
+    noframes,
+    acronym,
+    applet,
+    isindex,
+    dir {
+        outline: 5px solid red !important;
+
+        @extend %debug-severe;
+    }
+
+    // Can be repurposed for other element now that it's inert in HTML5
+    b {
+        @if $debateable {
+            outline: 5px solid red !important;
+
+            @extend %debug-severe;
+        }
+    }
+    /* stylelint-enable */
+}

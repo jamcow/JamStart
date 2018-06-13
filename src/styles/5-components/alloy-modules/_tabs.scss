@@ -1,0 +1,128 @@
+﻿/// <reference path="../main.scss" />
+
+////
+/// TABS
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+$TABS-TrayBgColor: $COLOR-Base;
+$TABS-Color: $COLOR-White;
+$TABS-BgColor: $TABS-TrayBgColor;
+$TABS-HoverColor: $COLOR-White;
+$TABS-HoverBgColor: lighten($TABS-BgColor, 5%);
+$TABS-ActiveColor: $TYPE-FontColor;
+$TABS-ActiveBgColor: $COLOR-GreyLighter;
+
+@if $COMPONENT-TABS {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .tabs {
+        background-color: $TABS-ActiveBgColor;
+
+        @include margin-bottom($TYPE-LineHeight);
+        @include clearfix;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .tabs__tray {
+        background-color: $TABS-TrayBgColor;
+
+        @include clearfix;
+    }
+
+    .tabs__content {
+        background-color: $TABS-ActiveBgColor;
+
+        @include padding($TYPE-LineHeight);
+
+        .inactive {
+            display: none;
+        }
+    }
+
+    .list__tabs {
+        .list__item {
+            float: left;
+
+            @include inline-block;
+
+            .list__link {
+                color: $TABS-Color;
+                background-color: $TABS-BgColor;
+                text-decoration: none;
+
+                @include padding($TYPE-LineHeight/4, $TYPE-LineHeight);
+                @include inline-block;
+                @include transition(all, 0.1s);
+
+                &:hover {
+                    color: $TABS-HoverColor;
+                    background-color: $TABS-HoverBgColor;
+                }
+            }
+
+            &.active .list__link {
+                color: $TABS-ActiveColor;
+                background-color: $TABS-ActiveBgColor;
+
+                &:hover {
+                    color: $TABS-ActiveColor;
+                    background-color: $TABS-ActiveBgColor;
+                }
+            }
+        }
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        .list__tabs {
+            .list__item {
+                width: 100%;
+            }
+
+            .list__link {
+                width: 100%;
+            }
+        }
+    }
+
+    @include media(screen, ">small") {
+        .tabs {
+            &.vertical {
+                .tabs__tray {
+                    display: table-cell;
+                    width: 200px;
+                }
+
+                .tabs__content {
+                    display: table-cell;
+                    vertical-align: top;
+                }
+
+                .list__tabs {
+                    .list__item {
+                        display: block;
+                        width: 100%;
+                    }
+
+                    .list__link {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    @include media(screen, ">large") {
+        //
+    }
+}

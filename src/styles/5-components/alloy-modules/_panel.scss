@@ -1,0 +1,51 @@
+/// <reference path="../main.scss" />
+
+////
+/// PANEL
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$PANEL-BgColor:            $COLOR-Tertiary !default;
+$PANEL-Color:              $COLOR-White !default;
+$PANEL-LinkColor:          $PANEL-Color !default;
+$PANEL-LinkHoverColor:     darken($PANEL-Color, 10%) !default;
+
+$PANEL-HeadingsFontFamily: $TYPE-HeadingsFontFamily;
+
+@if $COMPONENT-PANEL {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .panel {
+        color: $PANEL-Color;
+        background-color: $PANEL-BgColor;
+        @include padding($TYPE-LineHeight);
+        @include border-radius(2);
+        @include depth-1;
+
+        & + .panel {
+            @include margin-top($TYPE-LineHeight);
+        }
+    }
+
+    .panel__title {
+        font-family: $PANEL-HeadingsFontFamily;
+
+        @include font-size-heading($TYPE-SIZE-XXL);
+    }
+
+    .panel__body {
+        a {
+            @include link-custom($PANEL-LinkColor, underline, $PANEL-LinkHoverColor, none);
+        }
+    }
+
+    .panel__actions {
+        border-top: 1px solid lighten($PANEL-BgColor, 10%);
+
+        @include margin-top($TYPE-LineHeight);
+        @include padding-top($TYPE-LineHeight);
+    }
+}

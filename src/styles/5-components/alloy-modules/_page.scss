@@ -1,0 +1,53 @@
+/// <reference path="../main.scss" />
+
+////
+/// PAGE
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+@if $COMPONENT-PAGE {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .page {
+        //
+    }
+
+    .page__head {
+        @include margin-bottom($TYPE-LineHeight);
+    }
+
+    .page__title {
+        margin-bottom: 0;
+    }
+
+    .page__subtitle {
+        margin-bottom: 0;
+    }
+
+    .page__body {
+        //
+    }
+
+    .page__foot {
+        //
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

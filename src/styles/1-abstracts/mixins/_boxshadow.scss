@@ -1,0 +1,45 @@
+/// <reference path="../../main.scss" />
+////
+/// CSS3
+/// @group CSS3
+////
+
+/// BOX SHADOW
+@mixin box-shadow($x: 0, $y: 3px, $blur: 5px, $alpha: 0.4, $colour: #000) {
+    box-shadow: $x $y $blur #{rgba($colour, $alpha)};
+}
+
+@mixin box-shadow-inner($x: 0, $y: 3px, $blur: 5px, $alpha: 0.4, $colour: #000) {
+    box-shadow: inset $x $y $blur #{rgba($colour, $alpha)};
+}
+
+@mixin box-shadow-custom($customShadow) {
+    box-shadow: $customShadow;
+}
+
+///
+/// SHADOW DEPTHS
+///
+@mixin depth-0() {
+    @include box-shadow-custom($DEPTH-Level0);
+}
+
+@mixin depth-1() {
+    @include box-shadow-custom($DEPTH-Level1);
+}
+
+@mixin depth-2() {
+    @include box-shadow-custom($DEPTH-Level2);
+}
+
+@mixin depth-3() {
+    @include box-shadow-custom($DEPTH-Level3);
+}
+
+@mixin depth-4() {
+    @include box-shadow-custom($DEPTH-Level4);
+}
+
+@mixin depth-5() {
+    @include box-shadow-custom($DEPTH-Level5);
+}

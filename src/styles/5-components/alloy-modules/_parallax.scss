@@ -1,0 +1,79 @@
+﻿/// <reference path="../main.scss" />
+
+////
+/// PARALLAX
+/// @link http://keithclark.co.uk/articles/pure-css-parallax-websites/
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$PARALLAX-Perspective:          1;
+$PARALLAX-Base-TranslateZ:      0;
+$PARALLAX-Back-TranslateZ:      -1;
+$PARALLAX-Front-TranslateZ:     0.5;
+
+// MIXINS
+// ----------------------------------------------------
+
+@mixin parallaxTransform($name, $translateZ, $perspective: 1) {
+    $scale: 1 + ($translateZ * -1) / $perspective;
+
+    &.parallax__layer--#{$name} {
+        transform: translateZ(#{$translateZ}px) scale($scale);
+    }
+}
+
+@if $COMPONENT-PARALLAX {
+
+    // BASE
+    // ----------------------------------------------------
+    .parallax {
+        perspective: #{$PARALLAX-Perspective}px;
+        height: 1000px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: relative;
+
+        .parallax__group {
+            position: relative;
+            height: 100vh;
+
+            @include transform-style;
+
+            .parallax__layer {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+
+                .title {
+                    text-align: center;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                @include parallaxTransform('base', $PARALLAX-Base-TranslateZ, $PARALLAX-Perspective);
+                @include parallaxTransform('back', $PARALLAX-Back-TranslateZ, $PARALLAX-Perspective);
+                @include parallaxTransform('front', $PARALLAX-Front-TranslateZ, $PARALLAX-Perspective);
+            }
+        }
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

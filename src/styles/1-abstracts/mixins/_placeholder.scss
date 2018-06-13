@@ -1,0 +1,27 @@
+﻿/// <reference path="../../main.scss" />
+////
+/// CSS3
+////
+
+/// VARIABLES
+// -----------------------------------------
+$PLACEHOLDER-Color:         lighten($TYPE-FontColor, 35%);
+
+/// Sets default placeholder in form elements
+@mixin placeholder ($COLOR: $PLACEHOLDER-Color) {
+    :-moz-placeholder {
+        color: $COLOR;
+    }
+
+    ::-moz-placeholder {
+        color: $COLOR;
+    }
+
+    :-ms-input-placeholder {
+        color: $COLOR;
+    }
+
+    ::-webkit-input-placeholder {
+        color: $COLOR;
+    }
+}

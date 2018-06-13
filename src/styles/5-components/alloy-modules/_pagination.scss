@@ -1,0 +1,110 @@
+/// <reference path="../main.scss" />
+
+////
+/// PAGINATION
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$PAGINATION-BgColor:          $COLOR-Base;
+$PAGINATION-Color:            $COLOR-White;
+
+$PAGINATION-HoverBgColor:     scale-color($COLOR-Base, $saturation: 10%, $lightness: 20%);
+$PAGINATION-HoverColor:       $PAGINATION-Color;
+$PAGINATION-ActiveBgColor:    scale-color($PAGINATION-HoverBgColor, $lightness: 20%);
+
+$PAGINATION-Control-Color:    contrast-color($PAGINATION-BgColor, $PAGINATION-Color, $PAGINATION-HoverColor);
+
+$PAGINATION-SeparatorBgColor: scale-color($PAGINATION-BgColor, $lightness: 50%);
+$PAGINATION-SeparatorColor:   $PAGINATION-Color;
+
+@if $COMPONENT-PAGINATION {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        &--left {
+            justify-content: flex-start;
+        }
+
+        &--centered {
+            justify-content: space-between;
+        }
+
+        &--right {
+            justify-content: flex-end;
+        }
+    }
+
+    .pagination__control {
+        color: $PAGINATION-Control-Color;
+        text-decoration: none;
+        vertical-align: top;
+        line-height: 1;
+
+        @include inline-block;
+        @include font-size($TYPE-SIZE-M);
+        @include transition(color, 0.1s);
+    }
+
+    .list--pagination {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+
+        @include margin(0, 10);
+
+        .list__item {
+            @include margin-right(10);
+        }
+
+        .list__link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 50px;
+            min-height: 50px;
+            color: $PAGINATION-Color;
+            background-color: $PAGINATION-BgColor;
+            border: 1px solid $PAGINATION-Color;
+            float: left;
+            text-decoration: none;
+
+            @include font-size($TYPE-SIZE-XXL);
+            @include transition(background-color, 0.1s);
+
+            &:hover,
+            &:focus {
+                color: $PAGINATION-HoverColor;
+                background-color: $PAGINATION-HoverBgColor;
+                border-color: $PAGINATION-HoverBgColor;
+            }
+
+            &[aria-current] {
+                color: $PAGINATION-HoverColor;
+                background-color: $PAGINATION-HoverBgColor;
+                border-color: $PAGINATION-HoverBgColor;
+            }
+        }
+
+        .list__separator {
+            color: $PAGINATION-SeparatorColor;
+            background-color: $PAGINATION-SeparatorBgColor;
+            float: left;
+
+            @include padding(2, 10, 2, 10);
+            @include user-select;
+        }
+
+        .current {
+            background-color: $PAGINATION-ActiveBgColor;
+
+            @include user-select;
+        }
+    }
+}

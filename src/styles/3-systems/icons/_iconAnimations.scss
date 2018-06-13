@@ -1,0 +1,187 @@
+/// <reference path="../../main.scss" />
+
+////
+/// ANIMATIONS
+////
+
+// BASE
+// ----------------------------------------------------
+
+$burger-spin-deg:     180deg;
+$burger-spin-time:    0.2s;
+$toggle-spin-deg:     180deg;
+$toggle-spin-time:    0.2s;
+
+// .button--menu {
+//     .icon--menu {
+//         > * {
+//             transition: all #{$burger-spin-time} ease-in-out;
+//             transform-origin: center center;
+//         }
+
+//         .icon--close {
+//             transform: rotate(-#{$burger-spin-deg}) scale(0.2);
+//             opacity: 0;
+//         }
+
+//         .icon--burger {
+//             transform: rotate(0deg) scale(0.8);
+//             opacity: 1;
+//         }
+//     }
+
+//     &.active .icon--menu {
+//         .icon--close {
+//             transform: rotate(0deg) scale(0.7);
+//             opacity: 1;
+//         }
+
+//         .icon--burger {
+//             transform: rotate(#{$burger-spin-deg}) scale(0.2);
+//             opacity: 0;
+//         }
+//     }
+// }
+
+.button--subnav {
+    .icon--toggle {
+        > * {
+            transition: all #{$toggle-spin-time} ease-in-out;
+            transform-origin: center center;
+        }
+
+        .icon--arrowdown {
+            transform: rotate(0deg);
+        }
+    }
+
+    &.active .icon--toggle {
+        .icon--arrowdown {
+            transform: rotate($toggle-spin-deg);
+        }
+    }
+}
+
+$ICON_SWITCH-Viewport-Height:           32;
+$ICON_SWITCH-Viewport-Width:            62;
+$ICON_SWITCH-Viewport-Ratio:            $ICON_SWITCH-Viewport-Height / $ICON_SWITCH-Viewport-Width;// 0.516em;
+
+.icon--switch {
+    height: $ICON_SWITCH-Viewport-Ratio * 1em;
+    @include font-size(64);
+
+    @supports (transform: translateX(0%)) {
+        * {
+            transition: transform 0.2s ease-in-out;
+        }
+    }
+
+    .icon--switch__back {
+        fill: inherit;
+    }
+
+    .icon--switch__border {
+        stroke: inherit;
+    }
+
+    .icon--switch__dotoff {
+        fill: $COLOR-GG-GreyLighter;
+        opacity: 1;
+    }
+
+    .icon--switch__dot {
+        fill: $COLOR-GG-GreyLighter;
+        opacity: 0;
+    }
+
+    // IE doesn't do transforms on SVG elements (only opacity).
+    // So we've added a hidden 'dottoff' to the svg and show/hide it's opacity
+    @supports (transform: translateX(0%)) {
+        .icon--switch__dotoff {
+            opacity: 0;
+        }
+
+        .icon--switch__dot {
+            transform: translateX(-47.58%);
+            opacity: 1;
+        }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        cursor: pointer;
+    }
+
+    // If it's otherwise static (something else changes its state)
+    &.active {
+        .icon--switch__dotoff {
+            fill: $COLOR-White;
+            opacity: 0;
+        }
+
+        .icon--switch__dot {
+            fill: $COLOR-White;
+            opacity: 1;
+        }
+
+        @supports (transform: translateX(0%)) {
+            .icon--switch__dotoff {
+                opacity: 0;
+            }
+
+            .icon--switch__dot {
+                opacity: 1;
+                transform: translateX(0%);
+            }
+        }
+    }
+
+    // If it's interactice (has hover states)
+    &.hasstate {
+        &:hover,
+        &:focus,
+        &:active {
+            .icon--switch__dot {
+                fill: $COLOR-White;
+                transform: translateX(0%);
+            }
+        }
+    }
+}
+
+// COOKIE OPT-IN - red to green (poor A11y for colour blind)
+// .icon--switch.optin {
+//     color: $COLOR-GG-RedBright;
+
+//     &.active {
+//         color: $COLOR-GG-GreenBright;
+//     }
+// }
+
+// NEWSLETTER SIGNUP - lightgrey to blue
+.icon--switch.default {
+    color: $COLOR-White;
+
+    .icon--switch__border {
+        stroke: $COLOR-GG-Grey;
+        stroke-opacity: 0.5;
+    }
+
+    .icon--switch__dot {
+        fill: $COLOR-GG-Grey;
+    }
+
+    &.active {
+        color: $COLOR-GG-BlueDark;
+
+        .icon--switch__border {
+            stroke: inherit;
+        }
+
+        .icon--switch__dot {
+            fill: $COLOR-White;
+        }
+    }
+}
+

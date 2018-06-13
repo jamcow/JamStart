@@ -1,0 +1,229 @@
+/// <reference path="../main.scss" />
+
+////
+/// LIST
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+@if $COMPONENT-LIST {
+    // BASE
+    // ----------------------------------------------------
+
+    .list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    .list--horizontal {
+        .list__item {
+            display: inline;
+        }
+    }
+
+    .list--vertical {
+        .list__item {
+            display: block;
+        }
+    }
+
+    .list--albums {
+        @include clearfix;
+
+        .list__item {
+            float: left;
+
+            @include media(screen, "<=small") {
+                @include list-as-columns (3, 2);
+            }
+
+            @include media(screen, ">small", "<=medium") {
+                @include list-as-columns (3, 2);
+            }
+
+            @include media(screen, ">medium", "<=large") {
+                @include list-as-columns (3, 2);
+            }
+        }
+    }
+
+    .list--associates {
+        .list__item {
+            width: 100%;
+
+            @include media(screen, ">small", "<=medium") {
+                width: 100% /2;
+                float: left;
+
+                @include padding ($TYPE-LineHeight/2);
+            }
+
+            @include media(screen, ">large") {
+                width: 100% /3;
+                float: left;
+
+                @include padding ($TYPE-LineHeight/2);
+            }
+        }
+    }
+
+    .list--camera {
+        .list__item {
+            @include inline-block;
+        }
+    }
+
+    .list--packages {
+        @include margin-bottom ($TYPE-LineHeight /2);
+
+        .list__item {
+            @include margin-bottom ($TYPE-LineHeight);
+        }
+    }
+
+    .list--preview {
+        @include padding (24);
+
+        .list__item {
+            width: 100%;
+
+            @include margin-bottom ($TYPE-LineHeight/2);
+        }
+    }
+
+    .list--previewWeddings {
+        @include padding (24);
+
+        padding-left: 10%;
+        // needs fix for less to Sass
+        // @include gradient-custom2016(linear; fadeout(rgb(38,38,38), 100%) 0, fadeout(rgb(38,38,38), 40%) 10%, fadeout(rgb(38,38,38), 40%) 70%, fadeout(rgb(38,38,38), 100%); 90deg);
+        max-width: 600px;
+
+        .list__item {
+            width: 100%;
+
+            @include margin-bottom ($TYPE-LineHeight/2);
+        }
+    }
+
+    .list--previewStudio {
+        @include padding (24);
+
+        list-style: square inside;
+
+        .list__item {
+            width: 100%;
+
+            @include margin-bottom ($TYPE-LineHeight/4);
+        }
+    }
+
+    .list--previewCommercial {
+        @include padding (24);
+
+        list-style: square inside;
+
+        .list__item {
+            width: 100%;
+
+            @include margin-bottom ($TYPE-LineHeight/4);
+        }
+    }
+
+    .list--testimonials {
+        .list__item {
+            width: 100%;
+
+            @include padding ($TYPE-LineHeight /2);
+
+            @include media(screen, ">small", "<=large") {
+                width: 100% /3;
+                float: left;
+            }
+
+            @include media(screen, ">large") {
+                width: 100% /3;
+                float: left;
+            }
+        }
+    }
+
+    .list--venueGalleries {
+        @include margin ($TYPE-LineHeight, 0);
+        @include clearfix;
+
+        .list__item {
+            //border-bottom: 1px solid $COLOR-AMP-GreyLightest;
+            width: 100%;
+            float: left;
+
+            @include margin-bottom ($TYPE-LineHeight);
+
+            &:nth-child(odd) {
+                background-color: lighten($COLOR-AMP-GreyLightest, 9%);
+            }
+
+            &:nth-child(even) {
+                background-color: lighten($COLOR-AMP-GreyLightest, 50%);
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            @include media(screen, "<small") {
+                @include list-as-columns(2,2);
+            }
+
+            @include media(screen, ">small", "<=large") {
+                @include list-as-columns(3,2);
+            }
+
+            @include media(screen, ">large") {
+                @include list-as-columns(4,2);
+            }
+        }
+    }
+
+    .list--venues {
+        @include clearfix;
+
+        .list__item {
+            float: left;
+
+            @include margin-bottom ($TYPE-LineHeight);
+
+            @include media(screen, "<=small") {
+                @include list-as-columns (2, 2);
+            }
+
+            @include media(screen, ">small", "<=large") {
+                @include list-as-columns (3, 2);
+            }
+
+            @include media(screen, ">large") {
+                @include list-as-columns (5, 2);
+            }
+        }
+    }
+
+    .list--events {
+        //
+    }
+
+    .list--fairs {
+        //
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+}

@@ -1,0 +1,116 @@
+/// <reference path="../main.scss" />
+
+////
+/// STAGE
+////
+
+// COLOURS
+// ----------------------------------------------------
+$BOX-HeadColor: $COLOR-White;
+$STAGEPAGE-IN-Anim: ease-in;
+$STAGEPAGE-OUT-Anim: ease-out;
+$STAGETRAY-OPEN-Anim: ease-in;
+$STAGETRAY-CLOSE-Anim: ease-out;
+
+@if $COMPONENT-STAGE {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .stage {
+        min-height: 100%;
+        max-height: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: $COLOR-GreyLight;
+    }
+
+    .stage__controls {
+        position: absolute;
+        display: block;
+        left: 20px;
+        top: 20px;
+        z-index: $Z-INDEX-Level5;
+    }
+
+    .stage__controls--right {
+        left: auto;
+        right: 20px;
+        top: 20px;
+    }
+
+    .stage__toggle {
+        text-decoration: none;
+        line-height: 1;
+
+        @include padding-top(1);
+        @include font-size($TYPE-LineHeight);
+
+        &:link {
+            color: $COLOR-GreyLightest;
+        }
+
+        &:visited {
+            color: lighten($COLOR-GreyLightest, 20%);
+        }
+
+        &:hover,
+        &:focus {
+            color: darken($COLOR-GreyLightest, 10%);
+        }
+
+        &:active {
+            color: darken($COLOR-GreyLightest, 20%);
+        }
+    }
+
+    .stage__page {
+        z-index: $Z-INDEX-Level1;
+        position: relative;
+        background-color: $COLOR-White;
+
+        @include box-shadow-custom(0 0 40px rgba(0, 0, 0, 0.9));
+
+        &.movingIn {
+            @include transition(left, 0.4s, ease);
+        }
+
+        &.movingOut {
+            @include transition(left, 0.4s, ease);
+        }
+    }
+
+    .stage__tray {
+        z-index: $Z-INDEX-Level0;
+        position: fixed;
+        top: 0;
+        height: 100%;
+        width: 300px;
+        background-color: $COLOR-GreyDarkest;
+
+        /* TODO: - This shouldn't be on all, but should be on left and right only */
+        &.opening {
+            @include transition(all, 0.3s, ease);
+        }
+
+        /* TODO: - This shouldn't be on all, but should be on left and right only */
+        &.closing {
+            @include transition(all, 0.5s, ease);
+        }
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

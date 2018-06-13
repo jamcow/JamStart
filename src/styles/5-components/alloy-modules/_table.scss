@@ -1,0 +1,101 @@
+/// <reference path="../main.scss" />
+
+////
+/// TABLE
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$TABLE-HeadColor: $COLOR-White;
+$TABLE-HeadBgColor: $COLOR-Base;
+$TABLE-RowOddBgColor: $COLOR-White;
+$TABLE-BorderColor: $COLOR-White;
+
+@if $COMPONENT-TABLE {
+
+    // BASE
+    // ----------------------------------------------------
+
+    // STANDARD TABLE NOT IN A LIST
+    // ----------------------------------------------------
+
+    table {
+        th,
+        td {
+            border: 1px solid $TABLE-BorderColor;
+            text-align: left;
+
+            @include padding($TYPE-LineHeight/2);
+        }
+
+        tr:nth-child(odd) {
+            //color: $TABLE-RowOddColor;
+            background-color: $TABLE-RowOddBgColor;
+        }
+
+        tr:nth-child(even) {
+            //color: $TABLE-RowEvenColor;
+            // background-color: $TABLE-RowEvenBgColor;
+        }
+    }
+
+    // TABLE USED ON A LIST
+    // ----------------------------------------------------
+
+    .table {
+        padding: 0;
+        border: none;
+
+        @include margin(0, 0, $TYPE-LineHeight, 0);
+        @include inline-block;
+
+        .centered {
+            text-align: center;
+        }
+    }
+
+    .table__row {
+        list-style: none;
+        border: none;
+
+        @include clearfix;
+    }
+
+    .table__header {
+        color: $TABLE-HeadColor;
+        background-color: $TABLE-HeadBgColor;
+        font-weight: normal;
+        border-right: 0 solid $TABLE-BorderColor;
+    }
+
+    .table__header-cell {
+        word-wrap: normal;
+    }
+
+    .table__cell {
+        min-height: 100%; // Incase cell is empty
+        border-right: 0 solid $TABLE-BorderColor;
+        word-wrap: break-word;
+
+        @include padding($TYPE-LineHeight/2);
+
+        &:last-child {
+            border-right: 1px solid $TABLE-BorderColor;
+        }
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

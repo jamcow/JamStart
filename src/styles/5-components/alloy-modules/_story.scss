@@ -1,0 +1,48 @@
+/// <reference path="../main.scss" />
+
+////
+/// STORY
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$STORY-Color: $TYPE-FontColor;
+$STORY-BgColor: $COLOR-White;
+$STORY-BorderColor: $COLOR-GreyLighter;
+
+@if $COMPONENT-STORY {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .story {
+        color: $STORY-Color;
+        background-color: $STORY-BgColor;
+        background-clip: padding-box;
+
+        @include margin($TYPE-LineHeight/2, 0, $TYPE-LineHeight, 0);
+        @include padding($TYPE-LineHeight);
+        @include border-radius(2);
+        @include depth-1;
+    }
+
+    .story__body {
+        @include margin-bottom($TYPE-LineHeight);
+    }
+
+    .story__actions {
+        border-top: 1px solid $STORY-BorderColor;
+
+        @include margin-top($TYPE-LineHeight/2);
+        @include padding-top($TYPE-LineHeight);
+    }
+
+    // MOBILE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        .story {
+            text-align: center;
+        }
+    }
+}

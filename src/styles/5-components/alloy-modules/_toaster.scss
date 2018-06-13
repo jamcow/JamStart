@@ -1,0 +1,144 @@
+/// <reference path="../main.scss" />
+
+////
+/// TOAST
+/// @TODO: could be older than Toast
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+$TOAST-Anim: $ANIM-Curve;
+$TOAST-Default-Colour:      $COLOR-Grey;
+$TOAST-Danger-Colour:       #cc0000;
+$TOAST-Success-Colour:      #009900;
+
+@if $COMPONENT-TOAST--2 {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .toaster {
+        //
+    }
+
+    .toast {
+        position: fixed;
+        width: 300px;
+        padding: 16px;
+        right: 20px;
+        margin-bottom: 20px;
+
+        &.cooking {
+            transition: all 0.35s $TOAST-Anim;
+        }
+
+        .toast__content {
+            padding: 2px 20px 0 0;
+        }
+
+        .toast__progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+        }
+
+        .toast__close {
+            font-weight: bold;
+            text-decoration: none;
+            float: right;
+            display: block;
+            line-height: 1;
+            padding-top: 5px;
+
+            &:link,
+            &:visited {
+                //
+            }
+
+            &:hover,
+            &:focus {
+                //
+            }
+
+            &:active {
+                //
+            }
+        }
+
+        /* Default styling */
+        background-color: $TOAST-Default-Colour;
+        color: lighten($TOAST-Default-Colour, 20%);
+
+        .toast__progress {
+            background-color: darken($TOAST-Default-Colour, 20%);
+        }
+
+        .toast__close {
+            color: darken($TOAST-Default-Colour, 20%);
+
+            &:link,
+            &:visited {
+                color: lighten($TOAST-Default-Colour, 20%);
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $TOAST-Default-Colour;
+            }
+        }
+
+        /* Danger styling */
+        &.toast--danger {
+            background-color: $TOAST-Danger-Colour;
+            color: lighten($TOAST-Danger-Colour, 20%);
+
+            .toast__progress {
+                background-color: darken($TOAST-Danger-Colour, 20%);
+            }
+
+            .toast__close {
+                color: darken($TOAST-Danger-Colour, 20%);
+
+                &:link,
+                &:visited {
+                    color: lighten($TOAST-Danger-Colour, 20%);
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: $TOAST-Danger-Colour;
+                }
+            }
+        }
+
+        /* Success styling */
+        &.toast--success {
+            background-color: $TOAST-Success-Colour;
+            color: lighten($TOAST-Success-Colour, 20%);
+
+            .toast__progress {
+                background-color: darken($TOAST-Success-Colour, 20%);
+            }
+
+            .toast__close {
+                color: darken($TOAST-Success-Colour, 20%);
+
+                &:link,
+                &:visited {
+                    color: lighten($TOAST-Success-Colour, 20%);
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: $TOAST-Success-Colour;
+                }
+            }
+        }
+    }
+}

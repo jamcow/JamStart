@@ -1,0 +1,36 @@
+/// <reference path="../../main.scss" />
+
+////
+/// ICONS for CMS
+////
+
+// BASE
+// ----------------------------------------------------
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    zoom: 1;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+// VARIANTS
+// --------------------------------------
+
+// RESPONSIVE
+// ----------------------------------------------------
+
+@include media(screen, "<=small") {
+    //
+}
+
+@include media(screen, ">small", "<=medium") {
+    //
+}
+
+@include media(screen, ">medium", "<=large") {
+    //
+}

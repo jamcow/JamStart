@@ -1,0 +1,83 @@
+/// <reference path="../main.scss" />
+
+////
+/// FOCUS
+////
+
+// COLOURS
+// ----------------------------------------------------
+$FOCUS-Head-Color:                 $COLOR-White;
+$FOCUS-Head-BgColor:               transparentize($COLOR-Black, 0.5);
+$FOCUS-Body-Color:                 $COLOR-White;
+$FOCUS-Body-BgColor:               transparentize($COLOR-Black, 0.5);
+$FOCUS-Foot-Color:                 $TYPE-FontColor;
+$FOCUS-Foot-BgColor:               transparentize($COLOR-Black, 0.5);
+
+@if $COMPONENT-FOCUS {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .focus {
+        @include linear-gradient(purple, 45deg, blue, red);
+        display: block;
+        max-width: 300px;
+        background-size: cover;
+
+        @include margin(0, 0, $TYPE-LineHeight, 0);
+        @include clearfix;
+    }
+
+    .focus__head {
+        color: $FOCUS-Head-Color;
+        background-color: $FOCUS-Head-BgColor;
+
+        @include padding($TYPE-FontSize);
+    }
+
+    .focus__title {
+        color: $FOCUS-Head-Color;
+        line-height: 1;
+        margin: 0;
+    }
+
+    .focus__body {
+        color: $FOCUS-Body-Color;
+        background-color: $FOCUS-Body-BgColor;
+
+        @include padding(0, $TYPE-FontSize);
+    }
+
+    .focus__foot {
+        color: $FOCUS-Foot-Color;
+        background-color: $FOCUS-Foot-BgColor;
+
+        @include padding($TYPE-FontSize);
+    }
+
+    .focus__head,
+    .focus__body,
+    .focus__foot {
+        display: block;
+        text-align: center;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

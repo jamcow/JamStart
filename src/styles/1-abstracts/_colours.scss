@@ -1,0 +1,141 @@
+﻿/// <reference path="../main.scss" />
+
+/// OFFICIAL VENDOR COLOURS
+// @link https://brandcolors.net
+$COLOR-VENDOR-Facebook:                 #3b5998;
+$COLOR-VENDOR-Twitter:                  #1da1f2;
+$COLOR-VENDOR-TwitterLight:             #eaf8ff;
+$COLOR-VENDOR-Google:                   #dd4b39;
+$COLOR-VENDOR-Instagram:                #db3072;
+
+$COLOR-A11y-Blue:                       #d0e5ff;
+$COLOR-A11y-Cream:                      #f7f3d6;
+
+/// DEFAULT COLOUR LIST
+// Generic colours and variations
+$COLOR-Black:           #000000 !default;
+$COLOR-White:           #ffffff !default;
+
+$planifolia-contrast-dark-default:  $COLOR-Black !default;
+$planifolia-contrast-light-default: $COLOR-White !default;
+
+$COLOR-RedLightest:     #fae8eb !default;
+$COLOR-RedLighter:      #f5bdc3 !default;
+$COLOR-RedLight:        #ed8288 !default;
+$COLOR-Red:             #e2383d !default;
+$COLOR-RedDark:         #bc2a2d !default;
+$COLOR-RedDarker:       #9b2123 !default;
+$COLOR-RedDarkest:      #7c1e21 !default;
+
+$COLOR-PinkLightest:    #f8edf2 !default;
+$COLOR-PinkLighter:     #eeccd7 !default;
+$COLOR-PinkLight:       #e09db1 !default;
+$COLOR-Pink:            #cc5e7b !default;
+$COLOR-PinkDark:        #a33f4f !default;
+$COLOR-PinkDarker:      #812932 !default;
+$COLOR-PinkDarkest:     #641e21 !default;
+
+$COLOR-PurpleLightest:  #f0e5ef !default;
+$COLOR-PurpleLighter:   #e1c6dc !default;
+$COLOR-PurpleLight:     #d0a3c5 !default;
+$COLOR-Purple:          #bb7aaa !default;
+$COLOR-PurpleDark:      #8f4e83 !default;
+$COLOR-PurpleDarker:    #6c3065 !default;
+$COLOR-PurpleDarkest:   #511e4e !default;
+
+$COLOR-IndigoLightest:  #ece8f7 !default;
+$COLOR-IndigoLighter:   #d5cdf0 !default;
+$COLOR-IndigoLight:     #bdaee6 !default;
+$COLOR-Indigo:          #9e8adb !default;
+$COLOR-IndigoDark:      #6d5ab9 !default;
+$COLOR-IndigoDarker:    #49389a !default;
+$COLOR-IndigoDarkest:   #31237e !default;
+
+$COLOR-BlueLightest:    #deecf8 !default;
+$COLOR-BlueLighter:     #b6d7f1 !default;
+$COLOR-BlueLight:       #8cbfe9 !default;
+$COLOR-Blue:            #5aa2e0 !default;
+$COLOR-BlueDark:        #3c75be !default;
+$COLOR-BlueDarker:      #28549f !default;
+$COLOR-BlueDarkest:     #1d3c82 !default;
+
+$COLOR-CyanLightest:    #d9f0f5 !default;
+$COLOR-CyanLighter:     #a9e0e9 !default;
+$COLOR-CyanLight:       #79cedd !default;
+$COLOR-Cyan:            #41b7cc !default;
+$COLOR-CyanDark:        #2e8da9 !default;
+$COLOR-CyanDarker:      #226c89 !default;
+$COLOR-CyanDarkest:     #1d526f !default;
+
+$COLOR-TealLightest:    #dcf1f0 !default;
+$COLOR-TealLighter:     #b0e2dd !default;
+$COLOR-TealLight:       #83d2c7 !default;
+$COLOR-Teal:            #4ebeac !default;
+$COLOR-TealDark:        #359685 !default;
+$COLOR-TealDarker:      #257467 !default;
+$COLOR-TealDarkest:     #1d5a50 !default;
+
+$COLOR-GreenLightest:   #eaf4e0 !default;
+$COLOR-GreenLighter:    #d3e8b6 !default;
+$COLOR-GreenLight:      #b9dc88 !default;
+$COLOR-Green:           #9acc54 !default;
+$COLOR-GreenDark:       #69a53a !default;
+$COLOR-GreenDarker:     #458429 !default;
+$COLOR-GreenDarkest:    #2d6821 !default;
+
+$COLOR-EmeraldLightest: #dff3e8 !default;
+$COLOR-EmeraldLighter:  #b8e6cb !default;
+$COLOR-EmeraldLight:    #8fd8aa !default;
+$COLOR-Emerald:         #62c884 !default;
+$COLOR-EmeraldDark:     #41a158 !default;
+$COLOR-EmeraldDarker:   #297f39 !default;
+$COLOR-EmeraldDarkest:  #21652a !default;
+
+$COLOR-YellowLightest:  #f5f0d9 !default;
+$COLOR-YellowLighter:   #ecdea4 !default;
+$COLOR-YellowLight:     #e3cb6d !default;
+$COLOR-Yellow:          #d7b431 !default;
+$COLOR-YellowDark:      #b18a28 !default;
+$COLOR-YellowDarker:    #8d6821 !default;
+$COLOR-YellowDarkest:   #704e21 !default;
+
+$COLOR-OrangeLightest:  #faedd4 !default;
+$COLOR-OrangeLighter:   #f8d89b !default;
+$COLOR-OrangeLight:     #f6c25e !default;
+$COLOR-Orange:          #f5a61d !default;
+$COLOR-OrangeDark:      #d37a1b !default;
+$COLOR-OrangeDarker:    #b2581c !default;
+$COLOR-OrangeDarkest:   #924223 !default;
+
+$COLOR-RustLightest:    #fcefea !default;
+$COLOR-RustLighter:     #f9d3c1 !default;
+$COLOR-RustLight:       #f7aa86 !default;
+$COLOR-Rust:            #f5733a !default;
+$COLOR-RustDark:        #d34a2b !default;
+$COLOR-RustDarker:      #b33025 !default;
+$COLOR-RustDarkest:     #911e21 !default;
+
+$COLOR-BrownLightest:   #e1d9d9 !default;
+$COLOR-BrownLighter:    #bda8a6 !default;
+$COLOR-BrownLight:      #96766f !default;
+$COLOR-Brown:           #693d32 !default;
+$COLOR-BrownDark:       #442c27 !default;
+$COLOR-BrownDarker:     #2b2221 !default;
+$COLOR-BrownDarkest:    #1d1e21 !default;
+
+$COLOR-GreyLightest:        lighten($COLOR-Black, 93%) !default;
+$COLOR-GreyLighter:         lighten($COLOR-Black, 85%) !default;
+$COLOR-GreyLight:           lighten($COLOR-Black, 56%) !default;
+$COLOR-Grey:                lighten($COLOR-Black, 40%) !default;
+$COLOR-GreyDark:            lighten($COLOR-Black, 20%) !default;
+$COLOR-GreyDarker:          lighten($COLOR-Black, 13.5%) !default;
+$COLOR-GreyDarkest:         lighten($COLOR-Black, 7%) !default;
+
+// Grey but tinted blue
+$COLOR-GrayBlueLightest:    #e7e9ed !default;
+$COLOR-GrayBlueLighter:     #cbd0d7 !default;
+$COLOR-GrayBlueLight:       #adb4bc !default;
+$COLOR-GrayBlue:            #8a949f !default;
+$COLOR-GrayBlueDark:        #556375 !default;
+$COLOR-GrayBlueDarker:      #324156 !default;
+$COLOR-GrayBlueDarkest:     #1d2c41 !default;

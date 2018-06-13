@@ -1,0 +1,76 @@
+/// <reference path="../../main.scss" />
+
+////
+/// GENERAL MIXINS
+/// @group General Mixins
+////
+
+//  Background svg mixin
+@mixin background-svg($svg) {
+    background-image: svg-url($svg);
+}
+
+/// Useful for when using ::before and ::after
+/// @param {*} $display [block]
+/// @param {*} $position
+/// @param {*} $content
+/// @example
+///   div::after {
+///     @include pseudo;
+///   }
+@mixin pseudo($display: block, $position: absolute, $content: '') {
+    content: $content;
+    display: $display;
+    position: $position;
+}
+
+// CLEARING
+// ----------------------------------------------------
+
+/// Clearfix as a mixin
+@mixin clearfix {
+    &::before,
+    &::after {
+        content: '';
+        display: table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+/// OPACITY
+/// @deprecated Opacity fallbacks now handled by autoprefix
+@mixin opacity ($opacity: 1) {
+    opacity: $opacity;
+    //ie <9
+    $ieOpacity: ($opacity * 100);
+
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$ieOpacity})";
+    filter: "alpha(opacity=#{$ieOpacity})";
+}
+
+/// ROOT Class
+/// Handled with an "&" at the end of a nested class - might be useful
+@mixin root ($class: "") {
+    @if $class == "ie9" {
+        @at-root .ie9 & {
+            @content;
+        }
+    }
+
+    @else {
+        @at-root #{$class} & {
+            @content;
+        }
+    }
+}
+
+// FORCE HAS LAYOUT
+// ----------------------------------------------------
+@mixin haslayout {
+    overflow: hidden;
+    _overflow: visible; // HACK
+    zoom: 1; // HACK
+}

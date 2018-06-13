@@ -17,27 +17,27 @@
 @import "1-abstracts/_base";
 
 /// BASE - Normalise, typography and grid
-@import "2-elements/_base";
+// @import "2-elements/_base";
 
 /// SYSTEMS
-@import "3-systems/forms/_base";
-@import "3-systems/icons/_base";
+// @import "3-systems/forms/_base";
+// @import "3-systems/icons/_base";
 
 /// OBJECTS (for describing layout - the bricks for windows to go in)
-@import "4-objects/_base";
+// @import "4-objects/_base";
 
 /// ALLOY MODULES
 /// (If we can use these, customise it, or make a brand new module)
-@import "5-components/alloy-modules/_base";
+// @import "5-components/alloy-modules/_base";
 
 /// COMPONENTS
-@import "5-components/_base";
+// @import "5-components/_base";
 
 /// VENDOR / 3rd PARTY LIBRARIES
-@import "6-vendor/_base";
+// @import "6-vendor/_base";
 
 /// UTILITIES - Helpers & utilitiy classes
-@import "7-utilities/_base";
+// @import "7-utilities/_base";
 
 /// PRINT
 /// TODO: This probably should be brought in as separate print stylesheet
@@ -45,11 +45,11 @@
 
 /// A11y
 /// Reduced Motion
-@import "2-elements/media-a11y";
+// @import "2-elements/media-a11y";
 
 /// DEBUG - debugging panel and borked HTML
-@import "2-elements/debug";
+// @import "2-elements/debug";
 
 /// DEBUG - a11y.css warnings/advice
 /// @link http://ffoodd.github.io/a11y.css/index.html
-@import "2-elements/debug--a11y";
+// @import "2-elements/debug--a11y";

@@ -1,0 +1,12 @@
+/// <reference path="../main.scss" />
+
+////
+/// GLOBAL PLACEHOLDERS
+////
+
+/// WARNING: Global placeholders are imported early, so if a
+/// class selector references them, it puts those selectors at the
+/// very top of the compiled css, above normalize and probably before
+/// the class selectors intended to be overridden via inheritance
+
+/// This feature of Sass v3 might get fixed in Sass v4

@@ -1,0 +1,104 @@
+/// <reference path="../main.scss" />
+
+////
+/// BANNER
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$BANNER-Color:                  $COLOR-White !default;
+$BANNER-BgColor:                fade-out($COLOR-Black, 0.5) !default;
+$BANNER-BgPosition:             center !default;
+
+$BANNER-Height:                 400px !default;
+$BANNER-Indent:                 10% !default;
+
+@if $COMPONENT-BANNER {
+
+    // BANNER BASE
+    // ----------------------------------------------------
+
+    .banner {
+        background-position: $BANNER-BgPosition;
+        position: relative;
+        background-size: cover;
+    }
+
+    .banner__content {
+        color: $BANNER-Color;
+        position: relative;
+        height: 100%;
+        background-color: $BANNER-BgColor;
+
+        @include text-shadow;
+    }
+
+    .banner__foreground {
+        text-align: center;
+        position: relative;
+
+        @include padding(10);
+    }
+
+    .banner__image {
+        float: right;
+    }
+
+    .banner__title {
+        line-height: 1;
+        margin: 0;
+
+        @include font-size($TYPE-SIZE-XXXXL);
+    }
+
+    .banner__subtitle {
+        line-height: 1;
+        margin: 0;
+
+        @include font-size($TYPE-SIZE-XXL);
+    }
+
+    .banner__body {
+        font-style: italic;
+
+        @include font-size($TYPE-SIZE-L);
+        @include margin-top($TYPE-LineHeight);
+    }
+
+    .banner__actions {
+        @include margin-top($TYPE-LineHeight);
+    }
+
+    // MOBILE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        .banner {
+            @include margin-top(44);
+        }
+    }
+
+    // TABLET+
+    // ----------------------------------------------------
+    @include media(screen, ">small") {
+        .banner {
+            height: $BANNER-Height;
+        }
+
+        .banner__content {
+            width: $BANNER-Height;
+            left: $BANNER-Indent;
+        }
+
+        .banner__foreground {
+            top: 50%;
+            max-width: $BANNER-Height*2;
+
+            @include translate-y(-50%);
+        }
+    }
+
+    @include media(screen, ">large") {
+        //
+    }
+}

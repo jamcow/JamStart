@@ -1,0 +1,95 @@
+/// <reference path="../main.scss" />
+
+////
+/// NAVIGATION
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+// On white background
+$NAVIGATION-Color: $COLOR-GreyDarker !default;
+$NAVIGATION-BgColor: transparent !default;
+$NAVIGATION-HoverColor: $COLOR-GreyDark !default;
+$NAVIGATION-CurrentColor: $COLOR-Orange !default;
+$NAVIGATION-CurrentBgColor: transparent !default;
+
+// On transparent/image background
+$NAVIGATION-ALT-Color: $COLOR-White !default;
+$NAVIGATION-ALT-BgColor: transparent !default;
+$NAVIGATION-ALT-HoverColor: $COLOR-Orange !default;
+$NAVIGATION-ALT-CurrentColor: $COLOR-Orange !default;
+$NAVIGATION-ALT-CurrentBgColor: $NAVIGATION-ALT-BgColor !default;
+
+$NAVIGATION-FontFamily: $TYPE-FontFamily !default;
+
+$NAVIGATION-SUB-Color: $COLOR-White !default;
+$NAVIGATION-SUB-BgColor: $COLOR-Orange !default;
+$NAVIGATION-SUB-HoverColor: darken($COLOR-White, 5%) !default;
+$NAVIGATION-SUB-HoverBgColor: transparent !default;
+$NAVIGATION-SUB-CurrentColor: $COLOR-White !default;
+$NAVIGATION-SUB-CurrentBgColor: transparent !default;
+
+@if $COMPONENT-NAVLIST {
+
+    // BASE
+    // ----------------------------------------------------
+    .navList--main {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-family: $NAVIGATION-FontFamily;
+
+        @include clearfix;
+
+        .navList__item {
+            .navList__link {
+                //@include link-custom($NAVIGATION-Color, none, $NAVIGATION-HoverColor, none);
+                text-decoration: none;
+            }
+
+            &:hover,
+            &:active,
+            &.current {
+                .navList__link {
+                    //@include link-custom($NAVIGATION-CurrentColor, none, $NAVIGATION-HoverColor, none);
+
+                    text-decoration: underline;
+                    position: relative;
+                }
+            }
+
+            &.current {
+                .drawer--sub {
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    .drawer--sub {
+        @include transition(all, 0.3s);
+    }
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    // RESPONSIVE MENU
+    // ----------------------------------------------------
+
+    @include media(screen, "<=menu-small") {
+        //
+    }
+
+    @include media(screen, ">menu-small") {
+        //
+    }
+
+    @include media(screen, ">menu-small", "<=menu-medium") {
+        //
+    }
+
+    @include media(screen, ">menu-large") {
+        //
+    }
+}

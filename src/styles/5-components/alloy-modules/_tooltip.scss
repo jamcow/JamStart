@@ -1,0 +1,77 @@
+﻿/// <reference path="../main.scss" />
+
+////
+/// TOOLTIP
+/// http://cbavota.bitbucket.org/css3-tips/
+/// http://www.webdesignerdepot.com/2012/11/how-to-create-a-simple-css3-tooltip/
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+$TOOLTIP-Color:                 $COLOR-White;
+$TOOLTIP-BgColor:               $COLOR-Grey;
+
+@if $COMPONENT-TOOLTIP {
+
+    // BASE
+    // ----------------------------------------------------
+
+    [data-tooltip] {
+        position: relative;
+    }
+
+    [data-tooltip]::after,
+    [data-tooltip]::before {
+        position: absolute;
+        bottom: 90%;
+        left: -9999px;
+        opacity: 0;
+        line-height: 1;
+        z-index: $Z-INDEX-Level3;
+
+        @include margin-bottom(10);
+        @include transition(bottom, 0.1s);
+    }
+
+    [data-tooltip]::after {
+        color: $TOOLTIP-Color;
+        background-color: $TOOLTIP-BgColor;
+        content: attr(data-tooltip);
+        display: inline-table;
+        white-space: now;
+
+        @include padding($TYPE-LineHeight/4);
+        @include border-radius(2);
+    }
+
+    [data-tooltip].tooltip-large::after {
+        //min-width: 200px;
+        white-space: normal;
+    }
+
+    [data-tooltip]::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-width: 5px;
+        border-style: solid;
+        border-color: $TOOLTIP-BgColor transparent transparent transparent;
+        margin-bottom: 0;
+    }
+
+    [data-tooltip]:hover::after,
+    [data-tooltip]:hover::before {
+        opacity: 1;
+    }
+
+    [data-tooltip]:hover::after,
+    [data-tooltip]:hover::before {
+        bottom: 100%;
+        left: 0;
+    }
+
+    [data-tooltip]:hover::before {
+        left: 20px;
+    }
+}

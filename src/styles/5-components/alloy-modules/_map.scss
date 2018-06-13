@@ -1,0 +1,51 @@
+/// <reference path="../main.scss" />
+
+////
+/// MAP
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$MAP-Bg:                $COLOR-Grey;
+$MAP-Height-Max:        75vh;
+$MAP-Height:            500px;
+$MAP-Height-Sm:         250px;
+
+@if $COMPONENT-MAP {
+
+    // BASE
+    // ----------------------------------------------------
+
+    // Play nice with google maps
+    .map,
+    .map * {
+        max-width: none;
+    }
+
+    .map {
+        width: 100%;
+        height: $MAP-Height;
+        max-height: $MAP-Height-Max;
+        background-color: $MAP-Bg;
+
+        @include margin (0, 0, $TYPE-LineHeight, 0);
+    }
+
+    .map.small {
+        height: $MAP-Height-Sm;
+    }
+
+    .infobubble {
+        text-align: center;
+
+        @include font-size(20);
+    }
+
+    .infobubble__content {
+        text-align: center;
+
+        @include font-size(20);
+
+        color: $COLOR-Grey;
+    }
+}

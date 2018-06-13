@@ -1,0 +1,343 @@
+/// <reference path="../main.scss" />
+
+////
+/// BUTTON
+/// Text and background colours should have sufficient contrast
+/// @link http://contrastchecker.com
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+$BUTTON-BgColor:                scale-color($COLOR-Base, $saturation: 10%, $lightness: -10%) !default;
+$BUTTON-HoverBgColor:           lighten($BUTTON-BgColor, 5%) !default;
+$BUTTON-TextColor:              contrast-color($BUTTON-BgColor) !default;
+
+$BUTTON-AltBgColor:             adjust-hue($BUTTON-BgColor, 22.5deg) !default;
+$BUTTON-AltHoverBgColor:        lighten($BUTTON-AltBgColor, 5%) !default;
+$BUTTON-AltTextColor:           contrast-color($BUTTON-AltBgColor) !default;
+
+$BUTTON-DisabledBgColor:        darken($COLOR-White, 5%);
+$BUTTON-DisabledHoverBgColor:   darken($BUTTON-DisabledBgColor, 5%);
+$BUTTON-DisabledTextColor:      $COLOR-Grey;
+
+$BUTTON-SuccessBgColor:         $COLOR-Green;
+$BUTTON-SuccessHoverBgColor:    lighten($BUTTON-SuccessBgColor, 5%);
+$BUTTON-SuccessTextColor:       contrast-color($BUTTON-SuccessBgColor);
+
+$BUTTON-InfoBgColor:            $COLOR-Blue;
+$BUTTON-InfoHoverBgColor:       lighten($BUTTON-InfoBgColor, 5%);
+$BUTTON-InfoTextColor:          contrast-color($BUTTON-InfoBgColor);
+
+$BUTTON-WarningBgColor:         $COLOR-Orange;
+$BUTTON-WarningHoverBgColor:    lighten($BUTTON-WarningBgColor, 5%);
+$BUTTON-WarningTextColor:       contrast-color($BUTTON-WarningBgColor);
+
+$BUTTON-DangerBgColor:          $COLOR-Red;
+$BUTTON-DangerHoverBgColor:     lighten($BUTTON-DangerBgColor, 5%);
+$BUTTON-DangerTextColor:        $COLOR-White;
+
+$BUTTON-Anim:                   $ANIM-Curve !default;
+
+$BUTTON-FontSize:               $TYPE-FontSize;
+$BUTTON-LineHeight:             1;
+
+$BUTTON-BorderColor:            null !default;
+$BUTTON-BorderHoverColor:       null !default;
+
+// BUTTON BASE
+// ----------------------------------------------------
+
+@if $COMPONENT-BUTTON {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .button {
+        border: none;
+        text-align: center;
+        text-transform: uppercase;
+
+        @if $BUTTON-BorderColor {
+            border: 1px solid $BUTTON-BorderColor;
+        }
+
+        @include button-create($BUTTON-BgColor, $BUTTON-HoverBgColor, $BUTTON-TextColor);
+        @include padding($TYPE-LineHeight /4, $TYPE-LineHeight);
+        @include font-size($BUTTON-FontSize);
+        @include transition(all, 0.1s, $BUTTON-Anim);
+
+        &:hover,
+        &:active {
+            @include depth-1;
+
+            @if $BUTTON-BorderColor {
+                border-color: $BUTTON-BorderHoverColor;
+            }
+        }
+
+        & + .button {
+            @include margin-top($TYPE-LineHeight/2);
+        }
+
+        @include media(screen, "<=small") {
+            display: block;
+        }
+
+        @include media(screen, ">small") {
+            display: inline-block;
+        }
+    }
+
+    // BUTTON TYPES
+    // ----------------------------------------------------
+
+    .button--prev,
+    .button--next {
+        //
+    }
+
+    %button--alt,
+    .button--alt {
+        @include button-create($BUTTON-AltBgColor, $BUTTON-AltHoverBgColor, $BUTTON-AltTextColor);
+    }
+
+    .button {
+        &.success {
+            @include button-create($BUTTON-SuccessBgColor, $BUTTON-SuccessHoverBgColor, $BUTTON-SuccessTextColor);
+        }
+
+        &.info {
+            @include button-create($BUTTON-InfoBgColor, $BUTTON-InfoHoverBgColor, $BUTTON-InfoTextColor);
+        }
+
+        &.sdf {
+            @include button-create($BUTTON-InfoBgColor, $BUTTON-InfoHoverBgColor, $BUTTON-InfoTextColor);
+        }
+
+        &.warn {
+            @include button-create($BUTTON-WarningBgColor, $BUTTON-WarningHoverBgColor, $BUTTON-WarningTextColor);
+        }
+
+        &.danger {
+            @include button-create($BUTTON-DangerBgColor, $BUTTON-DangerHoverBgColor, $BUTTON-DangerTextColor);
+        }
+
+        &.disabled {
+            @include button-create($BUTTON-DisabledBgColor, $BUTTON-DisabledHoverBgColor, $BUTTON-DisabledTextColor);
+
+            &:hover,
+            &:focus {
+                cursor: not-allowed;
+
+                @include depth-0;
+            }
+        }
+    }
+
+    // BUTTON GROUPS
+    // ----------------------------------------------------
+
+    // @TODO: Use flexbox!
+    .buttongroup {
+        position: relative;
+        vertical-align: middle;
+        white-space: nowrap;
+
+        @include margin-bottom($TYPE-LineHeight);
+        @include inline-block;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .buttongroup {
+            margin: 0;
+        }
+
+        > .button,
+        .buttongroup {
+            position: relative;
+            float: left;
+            border-radius: 0;
+
+            @include depth-0;
+        }
+
+        > .button {
+            &:first-of-type,
+            &.first {
+                @include border-radius-custom(5, 0, 0, 5);
+            }
+
+            &:last-of-type,
+            &.last {
+                @include border-radius-custom(0, 5, 5, 0);
+            }
+        }
+
+        &.justified {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+
+            > .button {
+                display: table-cell;
+                float: none;
+                width: 1%;
+            }
+        }
+
+        &.vertical {
+            > .button,
+            .buttongroup {
+                display: block;
+                float: none;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            > .button {
+                &:first-of-type,
+                &.first {
+                    @include border-radius-custom(5, 5, 0, 0);
+                }
+
+                &:last-of-type,
+                &.last {
+                    @include border-radius-custom(0, 0, 5, 5);
+                }
+            }
+        }
+    }
+
+    .button__totop {
+        color: $BUTTON-AltTextColor;
+        background-color: $BUTTON-AltBgColor;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        text-decoration: none;
+        cursor: pointer;
+        line-height: 1;
+        z-index: $Z-INDEX-Level1;
+
+        @include padding(7);
+        @include font-size(30);
+        @include depth-2;
+        @include transition(background-color, 0.1s);
+
+        &:hover {
+            color: $BUTTON-AltTextColor;
+            background-color: $BUTTON-AltHoverBgColor;
+
+            @include depth-2;
+        }
+    }
+
+    // BUTTON Standards
+    // ----------------------------------------------------
+
+    .button.xsmall {
+        @include font-size(($TYPE-FontSize - 4));
+    }
+
+    .button.small {
+        @include font-size(($TYPE-FontSize - 2));
+    }
+
+    .button.large {
+        @include font-size(($TYPE-FontSize + 2));
+    }
+
+    .button.xlarge {
+        @include font-size(($TYPE-FontSize + 4));
+    }
+
+    .button.full {
+        display: block !important;
+    }
+
+    .button.block {
+        width: 100%;
+    }
+
+    // button__mobile
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        .button__mobile {
+            display: block;
+        }
+
+        .button__mobile--mainnav {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 44px;
+            width: 44px;
+            cursor: pointer;
+
+            @include padding(21, 12);
+        }
+
+        // TODO: as animated SVG
+        .button__mobile--mainnav span,
+        .button__mobile--mainnav span::before,
+        .button__mobile--mainnav span::after {
+            cursor: pointer;
+            border-radius: 2px;
+            height: 2px;
+            width: 20px;
+            background: $COLOR-Base;
+            position: absolute;
+            display: block;
+            content: "";
+        }
+
+        .button__mobile--mainnav span::before {
+            top: -4px;
+        }
+
+        .button__mobile--mainnav span::after {
+            bottom: -4px;
+        }
+
+        .button__mobile--mainnav span,
+        .button__mobile--mainnav span::before,
+        .button__mobile--mainnav span::after {
+            transition: all 500ms ease-in-out;
+        }
+
+        .button__mobile--mainnav.active span {
+            background-color: transparent;
+        }
+
+        .button__mobile--mainnav.active span::before,
+        .button__mobile--mainnav.active span::after {
+            top: 0;
+        }
+
+        .button__mobile--mainnav.active span::before {
+            transform: rotate(45deg);
+        }
+
+        .button__mobile--mainnav.active span::after {
+            transform: translateY(-4px) rotate(-45deg);
+            top: 4px;
+        }
+    }
+
+    // TABLET+
+    // ----------------------------------------------------
+    @include media(screen, ">small") {
+        .button__mobile {
+            display: none;
+        }
+    }
+
+    @include media(screen, ">large") {
+        //
+    }
+}

@@ -1,0 +1,86 @@
+/// <reference path="../main.scss" />
+
+////
+/// SECTION
+////
+$SECTION-Divider:               $COLOR-GreyLight !default;
+
+@if $COMPONENT-SECTION {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .section {
+        @include margin-bottom($TYPE-LineHeight*1.5);
+
+        &:last-of-type {
+            @include margin-bottom(0);
+        }
+
+        + .section {
+            border-top: 2px solid $SECTION-Divider;
+
+            @include padding-top($TYPE-LineHeight);
+        }
+    }
+
+    .section__head {
+        //
+    }
+
+    .section__container {
+        //
+    }
+
+    .section__body {
+        //
+    }
+
+    .section__foot {
+        //
+    }
+
+    .section__title {
+        @include margin-bottom(0);
+    }
+
+    .section__subtitle {
+        @include margin-bottom(0);
+    }
+
+    .section__nav {
+        //
+    }
+
+	// For adding negative margins on flexbox columns
+	// Could be better named (not linked to section)
+	.section__listContainer {
+		@include margin-x(-$GRID-Padding);
+
+		@include media(screen, "<=medium") {
+			@include margin-x(-$GRID-Padding-Sm);
+		}
+
+		@include media(screen, ">medium", "<=large") {
+			@include margin-x(-$GRID-Padding-Md);
+		}
+	}
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

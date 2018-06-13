@@ -1,0 +1,50 @@
+/// <reference path="../main.scss" />
+
+////
+/// LIST
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+@if $COMPONENT-LIST {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    .list--horizontal {
+        .list__item {
+            display: inline;
+        }
+    }
+
+    .list--vertical {
+        .list__item {
+            display: block;
+        }
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

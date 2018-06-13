@@ -1,0 +1,129 @@
+/// <reference path="../main.scss" />
+
+////
+/// HELPERS
+////
+
+// CLEARING
+// ----------------------------------------------------
+
+// Clearfix for use within html
+.c {
+    @include clearfix;
+}
+
+// TRUNCATION
+// ----------------------------------------------------
+
+.truncate {
+    @include truncate;
+}
+
+// TEXT MANIPULTAION
+// ----------------------------------------------------
+
+// Visually hidden text
+.vh {
+    font-style: normal;
+    @include hidden-text;
+}
+
+// Un-hide visually hidden text
+.vh-un {
+    @include unhidden-text;
+}
+
+.no-select {
+    @include user-select;
+}
+
+// DISPLAY
+// ----------------------------------------------------
+
+.block,
+.show {
+    @include block;
+}
+
+.hide,
+.hidden {
+    @include hide;
+}
+
+.invisible {
+    @include invisible;
+}
+
+.visible {
+    @include visible;
+}
+
+// Stop body scrolling when modals / panels are active
+// Would be better to use a JS utility to do this
+//  - iOS and some versions of Edge have scrollbars on top, so adding padding will now cause a jerk
+// @link https://github.com/FL3NKEY/scroll-lock
+.scrollLock {
+    overflow-y: hidden;
+}
+
+// Source: http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/
+.ir {
+    @include ir;
+}
+
+// ALIGNMENT
+// ----------------------------------------------------
+
+.left {
+    @include left;
+}
+
+.right {
+    @include right;
+}
+
+.align--left {
+    @include align-left;
+}
+
+.align--right {
+    @include align-right;
+}
+
+.center,
+.align--center {
+    @include center;
+}
+
+.center-block {
+    @include center-block;
+}
+
+// DEPTH
+// ----------------------------------------------------
+
+@if $UTILITY-HELPERS-depth {
+    .d0 {
+        @include depth-0;
+    }
+
+    .d1 {
+        @include depth-1;
+    }
+
+    .d2 {
+        @include depth-2;
+    }
+
+    .d3 {
+        @include depth-3;
+    }
+
+    .d4 {
+        @include depth-4;
+    }
+
+    .d5 {
+        @include depth-5;
+    }
+}

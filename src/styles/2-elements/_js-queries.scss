@@ -1,0 +1,84 @@
+/// <reference path="../main.scss" />
+
+////
+/// JS-MEDIAQUERY (mq_page, mq_menu)
+////
+
+// We use display:none to not show the "::after" text,
+// however, some browsers won't show any change at all,
+// which is why we cause a tiny transition on it's width
+// which forces the browser to recalculate the value.
+
+#mq_page,
+#mq_menu {
+    transition: width 0.001s;
+
+    &::after {
+        content: "xsdefault";
+        display: none;
+    }
+}
+
+@each $name, $value in $breakpoints {
+    // Work out correct em value for media query
+    $em-value: em($value);
+
+    // Replace the hyphen to match the media name in js
+    $jsname: str-replace($name, "-", "");
+
+    // A different width for each (Index * width)
+    $i: index(($breakpoints), ($name $value));
+
+    @if str-index($name, 'menu-') != 1 {
+        #mq_page {
+            @include media(screen, ">#{$name}") {
+                width: ($i * 20px);
+
+                &::after {
+                    content: "#{$jsname}";
+                }
+            }
+        }
+    }
+
+    @else {
+        #mq_menu {
+            @include media(screen, ">#{$name}") {
+                width: ($i * 20px);
+
+                &::after {
+                    content: "#{$jsname}";
+                }
+            }
+        }
+    }
+}
+
+// Used by IntersectionObserver to change the header to "stuck"
+#js-obs1 {
+    position: absolute;
+    top: 160px;
+    left: 0;
+    height: 100px;
+    width: 1px;
+}
+
+$O_TARGET-fix-md:        83;
+$O_TARGET-fix-lg:        142;
+
+/// BASE
+/// ----------------------------------------------------
+
+// This prevents #achor scroll position from being obscurred by a position:fixed / position:sticky element (eg, header)
+// Or you can intercept with fancy JS
+:target::before {
+    content: "";
+    display: block;
+    height: px2rem($O_TARGET-fix-md);
+    @include margin(-$O_TARGET-fix-md, 0, 0);
+
+    @include media(screen, ">menu-large") {
+        height: px2rem($O_TARGET-fix-lg);
+        @include margin(-$O_TARGET-fix-lg, 0, 0);
+    }
+}

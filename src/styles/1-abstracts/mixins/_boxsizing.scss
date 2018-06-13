@@ -1,0 +1,9 @@
+/// <reference path="../../main.scss" />
+////
+/// CSS3
+/// @group Mixins
+
+/// Box Sizing
+@mixin box-sizing($type: border-box) {
+    box-sizing: $type;
+}

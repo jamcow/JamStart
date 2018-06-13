@@ -1,0 +1,76 @@
+/// <reference path="../main.scss" />
+
+////
+/// BLUR MASK
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$BLURMASK-Height:					$BANNER-Height !default;
+$BLURMASK-Indent:					$BANNER-Indent !default;
+$BLURMASK-BgPosition:				$BANNER-BgPosition !default;
+$BLURMASK-BlurRadius:				5px !default;
+
+@if $COMPONENT-BLURMASK {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .blurMask {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .blurMask__overlay {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .blurMask__width {
+        height: 100%;
+    }
+
+    .blurMask__background {
+        background-position: $BLURMASK-BgPosition;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        filter: blur($BLURMASK-BlurRadius);
+        background-size: cover;
+    }
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+
+    @include media(screen, ">large") {
+        //
+    }
+
+    @include media(screen, ">small") {
+        .blurMask__overlay {
+            left: $BLURMASK-Indent;
+            width: $BLURMASK-Height;
+        }
+
+        .blurMask__background {
+            left: -$BLURMASK-Indent;
+        }
+    }
+}

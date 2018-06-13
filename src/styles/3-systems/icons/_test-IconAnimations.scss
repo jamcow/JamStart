@@ -1,0 +1,102 @@
+/// <reference path="../../main.scss" />
+
+////
+/// ANIMATIONS
+////
+
+// BASE
+// ----------------------------------------------------
+
+@keyframes spinout {
+    0% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(-360deg) scale(0.2);
+        opacity: 0;
+    }
+}
+
+@keyframes spinin {
+    0% {
+        transform: rotate(360deg) scale(0.2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+.testexamples {
+    .icon {
+        font-size: rem(40);
+    }
+
+    .icon > use {
+        transform-origin: center center;
+    }
+}
+
+.testexample1 {
+    .icon--checkbox__box {
+        color: red;
+    }
+
+    .icon--checkbox__tick {
+        color: lime;
+    }
+}
+
+$test-spin-deg:     180deg;
+$test-spin-time:    0.3s;
+
+.testexample2 {
+    > * {
+        transition: all #{$test-spin-time} ease-in-out;
+    }
+
+    .icon--close {
+        transform: rotate(-#{$test-spin-deg}) scale(0.2);
+        opacity: 0;
+    }
+
+    .icon--burger {
+        transform: rotate(0deg) scale(0.8);
+        opacity: 1;
+    }
+
+    &:hover {
+        .icon--close {
+            transform: rotate(0deg) scale(0.7);
+            opacity: 1;
+        }
+
+        .icon--burger {
+            transform: rotate(#{$test-spin-deg}) scale(0.2);
+            opacity: 0;
+        }
+    }
+}
+
+.testgrid {
+    .c-cell {
+        background-color: #cccccc;
+    }
+
+    .testfit {
+        .gc {
+            min-width: 140px;
+        }
+    }
+
+    .testfixedwidth {
+        .c-cell {
+            background-color: red;
+            width: 300px;
+        }
+    }
+}

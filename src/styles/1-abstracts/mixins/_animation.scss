@@ -1,0 +1,27 @@
+/// <reference path="../../main.scss" />
+////
+/// CSS3
+////
+
+// ANIMATION
+// ----------------------------------------------------
+
+@mixin animation($name, $duration: 300ms, $delay: 0, $ease: ease) {
+    animation: $name $duration $delay $ease;
+}
+
+@mixin animation-fill-mode($fill: forwards) {
+    animation-fill-mode: $fill;
+}
+
+@mixin animation-duration($duration: 500ms) {
+    animation-duration: $duration;
+}
+
+@mixin transition($range: all, $time: 1s, $ease: ease-in-out) {
+    transition: $range $time $ease;
+}
+
+@mixin transition-none() {
+    transition: none;
+}

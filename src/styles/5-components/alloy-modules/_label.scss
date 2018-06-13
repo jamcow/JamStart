@@ -1,0 +1,87 @@
+/// <reference path="../main.scss" />
+
+////
+/// LABEL
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$LABEL-BgColor:                  $COLOR-GreyDark;
+$LABEL-TextColor:                $COLOR-White;
+$LABEL-SuccessBgColor:           $COLOR-Green;
+$LABEL-InfoBgColor:              $COLOR-Blue;
+$LABEL-WarningBgColor:           $COLOR-Orange;
+$LABEL-DangerBgColor:            $COLOR-Red;
+
+@if $COMPONENT-LABEL {
+
+    // LABEL BASE
+    // ----------------------------------------------------
+
+    .label {
+        @include inline-block;
+        @include padding(3, $TYPE-FontSize/2);
+        @include border-radius(10);
+        @include font-size($TYPE-SIZE-XXS);
+
+        color: $LABEL-TextColor;
+        background-color: $LABEL-BgColor;
+        line-height: 1;
+        min-width: 10px;
+        text-align: center;
+        white-space: nowrap;
+        font-family: $TYPE-MonoSpaceFontFamily;
+    }
+
+    // STATUSES
+    // ----------------------------------------------------
+
+    .label {
+        &.success {
+            background-color: $LABEL-SuccessBgColor;
+        }
+
+        &.info {
+            background-color: $LABEL-InfoBgColor;
+        }
+
+        &.warn {
+            background-color: $LABEL-WarningBgColor;
+        }
+
+        &.danger {
+            background-color: $LABEL-DangerBgColor;
+        }
+
+        &.xsmall {
+            @include font-size(($TYPE-FontSize - 4));
+        }
+
+        &.small {
+            @include font-size(($TYPE-FontSize - 2));
+        }
+
+        &.large {
+            @include font-size(($TYPE-FontSize + 2));
+        }
+
+        &.xlarge {
+            @include font-size(($TYPE-FontSize + 4));
+        }
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

@@ -1,0 +1,64 @@
+/// <reference path="../main.scss" />
+
+////
+/// CITE
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$CITE-Color:					$COLOR-White !default;
+$CITE-BgColor:					$COLOR-Base !default;
+$CITE-BgColor-Hover:		    lighten($CITE-BgColor, 5%) !default;
+$CITE-Animation:				$ANIM-Curve !default;
+
+@if $COMPONENT-CITE {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .cite {
+        @include margin($TYPE-LineHeight/2, 0, $TYPE-LineHeight, 0);
+        @include border-radius(2);
+
+        &:hover {
+            .cite__content {
+                background-color: $CITE-BgColor-Hover;
+            }
+        }
+    }
+
+    .cite__image {
+        width: 100%;
+    }
+
+    .cite__content {
+        background-color: $CITE-BgColor;
+        display: block;
+
+        @include padding($TYPE-LineHeight/2);
+        @include transition(background-color, 0.1s, $CITE-Animation);
+    }
+
+    .cite__link {
+        color: $CITE-Color;
+        display: block;
+        text-decoration: none;
+
+        &:link,
+        &:visited {
+            color: $CITE-Color;
+        }
+
+        &:hover {
+            //
+        }
+
+        &:focus {
+            //
+        }
+
+        &:active {
+            //
+        }
+    }
+}

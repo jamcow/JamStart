@@ -1,0 +1,516 @@
+/// <reference path="../../main.scss" />
+
+////
+/// BUTTON
+/// Text and background colours should have sufficient contrast
+/// @link http://contrastchecker.com
+////
+
+// .button:not(class*="button--")
+// button--primary
+// button--secondary
+// button--light
+// button--dark
+// button--altsec
+// button--altlight
+
+// VARIABLES
+// ----------------------------------------------------
+
+$BUTTON-BgColor:                              scale-color($COLOR-Base, $saturation: 10%, $lightness: -10%) !default;
+$BUTTON-HoverBgColor:                         lighten($BUTTON-BgColor, 5%) !default;
+$BUTTON-TextColor:                            contrast-color($BUTTON-BgColor) !default;
+$BUTTON-HoverTextColor:                       $BUTTON-TextColor !default;
+$BUTTON-BorderColor:                          null !default;
+$BUTTON-BorderHoverColor:                     null !default;
+$BUTTON-Bg1:                                  $COLOR-Accent !default;
+$BUTTON-Bg2:                                  $COLOR-Secondary !default;
+$BUTTON-Gradient:                             to bottom !default;
+
+$BUTTON-AltBgColor:                           adjust-hue($BUTTON-BgColor, 22.5deg) !default;
+$BUTTON-AltHoverBgColor:                      lighten($BUTTON-AltBgColor, 5%) !default;
+$BUTTON-AltTextColor:                         contrast-color($BUTTON-AltBgColor) !default;
+$BUTTON-AltHoverTextColor:                    $BUTTON-AltTextColor !default;
+$BUTTON-AltBorderColor:                       null !default;
+$BUTTON-AltBorderHoverColor:                  null !default;
+$BUTTON-AltBg1:                               $COLOR-Accent !default;
+$BUTTON-AltBg2:                               $COLOR-Secondary !default;
+$BUTTON-AltGradient:                          to right !default;
+
+$BUTTON-AltgrBgColor:                         adjust-hue($BUTTON-BgColor, 45deg) !default;
+$BUTTON-AltgrHoverBgColor:                    lighten($BUTTON-AltgrBgColor, 5%) !default;
+$BUTTON-AltgrTextColor:                       contrast-color($BUTTON-AltgrBgColor) !default;
+$BUTTON-AltgrHoverTextColor:                  $BUTTON-AltgrTextColor !default;
+$BUTTON-AltgrBorderColor:                     null !default;
+$BUTTON-AltgrBorderHoverColor:                null !default;
+$BUTTON-AltgrBg1:                             $COLOR-Accent !default;
+$BUTTON-AltgrBg2:                             $COLOR-Secondary !default;
+
+$BUTTON-AltDarkBgColor:                       transparent !default;
+$BUTTON-AltDarkHoverBgColor:                  transparent !default;
+$BUTTON-AltDarkTextColor:                     $COLOR-BaseDark !default;
+$BUTTON-AltDarkBg1:                           $BUTTON-AltDarkTextColor !default;
+$BUTTON-AltDarkBg2:                           $BUTTON-AltDarkTextColor !default;
+
+$BUTTON-AltLightBgColor:                      transparent !default;
+$BUTTON-AltLightHoverBgColor:                 transparent !default;
+$BUTTON-AltLightTextColor:                    $COLOR-BaseLight !default;
+$BUTTON-AltLightBg1:                          $BUTTON-AltLightTextColor !default;
+$BUTTON-AltLightBg2:                          $BUTTON-AltLightTextColor !default;
+
+$BUTTON-DisabledBgColor:                      darken($COLOR-White, 5%) !default;
+$BUTTON-DisabledHoverBgColor:                 darken($BUTTON-DisabledBgColor, 5%) !default;
+$BUTTON-DisabledTextColor:                    $COLOR-Grey !default;
+
+$BUTTON-SuccessBgColor:                       $COLOR-Green;
+$BUTTON-SuccessHoverBgColor:                  lighten($BUTTON-SuccessBgColor, 5%);
+$BUTTON-SuccessTextColor:                     contrast-color($BUTTON-SuccessBgColor);
+
+$BUTTON-InfoBgColor:                          $COLOR-Blue;
+$BUTTON-InfoHoverBgColor:                     lighten($BUTTON-InfoBgColor, 5%);
+$BUTTON-InfoTextColor:                        contrast-color($BUTTON-InfoBgColor);
+
+$BUTTON-WarningBgColor:                       $COLOR-Orange;
+$BUTTON-WarningHoverBgColor:                  lighten($BUTTON-WarningBgColor, 5%);
+$BUTTON-WarningTextColor:                     contrast-color($BUTTON-WarningBgColor);
+
+$BUTTON-DangerBgColor:                        $COLOR-Red;
+$BUTTON-DangerHoverBgColor:                   lighten($BUTTON-DangerBgColor, 5%);
+$BUTTON-DangerTextColor:                      $COLOR-White;
+
+$BUTTON-Anim:                                 $ANIM-Curve !default;
+
+$BUTTON-FontSize:                             $TYPE-FontSize;
+$BUTTON-LineHeight:                           1;
+$BUTTON-BorderWidth:                          2;
+
+// BUTTON BASE
+// ----------------------------------------------------
+
+@if $COMPONENT-BUTTON {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .button {
+        border: none;
+        appearance: none;
+        text-align: center;
+        padding: $BUTTON-BorderWidth * 1px;
+        background-color: transparent;
+        border-radius: 10px;
+        min-width: 150px;
+        position: relative;
+
+        @include font-size($BUTTON-FontSize);
+        @include font-family($TYPE-FontFamily, $FONTLOADER-FontFamily, 700);
+
+        &:link,
+        &:visited {
+            text-decoration: none;
+        }
+
+        &::before {
+            content: "";
+            display: block;
+            border-radius: 9px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            z-index: 1;
+            @include transition(opacity, 0.2s, $BUTTON-Anim);
+        }
+
+        & > span {
+            position: relative;
+            display: block;
+            border-radius: 8px;
+            z-index: 2;
+            @include padding($TYPE-FontSize, $TYPE-LineHeight /2);
+            @include transition(all, 0.2s, $BUTTON-Anim);
+
+            //
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .icon {
+                padding-right: 5px;
+                @include font-size($TYPE-SIZE-XXL);
+            }
+        }
+
+        i {
+            font-style: normal;
+        }
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.hover {
+            text-decoration: none;
+            cursor: pointer;
+            // @include depth-1;
+            // box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+
+            &::before {
+                opacity: 1;
+            }
+
+            span {
+                background-color: $COLOR-White;
+            }
+        }
+
+        @include media(screen, "<=small") {
+            display: block;
+
+            &.button--link,
+            &.button--linkAlt {
+                display: inline-block;
+            }
+        }
+
+        @include media(screen, ">small") {
+            display: inline-block;
+        }
+    }
+
+    // BUTTON TYPES
+    // ----------------------------------------------------
+
+    .button:not([class*="button--"]) {
+        min-width: auto;
+
+        @include button-create($COLOR-White, $COLOR-White, $COLOR-Pink, $COLOR-GreyDark);
+    }
+
+    .button--primary {
+        @include button-create($COLOR-White, transparent, $COLOR-Pink, $COLOR-White);
+
+        background-color: $COLOR-Pink;
+        background-image: linear-gradient(to top, $COLOR-Pink 0%, $COLOR-Purple 100%);
+
+        &::before {
+            background-image: linear-gradient(to right, $COLOR-Pink 0%, $COLOR-Purple 100%);
+        }
+    }
+
+    .button--secondary {
+        @include button-create($COLOR-White, $COLOR-White, $COLOR-Pink, $COLOR-Pink);
+
+        &::before {
+            background-image: linear-gradient(to top, $COLOR-Pink 0%, $COLOR-Purple 100%);
+        }
+    }
+
+    .button--light {
+        @include button-create(transparent, $COLOR-White, $COLOR-White, $COLOR-Pink, $BorderColor: $COLOR-White, $BorderHoverColor: $COLOR-White, $BorderWidth: $BUTTON-BorderWidth);
+    }
+
+    .button--dark {
+        @include button-create(transparent, $COLOR-White, $COLOR-GreyDark, $COLOR-Pink, $BorderColor: $COLOR-GreyDark, $BorderHoverColor: $COLOR-Pink, $BorderWidth: $BUTTON-BorderWidth);
+    }
+
+    .button--alt {
+        min-width: auto;
+        @include button-create($COLOR-White, $COLOR-White, $COLOR-GreyDark, $COLOR-Pink, $BorderColor: transparent, $BorderWidth: 0);
+    }
+
+    .button--menu,
+    .button--subnav,
+    .nav--actions .button {
+        min-width: auto;
+        display: inline-block;
+
+        span {
+            padding: 0;
+        }
+    }
+
+    .button--altprimary {
+        @include button-create(transparent, $COLOR-White, $COLOR-White, $COLOR-Pink, $BorderColor: $COLOR-White, $BorderHoverColor: $COLOR-White, $BorderWidth: $BUTTON-BorderWidth);
+    }
+
+    .button--altsecondary {
+        @include button-create(transparent, $COLOR-White, $COLOR-White, $COLOR-Pink);
+    }
+
+    // Button that looks like a hyperlink, but performs an action
+    .button--link {
+        @include button-create($COLOR-White, $COLOR-White, $COLOR-Pink, $COLOR-GreyDark);
+
+        min-width: auto;
+
+        span {
+            padding: 0;
+        }
+    }
+
+    .button--linkAlt {
+        @include button-create($COLOR-White, $COLOR-White, $COLOR-GreyDark, $COLOR-Pink);
+
+        min-width: auto;
+
+        span {
+            padding: 0;
+        }
+    }
+
+    .button--inline {
+        display: inline;
+    }
+
+    .button--full {
+        width: 100%;
+    }
+
+    @if $BUTTON-GENERATE-States {
+        .button {
+            &.success {
+                @include button-create($BUTTON-SuccessBgColor, $BUTTON-SuccessHoverBgColor, $BUTTON-SuccessTextColor);
+            }
+
+            &.info {
+                @include button-create($BUTTON-InfoBgColor, $BUTTON-InfoHoverBgColor, $BUTTON-InfoTextColor);
+            }
+
+            &.warn {
+                @include button-create($BUTTON-WarningBgColor, $BUTTON-WarningHoverBgColor, $BUTTON-WarningTextColor);
+            }
+
+            &.danger {
+                @include button-create($BUTTON-DangerBgColor, $BUTTON-DangerHoverBgColor, $BUTTON-DangerTextColor);
+            }
+
+            &.disabled {
+                @include button-create($BUTTON-DisabledBgColor, $BUTTON-DisabledHoverBgColor, $BUTTON-DisabledTextColor);
+
+                background-color: transparent;
+                background-image: none;
+
+                &::before {
+                    background-image: none;
+                }
+
+                &:hover,
+                &:focus {
+                    cursor: not-allowed;
+
+                    @include depth-0;
+                }
+            }
+        }
+    }
+
+    // BUTTON GROUPS
+    // ----------------------------------------------------
+
+    @if $BUTTON-GENERATE-Group {
+        // @TODO: Use flexbox!
+        .buttongroup {
+            position: relative;
+            vertical-align: middle;
+            white-space: nowrap;
+
+            @include margin-bottom($TYPE-LineHeight);
+            @include inline-block;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .buttongroup {
+                margin: 0;
+            }
+
+            > .button,
+            .buttongroup {
+                position: relative;
+                float: left;
+                border-radius: 0;
+
+                @include depth-0;
+            }
+
+            > .button {
+                &:first-of-type,
+                &.first {
+                    @include border-radius-custom(5, 0, 0, 5);
+                }
+
+                &:last-of-type,
+                &.last {
+                    @include border-radius-custom(0, 5, 5, 0);
+                }
+            }
+
+            &.justified {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+                border-collapse: separate;
+
+                > .button {
+                    display: table-cell;
+                    float: none;
+                    width: 1%;
+                }
+            }
+
+            &.vertical {
+                > .button,
+                .buttongroup {
+                    display: block;
+                    float: none;
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+                > .button {
+                    &:first-of-type,
+                    &.first {
+                        @include border-radius-custom(5, 5, 0, 0);
+                    }
+
+                    &:last-of-type,
+                    &.last {
+                        @include border-radius-custom(0, 0, 5, 5);
+                    }
+                }
+            }
+        }
+    }
+
+    @if $BUTTON-GENERATE-ToTop {
+        .button__totop {
+            color: $BUTTON-AltTextColor;
+            background-color: $BUTTON-AltBgColor;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            text-decoration: none;
+            cursor: pointer;
+            line-height: 1;
+            z-index: $Z-INDEX-Level1;
+
+            @include padding(7);
+            @include font-size(30);
+            @include depth-2;
+            @include transition(background-color, 0.1s);
+
+            &:hover {
+                color: $BUTTON-AltTextColor;
+                background-color: $BUTTON-AltHoverBgColor;
+
+                @include depth-2;
+            }
+        }
+    }
+
+    // BUTTON Standards
+    // ----------------------------------------------------
+
+    .button.xsmall {
+        @include font-size(($TYPE-FontSize - 4));
+    }
+
+    .button.small {
+        @include font-size(($TYPE-FontSize - 2));
+    }
+
+    .button.large {
+        @include font-size(($TYPE-FontSize + 2));
+    }
+
+    .button.xlarge {
+        @include font-size(($TYPE-FontSize + 4));
+    }
+
+    .button.full {
+        display: block !important;
+    }
+
+    .button.block {
+        width: 100%;
+    }
+
+    // button__mobile
+    // ----------------------------------------------------
+
+    @if $BUTTON-GENERATE-MobileMainnav {
+        @include media(screen, "<=small") {
+            .button__mobile {
+                display: block;
+            }
+
+            .button__mobile--mainnav {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 44px;
+                width: 44px;
+                cursor: pointer;
+
+                @include padding(21, 12);
+            }
+
+            // TODO: as animated SVG
+            .button__mobile--mainnav span,
+            .button__mobile--mainnav span::before,
+            .button__mobile--mainnav span::after {
+                cursor: pointer;
+                border-radius: 2px;
+                height: 2px;
+                width: 20px;
+                background: $COLOR-Base;
+                position: absolute;
+                display: block;
+                content: "";
+            }
+
+            .button__mobile--mainnav span::before {
+                top: -4px;
+            }
+
+            .button__mobile--mainnav span::after {
+                bottom: -4px;
+            }
+
+            .button__mobile--mainnav span,
+            .button__mobile--mainnav span::before,
+            .button__mobile--mainnav span::after {
+                transition: all 500ms ease-in-out;
+            }
+
+            .button__mobile--mainnav.active span {
+                background-color: transparent;
+            }
+
+            .button__mobile--mainnav.active span::before,
+            .button__mobile--mainnav.active span::after {
+                top: 0;
+            }
+
+            .button__mobile--mainnav.active span::before {
+                transform: rotate(45deg);
+            }
+
+            .button__mobile--mainnav.active span::after {
+                transform: translateY(-4px) rotate(-45deg);
+                top: 4px;
+            }
+        }
+
+        // TABLET+
+        // ----------------------------------------------------
+        @include media(screen, ">small") {
+            .button__mobile {
+                display: none;
+            }
+        }
+    }
+}

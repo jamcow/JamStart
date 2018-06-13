@@ -1,0 +1,93 @@
+/// <reference path="../main.scss" />
+
+////
+/// HOVERCARD
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$HOVERCARD-Color:           $COLOR-White;
+$HOVERCARD-BgColor:         $COLOR-Base;
+$HOVERCARD-InfoColor:       $COLOR-Yellow;
+
+@if $COMPONENT-HOVERCARD {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .hovercard {
+        color: $HOVERCARD-Color;
+        background-color: $HOVERCARD-BgColor;
+        max-width: 300px;
+
+        @include padding($TYPE-FontSize);
+        @include depth-2;
+    }
+
+    .hovercard__content {
+        overflow: hidden;
+        zoom: 1;
+    }
+
+    .hovercard__avatar {
+        float: left;
+
+        @include margin(0, $TYPE-FontSize, 0, 0);
+
+        .avatar {
+            display: block;
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+
+            @include border-radius(30);
+        }
+    }
+
+    .hovercard__name {
+        @include font-size($TYPE-SIZE-XL);
+    }
+
+    .hovercard__info {
+        color: $HOVERCARD-InfoColor;
+
+        @include font-size($TYPE-SIZE-XXS);
+    }
+
+    .hovercard__bio {
+        //
+    }
+
+    .hovercard__actions {
+        text-align: right;
+
+        @include padding-top($TYPE-FontSize);
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        .hovercard {
+            text-align: center;
+        }
+
+        .hovercard__avatar {
+            float: none;
+
+            @include inline-block;
+        }
+    }
+
+    @include media(screen, ">small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">large") {
+        //
+    }
+}

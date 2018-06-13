@@ -1,0 +1,135 @@
+/// <reference path="../main.scss" />
+
+////
+/// ALERT
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+$ALERT-DefaultBgColor:          $COLOR-GreyLighter !default;
+$ALERT-DefaultTextColor:        $COLOR-GreyDark !default;
+$ALERT-DefaultBordercolor:      $COLOR-GreyLight !default;
+
+$ALERT-InfoBgColor:             $COLOR-BlueLightest !default;
+$ALERT-InfoTextColor:           $COLOR-BlueDark !default;
+$ALERT-InfoBordercolor:         $COLOR-BlueLight !default;
+
+$ALERT-WarnBgColor:             $COLOR-OrangeLightest !default;
+$ALERT-WarnTextColor:           $COLOR-OrangeDarker !default;
+$ALERT-WarnBordercolor:         $COLOR-OrangeLight !default;
+
+$ALERT-DangerBgColor:           $COLOR-RedLightest !default;
+$ALERT-DangerTextColor:         $COLOR-RedDark !default;
+$ALERT-DangerBordercolor:       $COLOR-RedLight !default;
+
+$ALERT-SuccessBgColor:          $COLOR-GreenLightest !default;
+$ALERT-SuccessTextColor:        $COLOR-GreenDark !default;
+$ALERT-SuccessBordercolor:      $COLOR-GreenLight !default;
+
+// MIXINS
+// ----------------------------------------------------
+
+@mixin alert-link ($color: $ALERT-DefaultTextColor) {
+    $link: lighten($color, 20%);
+    $visted: $link;
+    $hover: darken($color, 20%);
+    $focus: $hover;
+    $active: darken($color, 40%);
+
+    @include link-custom($link, none, $hover, none, $visted, $focus, $active);
+}
+
+@mixin alert-status ($textColor: $ALERT-DefaultTextColor, $bgColor: $ALERT-DefaultBgColor, $bordercolor: $ALERT-DefaultBordercolor) {
+    color: $textColor;
+    background-color: $bgColor;
+    border-color: $bordercolor;
+
+    .alert__close {
+        @include alert-link($textColor);
+    }
+}
+
+@if $COMPONENT-ALERT {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .alert {
+        color: $ALERT-DefaultTextColor;
+        background-color: $ALERT-DefaultBgColor;
+        border-width: 0 5px;
+        border-style: solid;
+        border-color: $ALERT-DefaultBordercolor;
+        z-index: $Z-INDEX-Level4;
+
+        @include padding($TYPE-FontSize);
+        @include margin(0, 0, $TYPE-LineHeight, 0);
+        @include depth-1;
+    }
+
+    .alert__content {
+        overflow: hidden;
+        _overflow: visible;
+        zoom: 1;
+    }
+
+    .alert__title {
+        font-weight: bold;
+
+        @include font-size($TYPE-SIZE-M);
+    }
+
+    .alert__icon {
+        float: left;
+        line-height: 1;
+
+        @include padding-top(7);
+        @include margin-right(10);
+    }
+
+    .alert__close {
+        font-weight: bold;
+        text-decoration: none;
+        float: right;
+        display: block;
+        line-height: 1;
+
+        @include padding-top(1);
+        @include font-size($TYPE-LineHeight);
+        @include alert-link;
+    }
+
+    // STATUSES
+    // ----------------------------------------------------
+
+    .alert {
+        &.info {
+            @include alert-status($ALERT-InfoTextColor, $ALERT-InfoBgColor, $ALERT-InfoBordercolor);
+        }
+
+        &.warn {
+            @include alert-status($ALERT-WarnTextColor, $ALERT-WarnBgColor, $ALERT-WarnBordercolor);
+        }
+
+        &.danger {
+            @include alert-status($ALERT-DangerTextColor, $ALERT-DangerBgColor, $ALERT-DangerBordercolor);
+        }
+
+        &.success {
+            @include alert-status($ALERT-SuccessTextColor, $ALERT-SuccessBgColor, $ALERT-SuccessBordercolor);
+        }
+    }
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

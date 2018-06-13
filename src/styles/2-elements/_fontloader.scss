@@ -1,0 +1,86 @@
+/// <reference path="../main.scss" />
+
+////
+/// FONT LOADER - DESIGN LANGUAGE
+/// @TODO: make this closer to Filament Group
+/// @link https://www.filamentgroup.com/lab/font-events.html
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$FONTLOADER-Class:                 ".fonts-loaded" !default;
+
+$FONTLOADER-FontFamily:            'fira_sans', $TYPE-FontFamily;
+$FONTLOADER-AltFontFamily:         'ffdin_pro', $TYPE-AltFontFamily;
+$FONTLOADER-HeadingsFontFamily:    'ffdin_pro', $TYPE-HeadingsFontFamily;
+$FONTLOADER-HeadingsAltFontFamily: 'fira_sans', $TYPE-HeadingsAltFontFamily;
+
+@if $SYSTEM-FONTLOADER {
+    body#{$FONTLOADER-Class} {
+        font-family: $FONTLOADER-FontFamily;
+    }
+
+    // FONT FACES
+    // ----------------------------------------------------
+
+    // fira_sans 
+    @font-face {
+        font-family: 'fira_sans';
+        src:
+            url('#{$PATH-Fonts}/FiraSans-Bold.woff2') format('woff2'),
+            url('#{$PATH-Fonts}/FiraSans-Bold.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'fira_sans';
+        src:
+            url('#{$PATH-Fonts}/FiraSans-Regular.woff2') format('woff2'),
+            url('#{$PATH-Fonts}/FiraSans-Regular.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'fira_sans';
+        src:
+            url('#{$PATH-Fonts}/FiraSans-Regular.woff2') format('woff2'),
+            url('#{$PATH-Fonts}/FiraSans-Regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'ffdin_pro';
+        src:
+            url('#{$PATH-Fonts}/315D27_2_0.woff2') format('woff2'),
+            url('#{$PATH-Fonts}/315D27_2_0.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'ffdin_pro';
+        src:
+            url('#{$PATH-Fonts}/315D27_2_0.woff2') format('woff2'),
+            url('#{$PATH-Fonts}/315D27_2_0.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'ffdin_pro';
+        src:
+            url('#{$PATH-Fonts}/315D27_2_0.woff2') format('woff2'),
+            url('#{$PATH-Fonts}/315D27_2_0.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+}

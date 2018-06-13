@@ -1,0 +1,65 @@
+/// <reference path="../../main.scss" />
+
+////
+/// MARGINS
+////
+
+/// Creates any number of margin arguments, with or without mixed units
+/// If no arguments, defaults to margin: 0
+/// @param {number} $top [optional]
+/// @param {number} $right [optional]
+/// @param {number} $bottom [optional]
+/// @param {number} $left [optional]
+/// @example
+///   @include margin(72, 13%, auto, 0);
+///   // margin: 72rem, 13%, auto, 0;
+@mixin margin($top: 0, $right: null, $bottom: null, $left: null) {
+    $values: ($top, $right, $bottom, $left);
+    $remMap: unitmap($values, rem);
+
+    margin: $remMap;
+}
+
+@mixin margin-none {
+    margin: 0;
+}
+
+/// Applies a margin to the top
+@mixin margin-top($length: 0) {
+    @include pxrem($length, "margin-top");
+}
+
+/// Applies a margin to the right
+@mixin margin-right($length: 0) {
+    @include pxrem($length, "margin-right");
+}
+
+/// Applies a margin to the bottom
+@mixin margin-bottom($length: 0) {
+    @include pxrem($length, "margin-bottom");
+}
+
+/// Applies a margin to the left
+@mixin margin-left($length: 0) {
+    @include pxrem($length, "margin-left");
+}
+
+/// Applies margins only to left and right (x-axis)
+@mixin margin-x($left: auto, $right: $left) {
+    $values: ($left, $right);
+
+    $remMap: unitmap($values, rem);
+
+    margin-left: nth($remMap, 1);
+    margin-right: nth($remMap, 2);
+}
+
+/// Applies margins only to top and bottom (y-axis)
+@mixin margin-y($top: auto, $bottom: $top) {
+    $values: ($top, $bottom);
+
+    $remMap: unitmap($values, rem);
+
+    margin-top: nth($remMap, 1);
+    margin-bottom: nth($remMap, 2);
+}

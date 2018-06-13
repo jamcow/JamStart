@@ -1,0 +1,80 @@
+/// <reference path="../main.scss" />
+
+////
+/// BOX
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$BOX-HeadColor:                 $COLOR-White !default;
+$BOX-HeadBgColor:               $COLOR-Base !default;
+$BOX-BodyColor:                 $TYPE-FontColor !default;
+$BOX-BodyBgColor:               $COLOR-White !default;
+$BOX-FootColor:                 $TYPE-FontColor !default;
+$BOX-FootBgColor:               $COLOR-GreyLight !default;
+
+@if $COMPONENT-BOX {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .box {
+        display: block;
+
+        @include margin(0, 0, $TYPE-LineHeight, 0);
+        @include clearfix;
+    }
+
+    .box__head {
+        color: $BOX-HeadColor;
+        background-color: $BOX-HeadBgColor;
+        border-radius: $STYLE-BorderRadius, $STYLE-BorderRadius, 0, 0;
+    }
+
+    .box__title {
+        color: $BOX-HeadColor;
+        line-height: 1;
+        margin: 0;
+    }
+
+    .box__body {
+        color: $BOX-BodyColor;
+        background-color: $BOX-BodyBgColor;
+    }
+
+    .box__foot {
+        color: $BOX-FootColor;
+        background-color: $BOX-FootBgColor;
+        border-radius: 0, 0, $STYLE-BorderRadius, $STYLE-BorderRadius;
+    }
+
+    .box__head,
+    .box__body,
+    .box__foot {
+        display: block;
+
+        @include padding($TYPE-FontSize);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

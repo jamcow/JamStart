@@ -1,0 +1,138 @@
+/// <reference path="../../main.scss" />
+
+/// Additional Normalize styles that are useful
+/// @link http://github.com/necolas/normalize.css,
+/// @link http://callmenick.com/post/the-new-box-sizing-reset
+////
+
+/// Alloy Normalize Variables
+$NORMALIZE_LINK-Link:               $STYLE-LinkColor-Link !default;
+$NORMALIZE_LINK-Visited:            $STYLE-LinkColor-Visited !default;
+$NORMALIZE_LINK-Hover:              $STYLE-LinkColor-Hover !default;
+$NORMALIZE_LINK-Focus:              $STYLE-LinkColor-Focus !default;
+$NORMALIZE_LINK-Active:             $STYLE-LinkColor-Active !default;
+
+$NORMALIZE_TYPE-FontColor:          $TYPE-FontColor !default;
+$NORMALIZE_STYLE-BodyBgColor:       $STYLE-BodyBgColor !default;
+
+$NORMALIZE_SELECT-BgColor:          $STYLE-Select-BgColor !default;
+$NORMALIZE_SELECT-TextColor:        contrast-color($NORMALIZE_SELECT-BgColor) !default;
+
+// Flexbox body height bug fix
+$NORMALIZE_BODY-Flexbox-HeightFix:  100vh;
+
+// HTML5 DISPLAY
+// ----------------------------------------------------
+/* stylelint-disable */
+@-webkit-viewport{width:device-width}
+@-moz-viewport{width:device-width}
+@-ms-viewport{width:device-width}
+@-o-viewport{width:device-width}
+@viewport{width:device-width}
+/* stylelint-enable */
+
+::-moz-selection {
+    background: $NORMALIZE_SELECT-BgColor;
+    color: $NORMALIZE_SELECT-TextColor;
+    text-shadow: none;
+}
+
+::selection {
+    background: $NORMALIZE_SELECT-BgColor;
+    color: $NORMALIZE_SELECT-TextColor;
+    text-shadow: none;
+}
+
+*,
+*::before,
+*::after {
+    @include box-sizing(inherit);
+}
+
+html {
+    @include box-sizing(border-box);
+    min-height: 100%;
+}
+
+body {
+    font-size: 1em;
+    background-color: $NORMALIZE_STYLE-BodyBgColor;
+    color: $NORMALIZE_TYPE-FontColor;
+    min-height: $NORMALIZE_BODY-Flexbox-HeightFix;
+    margin: 0;
+}
+
+picture {
+    display: block;
+}
+
+a,
+a:link {
+    color: $NORMALIZE_LINK-Link;
+}
+
+a:visited {
+    color: $NORMALIZE_LINK-Visited;
+}
+
+a:hover {
+    color: $NORMALIZE_LINK-Hover;
+}
+
+a:focus {
+    color: inherit;// $NORMALIZE_LINK-Focus;
+    outline: -webkit-focus-ring-color auto 5px;
+    // outline: 1px solid;
+    // outline-offset: 4px;
+}
+
+a:active {
+    color: $NORMALIZE_LINK-Active;
+}
+
+a:hover,
+a:active {
+    outline: 0;
+}
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: 0;
+    border-style: none;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+
+    &[src$=".svg"] {
+        width: 100%;
+    }
+}
+
+button,
+input,
+select,
+textarea {
+    vertical-align: baseline;
+}
+
+input[type="search"] {
+    width: 100%;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+

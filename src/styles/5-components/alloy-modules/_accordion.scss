@@ -1,0 +1,175 @@
+/// <reference path="../../main.scss" />
+
+////
+/// ACCORDION
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$ACCORDION-TitleBgColor:             $COLOR-Base !default;
+$ACCORDION-TitleColor:               contrast-color($ACCORDION-TitleBgColor) !default;
+$ACCORDION-ActiveTitleBgColor:       lighten($ACCORDION-TitleBgColor, 5%);
+$ACCORDION-Title-FontSize:           $TYPE-SIZE-M !default;
+
+$ACCORDION-BodyBgColor:              darken($COLOR-White, 5%) !default;
+$ACCORDION-BodyColor:                contrast-color($ACCORDION-BodyBgColor) !default;
+
+$ACCORDION-BorderColor:              null !default; 
+
+$ACCORDION-BUTTON-FontSize:          $ACCORDION-Title-FontSize !default;
+$ACCORDION-BUTTON-BgColor:           scale-color($COLOR-Base, $saturation: 10%, $lightness: -10%) !default;
+$ACCORDION-BUTTON-HoverBgColor:      lighten($ACCORDION-BUTTON-BgColor, 5%) !default;
+$ACCORDION-BUTTON-TextColor:         contrast-color($ACCORDION-BUTTON-BgColor) !default;
+$ACCORDION-BUTTON-HoverTextColor:    $ACCORDION-BUTTON-TextColor !default;
+$ACCORDION-BUTTON-BorderColor:       null !default;
+$ACCORDION-BUTTON-HoverBorderColor:  null !default;
+
+$ACCORDION-BUTTON-ActiveBgColor:     $ACCORDION-BUTTON-HoverBgColor !default;
+$ACCORDION-BUTTON-ActiveTextColor:   $ACCORDION-BUTTON-HoverTextColor !default;
+$ACCORDION-BUTTON-ActiveBorderColor: $ACCORDION-BUTTON-HoverBorderColor !default;
+
+$ACCORDION-Anim:                     $ANIM-Curve !default;
+
+@if $COMPONENT-ACCORDION {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .accordion {
+        /*dt,
+        dd {
+            margin: 0;
+        }
+
+        /// Only if JS and Angular is activated, apply interactive styling
+        .ng-scope & {
+            .accordion__action {
+                // cursor: pointer;
+            }
+        }*/
+
+        .accordion__panel {
+            overflow: hidden;
+            height: 0;
+
+            @include transition(height, 0.3s, $ACCORDION-Anim);
+
+            &.active {
+                height: 100%;
+            }
+        }
+    }
+
+    /*.accordion__head {
+        display: flex;
+        @include margin-top($TYPE-LineHeight);
+    }
+
+    .accordion__title {
+        display: block;
+        display: flex;
+        flex: 1 0 auto;
+        align-items: center;
+        background-color: $ACCORDION-TitleBgColor;
+        color: $ACCORDION-TitleColor;
+        text-decoration: none;
+        @include font-family($TYPE-HeadingsFontFamily, $FONTLOADER-HeadingsFontFamily, 700);
+        margin-bottom: 0;
+
+        &:link,
+        &:visited {
+            color: $ACCORDION-TitleColor;
+        }
+
+        &:hover {
+            background-color: $ACCORDION-ActiveTitleBgColor;
+        }
+    }
+
+    // Was going to make a custom button...
+    // but easier to add the button class to HTML, and then modify/override the outputted button
+    // .accordion__button {
+    //     &:hover,
+    //     &:active,
+    //     &:focus {
+    //         //color: $ACCORDION-BUTTON-HoverTextColor;
+    //     }
+
+    //     .active & {
+    //         background-color: $ACCORDION-BUTTON-ActiveBgColor;
+    //         color: $ACCORDION-BUTTON-ActiveTextColor;
+
+    //         &:hover,
+    //         &:active,
+    //         &:focus {
+    //             background-color: $ACCORDION-BUTTON-HoverBgColor;
+    //             color: $ACCORDION-BUTTON-HoverTextColor;
+    //         }
+
+    //         .icon {
+    //             transform: rotate(-180deg);
+    //         }
+    //     }
+
+    //     .icon {
+    //         line-height: 1;
+
+    //         @include font-size($TYPE-LineHeight);
+	// 		@include transition(transform, 0.3s, $ACCORDION-Anim);
+    //     }
+    // }
+
+    .accordion__action {
+        border: 1px solid $ACCORDION-BorderColor;
+
+        @include padding($GRID-Padding /2);
+        @include padding-left($GRID-Padding);
+
+        &.active {
+            border-bottom-color: transparent;
+        }
+    }
+
+    .accordion__panel {
+        @include margin-bottom($TYPE-LineHeight);
+    }
+
+    .accordion__content {
+        // border: 1px solid transparent;
+
+        // @include padding($TYPE-LineHeight/2, $GRID-Padding);
+
+        .active & {
+            // border: 1px solid $ACCORDION-BorderColor;
+            // border-top-color: transparent;
+        }
+    }
+
+    .accordion__subtitle {
+        @include margin-bottom($TYPE-LineHeight/2);
+    }
+
+    .accordion__body {
+        @include padding($TYPE-LineHeight/2, $GRID-GutterWidth);
+        // color: $ACCORDION-BodyColor;
+        // background-color: $ACCORDION-BodyBgColor;
+    }
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }*/
+}

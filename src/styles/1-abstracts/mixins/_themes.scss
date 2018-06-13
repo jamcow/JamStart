@@ -1,0 +1,115 @@
+/// <reference path="../../main.scss" />
+
+////
+/// THEME MIXINS
+/// @group Theme Mixins
+////
+
+@mixin themetexture($properties, $property, $scheme, $shades, $schemes, $textures, $links) {
+    $i: index(($properties), ($property));
+
+    // If this is odd (bg color usually used to contrast against)
+    @if $i % 2 != 0 {
+        // background-color: theme(yellow, primary, $site-themes)
+        // :: yellow's primary theme color
+        #{nth($properties, $i)}: theme($scheme, $shades, $schemes);
+    }
+    @else {
+        // color: theme(yellow, primaryalt, $site-themes)
+        // :: yellow's primaryalt theme color
+        #{nth($properties, $i)}: theme($scheme, $shades + "alt", $schemes);
+
+        // If textures flag exist
+        @if $textures {
+            $texture: theme($scheme, texture, $schemes);
+
+            // And texture isn't empty
+            @if $texture != "" {
+                $opacity: theme($scheme, textureopacity, $schemes);
+                $ratio: theme($scheme, textureratio, $schemes);
+                $sizes: theme($scheme, texturesize, $schemes);
+                $size1: px(ceil(nth($sizes, 1) * $ratio));
+                $size2: px(ceil(nth($sizes, 2) * $ratio));
+
+                &::before {
+                    background-image: url("#{$PATH-Images}textures/" + $texture);
+                    background-size: $size1 $size2;
+                    opacity: $opacity;
+                }
+            }
+        }
+
+        // Optional links inside component are now same as color
+        @if $links {
+            a:not(.button) {
+                @include link-custom(theme($scheme, $shades + "alt", $schemes), none, theme($scheme, $shades + "alt", $schemes), underline);
+            }
+
+            @if theme($scheme, $shades + "alt", $schemes) != #ffffff {
+                a.button--light {
+                    // outline: 10px solid theme($scheme, $shades + "alt", $schemes);
+                    @include button-create(transparent, $COLOR-White, $COLOR-GG-GreyDark, $COLOR-GG-Pink, $BorderColor: $COLOR-GG-GreyDark, $BorderHoverColor: $COLOR-GG-Pink, $BorderWidth: 2);
+                }
+            }
+        }
+    }
+
+    @if length($properties) % 2 != 0 {
+        @warn "You supplied an odd number of arguments, but expecting paired";
+    }
+}
+
+/// the class selector is implicit (because we use the ".pagetheme & " root selector)
+/// so we only need to supply properties (optional array) and shades.
+/// @example @include themer("color", "secondary", $SITE-Themes, null);
+/// @example @include themer("background-color", "primary");
+@mixin themify($properties: "background-color", $shades: "primary", $schemes: $SITE-Themes, $schemeclass: $SITE-Themeclass, $rootclass: true, $important: false, $oppose: false, $textures: false, $links: false) {
+
+    // Either use at-root, or append the styles
+    $classappend: "&";
+    $classroot: "";
+    $importantAppend: "";
+
+    @if $rootclass {
+        $classappend: "";
+        $classroot: "&";
+    }
+
+    @if $important {
+        $importantAppend: "!important";
+    }
+
+    @each $scheme in map-keys($schemes) {
+        //
+        #{$classappend}#{$schemeclass}#{$scheme} #{$classroot} {
+
+            // We can supply a lsit of css properties: ("background-color", "color")
+            // And enabling $oppose, we can work out the color based on the other.
+            // Eg, light background color = dark text.
+            // Oppose is always in pairs, eg, bg & color
+            @each $property in $properties {
+                @if $oppose {
+                    @include themetexture($properties, $property, $scheme, $shades, $schemes, $textures, $links);
+                }
+                @else {
+                    #{map_deep_get($property)}: theme($scheme, $shades, $schemes) #{$importantAppend};
+                }
+            }
+        }
+    }
+}
+
+// Generic themer with properties and value
+@mixin themer($properties: "background-color", $shades: "primary", $schemes: $SITE-Themes, $schemeclass: $SITE-Themeclass, $rootclass: true, $important: false) {
+    @include themify($properties, $shades, $schemes, $schemeclass, $rootclass, $important);
+}
+
+// This uses "oppose", which bypasses the usual theming rule of applying a property and value, used for paired but opposite values eg, background colour (white) and colour (black). Used for theming components and their contents (background textures and child links).
+@mixin c_themer($properties: ("background-color", "color"), $shades: "primary", $schemes: $SITE-Themes, $schemeclass: $SITE-Themeclass, $rootclass: true, $important: false, $oppose: true, $textures: true, $links: true) {
+    @include themify($properties, $shades, $schemes, $schemeclass, $rootclass, $important, $oppose, $textures, $links);
+}
+
+// A11y-specific themes (eg, high contrast, blue and yellow, yellow on blue)
+@mixin themer-a11y($properties: "background-color", $shades: "primary", $schemes: $A11Y-Themes, $schemeclass: $A11Y-Themeclass, $rootclass: true, $important: false) {
+    @include themify($properties, $shades, $schemes, $schemeclass, $rootclass, $important);
+}

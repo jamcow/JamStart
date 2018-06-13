@@ -1,0 +1,268 @@
+/// <reference path="../../main.scss" />
+////
+/// TYPOGRAPHY
+////
+
+/// FONT SIZING
+/// ----------------------------------------------------
+@mixin font-size($fontsize: $TYPE-FontSize, $lineheight: null) {
+    @if $lineheight {
+        @include pxrem($fontsize);
+        @include pxrem($lineheight, "line-height");
+    }
+
+    @else {
+        @include pxrem($fontsize);
+    }
+
+    // $fontsize: rem($fontsize);
+
+    // @if $TYPE-root-sizing {
+    //     font-size: calc((#{$fontsize}) * var(--font-size-factor, 1));
+    // }
+
+    line-height: $lineheight;
+}
+
+@mixin font-size-heading($fontsize, $lineheight: null) {
+    @include font-size($fontsize);
+
+    @if $lineheight {
+        @include line-height($fontsize, $lineheight);
+    }
+
+    @else {
+        @include line-height($fontsize);
+    }
+
+    // $fontsize: rem($fontsize);
+
+    // @if $TYPE-root-sizing {
+    //     font-size: calc((#{$fontsize}) * var(--heading-size-factor, 1));
+    // }
+
+    line-height: $lineheight;
+}
+
+// @mixin root-font-size($size: $TYPE-FontSize, $lineheight: null) {
+//     $size: rem($size);
+
+//     font-size: calc(#{$size} * var(--font-size-factor, 1));
+//     line-height: $lineheight;
+// }
+
+// @mixin root-heading-size($size: $TYPE-FontSize, $lineheight: null) {
+//     $size: rem($size);
+
+//     font-size: calc(#{$size} * var(--heading-size-factor, 1));
+//     line-height: $lineheight;
+// }
+
+/// FONT LOADER
+/// ----------------------------------------------------
+/// font-weight arg can be null to prevent it's output
+@mixin font-family($fontfamily: $TYPE-FontFamily, $loadedfontfamily: $FONTLOADER-FontFamily, $weight: $TYPE-FONT-Weight, $loaderclass: $FONTLOADER-Class) {
+    font-family: $fontfamily;
+    font-weight: $weight;
+
+    @if $SYSTEM-FONTLOADER == true {
+        @include root("#{$loaderclass}") {
+            font-family: $loadedfontfamily;
+        }
+    }
+}
+
+/// LINE HEIGHT
+/// ----------------------------------------------------
+@mixin line-height($fontsize: $TYPE-FontSize, $lineheight: $TYPE-LineHeight) {
+    line-height: ($lineheight / $fontsize);
+}
+
+/// Varying LineHeight
+/// line-height: 48 / 24 = 2
+/// line-height: 24 / 16 = 1.5
+/// line-height: 24 / 20 = 1.2
+
+@mixin line-height-variable($fontsize, $lineheight: $TYPE-LineHeight) {
+    @if $fontsize > $lineheight {
+        // line-height: (($TYPE-LineHeight * 2) / $fontsize);
+        line-height: 0.95;
+    }
+
+    @else if $fontsize <= $lineheight {
+        line-height: ($lineheight / $fontsize);
+    }
+}
+
+/// poly-fluid-sizing
+/// Generate linear interpolated size values through multiple break points
+/// @param $property - A string CSS property name
+/// @param $map - A Sass map of viewport unit and size value pairs
+/// @requires function linear-interpolation
+/// @requires function map-sort
+/// @example
+///   @include poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
+/// @author Jake Wilson <jake.e.wilson@gmail.com>
+@mixin poly-fluid-sizing($property, $map) {
+    // Get the number of provided breakpoints
+    $length: length(map-keys($map));
+
+    // Error if the number of breakpoints is < 2
+    @if ($length < 2) {
+        @error "poly-fluid-sizing() $map requires at least 2 values";
+    }
+
+    // Sort the map by viewport width (key)
+    $map: map-sort($map);
+
+    $keys: map-keys($map);
+
+    // Minimum size
+    #{$property}: map-get($map, nth($keys, 1));
+
+    // Interpolated size through breakpoints
+    @for $i from 1 through ($length - 1) {
+        @media (min-width: nth($keys, $i)) {
+            $value1: map-get($map, nth($keys, $i));
+
+            $value2: map-get($map, nth($keys, ($i + 1)));
+            // If values are not equal, perform linear interpolation
+            @if ($value1 != $value2) {
+                #{$property}: linear-interpolation((nth($keys, $i): $value1, nth($keys, ($i+1)): $value2));
+            }
+            @else {
+                #{$property}: $value1;
+            }
+        }
+    }
+
+    // Maxmimum size
+    @media (min-width: nth($keys, $length)) {
+        #{$property}: map-get($map, nth($keys, $length));
+    }
+}
+
+/// RESPONSIVE FONT SIZING
+/// ----------------------------------------------------
+
+/// Responsive Type - updated to use poly-fluid-sizing
+/// @link https://www.smashingmagazine.com/2017/05/fluid-responsive-typography-css-poly-fluid-sizing/
+/// Generate linear interpolated size values through multiple break points
+/// Must supply the Media Queries in sorted order (small to large)
+/// @example
+///   @include responsive-type($TYPE-SIZE-M, $TYPE-SIZE-L, "menu-small", 17.235em);
+
+@function test($map) {
+    @for $i from 1 through length($map) {
+        @if $i % 2 == 0 {
+
+            $fontsize: add-px(nth($map, $i));
+            // @warn inspect( nth($map, $i) );
+            // @warn inspect( nth($map, $i) );
+            // @warn inspect($fontsize);
+            // $newlist: replace($map, nth($map, $i), add-px(nth($map, $i)));
+
+            $newlist: replace-nth($map, $i, $fontsize);
+            // @warn inspect( nth($map, $i) );
+        }
+    }
+
+    @return $newlist;
+}
+
+// a map-set function (not included with Sass)
+@function map-set($map, $key, $value) {
+    $new: ($key: $value);
+    @return map-merge($map, $new);
+}
+
+@function boo1($map, $key, $value) {
+    // odd
+    @if $i % 2 != 0 {
+        $key: $value;
+    }
+    @else {
+        $value: rem($item);
+    }
+
+    $new: ($key: $value);
+
+    @return map-merge($map, $new);
+}
+
+@mixin responsive-type ($map...) {
+    $newlist: ();
+
+    // If we have pairs of input
+    @if length($map) % 2 == 0 {
+
+        @for $i from 1 through length($map) {
+            $item: nth($map, $i);
+
+            // even
+            @if $i % 2 == 0 {
+                // #{nth($map, $i-1)}: rem($item);
+                // $test: #{nth($item, $i - 1)} rem($item);
+                $test1: #{nth($map, $i - 1)};
+                $test2: rem($item);
+                // $newlist: append($test1, $test2);
+
+                $newlist: map-merge($newlist, ($test1: $test2));
+            }
+
+            // $newlist: map-set($map, 2, 100px);
+        }
+        // @each $item in $map {
+        //     $newlist: append($newlist, $item);
+        // }
+
+        @warn inspect("newlist__________" $newlist);
+        @warn inspect(#{ nth($newlist, 1) });
+        // @include poly-fluid-sizing2(map-get($newlist, 0), map-get($newlist, 1));
+        // @include poly-fluid-sizing2(#{ nth($newlist, 1) }, #{ nth($newlist, 2) });
+        $map1: ("small": 12, "large": 48);
+        @include responsive-type('font-size', $map1);
+    }
+    @else {
+        @error ("Require even number of arguments for Responsive Type");
+    }
+}
+
+@mixin fluidsize($map, $property: 'font-size') {
+    // Get the number of provided breakpoints
+    $length: length(map-keys($map));
+
+    // Error if the number of breakpoints is < 2
+    @if ($length < 2) {
+        @error "fluidsize() $map requires at least 2 values";
+    }
+
+    // Sort the map by viewport width (key)
+    // $map: map-sort($map);
+    $keys: map-keys($map);
+
+    // Minimum size
+    #{$property}: rem(map-get($map, nth($keys, 1)));
+
+    // Interpolated size through breakpoints
+    @for $i from 1 through ($length - 1) {
+        @include media(">"+nth($keys, $i)) {
+            $value1: map-get($map, nth($keys, $i));
+
+            $value2: map-get($map, nth($keys, ($i + 1)));
+
+            // If values are not equal, perform linear interpolation
+            @if ($value1 != $value2) {
+                #{$property}: linear-interpolation-rem((em2px(map_deep_get($breakpoints, nth($keys, $i))): $value1, em2px(map_deep_get($breakpoints, nth($keys, $i+1))): $value2));
+            }
+            @else {
+                #{$property}: rem($value1);
+            }
+        }
+    }
+
+    // Maxmimum size
+    @include media(">"+nth($keys, $length)) {
+        #{$property}: rem(map-get($map, nth($keys, $length)));
+    }
+}

@@ -1,0 +1,94 @@
+/// <reference path="../main.scss" />
+
+////
+/// O_LIST
+////
+
+/// VARIABLES
+/// ----------------------------------------------------
+$SKIPLINKS-bg:                      $COLOR-White;
+$SKIPLINKS-color:                   $COLOR-Black;
+
+/// BASE
+/// ----------------------------------------------------
+
+.o-l {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.o-l--h {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+        @include padding-right($TYPE-FontSize);
+    }
+}
+
+.o-dl {
+    display: flex;
+    margin: 0;
+}
+
+.o-dl__term {
+    //
+}
+
+.o-dl__desc {
+    //
+}
+
+// VARIANTS
+// ----------------------------------------------------
+
+.o-l--skiplinks {
+    li a {
+        position: absolute;
+        left: -1000em;
+        background-color: $SKIPLINKS-bg;
+        color: $SKIPLINKS-color;
+        padding: 20px 30px;
+        max-width: calc(100vw - 40px);
+        z-index: $Z-INDEX-Level7 + 1;
+
+        &:active,
+        &:focus {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+        }
+    }
+}
+
+// Sitemap Homepage
+.o-l--sitemap {
+    list-style: disc;
+
+    // First-level pages
+    .o-l--sitemap {
+        list-style: disc;
+
+        // Sub-pages
+        .o-l--sitemap {
+            list-style: circle;
+            @include margin-left($TYPE-SIZE-M * 2);
+        }
+    }
+}
+
+// RESPONSIVE
+// ----------------------------------------------------
+
+@include media(screen, "<=small") {
+    //
+}
+
+@include media(screen, ">small", "<=medium") {
+    //
+}
+
+@include media(screen, ">medium", "<=large") {
+    //
+}

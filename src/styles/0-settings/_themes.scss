@@ -1,0 +1,176 @@
+/// <reference path="../main.scss" />
+
+// This is appended to start of the theme names, eg "t-yellow"
+$SITE-Themeclass:               ".t-";
+
+// SITE THEMES - these mainly set the banners in Girlguiding
+// Basic contrast levels = 4.5
+// eg, text should be "soft black" on #dc341e (orange)
+// For other projects, we could reduce constrast to 3 simply to fudge it to meet designs
+// But I'd storongly argue the chosen design colours aren't contrasty enough
+// and not recommended because it's difficult to read
+$SITE-Themes: (
+    yellow: (
+        primary: $COLOR-GG-Yellow,
+        primaryalt: contrast-threshold($COLOR-GG-Yellow, 4.5),
+        texture: "brownies.png",//brownies
+        textureratio: 1.6,
+        texturesize: 420 326,
+        textureopacity: 0.2
+    ),
+    darkblue: (
+        primary: $COLOR-GG-BlueDark,
+        primaryalt: contrast-threshold($COLOR-GG-BlueDark, 4.5),
+        texture: "guides.png",//guides
+        textureratio: 1.4,
+        texturesize: 300 301,
+        textureopacity: 0.5
+    ),
+    turquoise: (
+        primary: $COLOR-GG-Teal,
+        primaryalt: contrast-threshold($COLOR-GG-Teal, 4.5),
+        texture: "rangers.png",//rangers
+        textureratio: 1.6,
+        texturesize: 600 385,
+        textureopacity: 0.5
+    ),
+    lightblue: (
+        primary: $COLOR-GG-BlueLight,
+        primaryalt: contrast-threshold($COLOR-GG-BlueLight, 4.5),
+        texture: "rainbows.png",//rainbows
+        textureratio: 1.62,
+        texturesize: 50 50,
+        textureopacity: 0.3
+    ),
+    red: (
+        primary: $COLOR-GG-Red,
+        primaryalt: contrast-threshold($COLOR-GG-Red, 4.5),
+        texture: "trefoil.png",//trefoil
+        textureratio: 1.8,
+        texturesize: 315 315,
+        textureopacity: 0.7
+    ),
+    orange: (
+        primary: $COLOR-GG-Orange,
+        primaryalt: contrast-threshold($COLOR-GG-Orange, 4.5),
+        texture: "adults_badges.png",//badges
+        textureratio: 1.7,
+        texturesize: 102 102,
+        textureopacity: 0.1
+    ),
+    violet: (
+        primary: $COLOR-GG-Purple,
+        primaryalt: contrast-threshold($COLOR-GG-Purple, 4.5),
+        texture: "gifts.png",//gifts and
+        textureratio: 1.22,
+        texturesize: 420 420,
+        textureopacity: 0.4
+    ),
+    green: (
+        primary: $COLOR-GG-Green,
+        primaryalt: contrast-threshold($COLOR-GG-Green, 4.5),
+        texture: "",
+        textureratio: 1,
+        texturesize: 1 1,
+        textureopacity: 1
+    ),
+    blue: (
+        primary: $COLOR-GG-Blue,
+        primaryalt: contrast-threshold($COLOR-GG-Blue, 4.5),
+        texture: "adults_badges.png",//adults
+        textureratio: 2,
+        texturesize: 102 102,
+        textureopacity: 0.3
+    )
+);
+
+$SITE-Themes--search: (
+    search: (
+        primary: $COLOR-GG-Blue,
+        primaryalt: contrast-threshold($COLOR-GG-Blue, 4.5),
+        texture: "adults_badges.png",//adults
+        textureratio: 2,
+        texturesize: 102 102,
+        textureopacity: 0.3
+    )
+);
+
+// Used if we implement an accessibility control panel
+$A11Y-Themeclass:               ".t-ally--";
+
+/// All accessibility body theme colours
+$A11Y-Themes: (
+    highcontrast: (
+        primary: $COLOR-GreyDarkest,
+        primaryalt: $COLOR-GreyLightest,
+        img: null
+    ),
+    blu: (
+        primary: $COLOR-A11y-Blue,
+        primaryalt: $COLOR-Black,
+        img: invert(100%)
+    ),
+    cream: (
+        primary: $COLOR-A11y-Cream,
+        primaryalt: $COLOR-Black,
+        img: invert(100%)
+    )
+);
+
+///
+/// This was from Food For Life - may be better way or doing or simplify for future use...
+///
+
+// $colourscheme2: (
+//     "hi": (
+//         "primary": $COLOR-Red
+//     ),
+//     "bl": (
+//         "primary": $COLOR-YellowDark
+//     ),
+//     "cr": (
+//         "primary": $COLOR-TealDark
+//     )
+// );
+
+/// We're only using green, red, teal and yellow in BODY page themes.
+/// However, individual modules may use the grey and white schemes
+/// Grey and white are also used for individual modules (eg, formtheme-white)
+// $colourscheme3: (
+//     "hi": (
+//         "link": (
+//             "col": $COLOR-Red,
+//             "bg": red
+//         ),
+//         "tabs": (
+//             "col": $COLOR-White,
+//             "bg": $COLOR-Red,
+//             "contentbg": $COLOR-RedLight,
+//             "button": red
+//         )
+//     ),
+//     "bl": (
+//         "link": (
+//             "col": $COLOR-YellowDark,
+//             "bg": yellow
+//         ),
+//         "tabs": (
+//             "col": $COLOR-White,
+//             "bg": $COLOR-YellowDark,
+//             "contentbg": $COLOR-YellowLight,
+//             "button": yellow
+//         )
+//     ),
+//     "cr": (
+//         "link": (
+//             "col": $COLOR-TealDark,
+//             "bg": teal
+//         ),
+//         "tabs": (
+//             "col": $COLOR-White,
+//             "bg": $COLOR-TealDark,
+//             "contentbg": $COLOR-TealLight,
+//             "button": teal
+//         )
+//     )
+// );

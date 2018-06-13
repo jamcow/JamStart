@@ -1,0 +1,43 @@
+/// <reference path="../main.scss" />
+
+////
+/// CREATOR
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+@if $COMPONENT-CREATOR {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .creator {
+        padding-top: $TYPE-LineHeight;
+    }
+
+    .creator__link {
+        @include inline-block;
+        @include padding-bottom($TYPE-LineHeight  / 2);
+
+        vertical-align: top;
+    }
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

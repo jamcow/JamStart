@@ -1,0 +1,177 @@
+/// <reference path="../main.scss" />
+
+////
+/// ARTICLE
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$ARTICLE-Title-Color:			$COLOR-Base !default;
+$ARTICLE-Subtitle-Color:		$COLOR-Base !default;
+$ARTICLE-Body-BgColor:			transparent !default;
+
+$ARTICLE-AsideWidth:			200 !default;
+
+$ARTICLE-ShareColor:			$COLOR-White !default;
+$ARTICLE-ShareBgColor:			$TYPE-FontColor !default;
+
+@if $COMPONENT-ARTICLE {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .article {
+        .lead {
+            @include font-size($TYPE-SIZE-L);
+        }
+
+        hr {
+            margin: $TYPE-LineHeight+0px 40%;
+        }
+    }
+
+    .article__head {
+        text-align: center;
+        max-width: 40em;
+        margin: 0 auto $TYPE-LineHeight+0px;
+
+        @include font-size($TYPE-SIZE-XXL);
+    }
+
+    .article__title {
+        margin-bottom: 0;
+        color: $ARTICLE-Title-Color;
+
+        @include font-family($TYPE-HeadingsFontFamily, $FONTLOADER-HeadingsFontFamily, 300);
+        @include font-size($TYPE-SIZE-XXXL);
+    }
+
+    .article__subtitle {
+        margin-bottom: 0;
+        color: $ARTICLE-Subtitle-Color;
+
+        @include font-family($TYPE-HeadingsFontFamily, $FONTLOADER-HeadingsFontFamily, 300);
+        @include font-size($TYPE-SIZE-XXL);
+    }
+
+    .article__info {
+        font-style: italic;
+
+        @include font-size($TYPE-SIZE-XXS);
+        @include margin-top($TYPE-LineHeight);
+    }
+
+    .article__thumb {
+        @include margin(0, $TYPE-LineHeight, $TYPE-LineHeight/2, 0);
+
+        float: left;
+    }
+
+    .article__body {
+        background-color: $ARTICLE-Body-BgColor;
+        position: relative;
+        max-width: 40em;
+        margin: 0 auto;
+
+        @include font-size($TYPE-SIZE-L);
+        @include clearfix;
+    }
+
+    .article__aside {
+        border-left: 5px solid $COLOR-GreyLight;
+
+        @include padding-left($TYPE-LineHeight);
+        @include font-size($TYPE-FontSize);
+    }
+
+    .article__foot {
+        text-align: center;
+        margin: 0 auto;
+
+        @include margin-top($TYPE-LineHeight);
+    }
+
+    .article__image {
+        display: block;
+        margin: 0 auto $TYPE-LineHeight+0px;
+    }
+
+    .share {
+        color: $ARTICLE-ShareColor;
+        background-color: $ARTICLE-ShareBgColor;
+        text-align: center;
+
+        @include padding($TYPE-LineHeight, 0);
+    }
+
+    .share__link {
+        color: $ARTICLE-ShareColor;
+        text-decoration: none;
+
+        @include font-size(40);
+        @include transition(color, 0.1s);
+
+        &:hover {
+            color: darken($ARTICLE-ShareColor, 10%);
+        }
+    }
+
+    // MOBILE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        .article {
+            .figure {
+                &.left,
+                &.right {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+
+    @include media(screen, ">larger") {
+        .article__aside {
+            position: absolute;
+            top: 0;
+            right: rem(-$ARTICLE-AsideWidth - $TYPE-LineHeight);
+            width: rem($ARTICLE-AsideWidth);
+        }
+
+        .article {
+            .figure {
+                &.left,
+                &.right {
+                    position: relative;
+
+                    .figcaption {
+                        position: absolute;
+                        top: 0;
+                        width: rem($ARTICLE-AsideWidth);
+                    }
+                }
+
+                &.left {
+                    .figcaption {
+                        left: rem(-$ARTICLE-AsideWidth - $TYPE-LineHeight);
+                        text-align: right;
+                    }
+                }
+
+                &.right {
+                    .figcaption {
+                        right: rem(-$ARTICLE-AsideWidth - $TYPE-LineHeight);
+                    }
+                }
+            }
+        }
+    }
+}

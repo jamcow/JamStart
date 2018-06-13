@@ -1,0 +1,65 @@
+/// <reference path="../main.scss" />
+
+////
+/// NAVIGATION
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$NAV-BUTTON-BgColor:       $NAVIGATION-BgColor !default;
+$NAV-BUTTON-Color:         $NAVIGATION-Color !default;
+$NAV-BUTTON-HoverColor:    $NAVIGATION-HoverColor !default;
+
+@if $COMPONENT-NAV {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .button__mobile {
+        @include padding(20, 20, 16, 20);
+        @include font-size(30);
+        @include link-custom($NAV-BUTTON-Color, none, $NAV-BUTTON-HoverColor, none);
+
+        float: right;
+        line-height: 1;
+        display: none;
+    }
+
+    .button__totop {
+        display: none;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 44px;
+        height: 44px;
+        z-index: $Z-INDEX-Level4;
+
+        &.stuck {
+            display: block;
+        }
+    }
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    // RESPONSIVE MENU
+    // ----------------------------------------------------
+
+    @include media(screen, "<=menu-small") {
+        .button__mobile {
+            display: block;
+        }
+    }
+
+    @include media(screen, ">menu-small") {
+        //
+    }
+
+    @include media(screen, ">menu-small", "<=menu-medium") {
+        //
+    }
+
+    @include media(screen, ">menu-large") {
+        //
+    }
+}

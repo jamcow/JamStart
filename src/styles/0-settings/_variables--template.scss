@@ -1,0 +1,237 @@
+/// <reference path="../main.scss" />
+
+////
+/// VARIABLES - Basic Template
+/// Optionally override any !defaults (globally)
+////
+
+// DEBUG (check for missing alt, empty elements, depreciation)
+// ----------------------------------------------------
+$DEBUGGER: 						        false;
+$A11YDEBUG: 					        false;
+
+$BOOL-flexsupport:                      true;
+$BOOL-cssgridsupport:                   true;
+
+// Thing to query the @Supports with
+// If we use the variable, we can globally "remove" flexbox or grid in order to test older browsers
+$SUPPORTS-flex:                         wrap;//@supports (flex-wrap: $SUPPORTS-flex) {...}
+$SUPPORTS-grid:                         grid;//@supports (display: $SUPPORTS-grid) {...}
+
+/// T3MPLAT3 COLOURS
+// ----------------------------------------------------
+$COLOR-T3MPLAT3-BlueLightest:          #e7f1f9;
+$COLOR-T3MPLAT3-BlueLight:             #88c2f2;
+$COLOR-T3MPLAT3-Blue:                  #2196f3;
+$COLOR-T3MPLAT3-BlueDark:              #095fa5;
+$COLOR-T3MPLAT3-BlueDarkest:           #042744;
+$COLOR-T3MPLAT3-Grey:                  #a6a8ab;
+
+$COLOR-T3MPLAT3-BlueGreyDark:          #005596;
+$COLOR-T3MPLAT3-BlueGrey:              #4677ae;
+
+/// DEFAULT COLOURS
+// ----------------------------------------------------
+$COLOR-Primary:                 $COLOR-T3MPLAT3-Blue;
+$COLOR-Secondary:               $COLOR-T3MPLAT3-BlueDark;
+$COLOR-Tertiary:                $COLOR-T3MPLAT3-Grey;
+$COLOR-Accent:                  $COLOR-T3MPLAT3-BlueDarkest;
+$COLOR-Base:                    $COLOR-T3MPLAT3-BlueGrey;
+$COLOR-BaseLight:               $COLOR-White;
+$COLOR-BaseDark:                $COLOR-Primary;
+
+// $planifolia-contrast-dark-default:  $COLOR-GG-GreyDark;
+// $planifolia-contrast-light-default: $COLOR-White;
+
+// TYPOGRAPHY
+// ----------------------------------------------------
+$TYPE-FontSize:                 16;
+$TYPE-LineHeight:               $TYPE-FontSize * 1.5;// 24
+$TYPE-FONT-Weight:              400;
+
+// Wide Fonts - Larger x-height, so appear wider and taller
+$TYPE-FONT-SansSerifWide:       Verdana, Geneva, sans-serif;
+$TYPE-FONT-SerifWide:           Georgia, Utopia, Charter, serif;
+// Narrow Fonts - More traditional, with smaller x-height
+$TYPE-FONT-SansSerifNarrow:     Helvetica, Arial, sans-serif;
+$TYPE-FONT-SerifNarrow:         'Times New Roman', Times, serif;
+
+$TYPE-FontFamily:               $TYPE-FONT-SansSerifWide;
+$TYPE-AltFontFamily:            $TYPE-FONT-SansSerifWide;
+$TYPE-HeadingsFontFamily:       $TYPE-FONT-SerifWide;
+$TYPE-HeadingsAltFontFamily:    $TYPE-FONT-SerifWide;
+
+$TYPE-FontColor:                $COLOR-Grey;
+$TYPE-AltFontColor:             $COLOR-Grey;
+$TYPE-HeadingsColor:            $COLOR-Red;
+$TYPE-HeadingsAltColor:         $COLOR-Grey;
+
+$TYPE-SIZE-XXXXL:               60;// XXXXL Omega
+$TYPE-SIZE-XXXL:                40;// XXXL Alpha
+$TYPE-SIZE-XXL:                 28;// XXL Beta
+$TYPE-SIZE-XL:                  22;// XL Gamma
+$TYPE-SIZE-L:                   18;// L Delta
+$TYPE-SIZE-M:                   16;// M Epsilon
+$TYPE-SIZE-S:                   15;// S Zeta
+$TYPE-SIZE-XS:                  14;// XS Eta
+$TYPE-SIZE-XXS:                 12;// XXS Iota
+
+// LINKS
+// ----------------------------------------------------
+$STYLE-LinkColor-Link:              $COLOR-Secondary;
+$STYLE-LinkColor-Visited:           $STYLE-LinkColor-Link;
+$STYLE-LinkColor-Hover:             $STYLE-LinkColor-Link;
+$STYLE-LinkColor-Focus:             darken($STYLE-LinkColor-Link, 5);
+$STYLE-LinkColor-Active:            darken($STYLE-LinkColor-Link, 10);
+
+$STYLE-LinkAltColor-Link:           $COLOR-Primary;
+$STYLE-LinkAltColor-Visited:        $STYLE-LinkAltColor-Link;
+$STYLE-LinkAltColor-Hover:          $STYLE-LinkAltColor-Link;
+$STYLE-LinkAltColor-Focus:          darken($STYLE-LinkAltColor-Link, 5);
+$STYLE-LinkAltColor-Active:         darken($STYLE-LinkAltColor-Link, 10);
+
+// Unique to this template animation variables:
+// ANNIMATION CURVES for transition animation property
+// ----------------------------------------------------
+// $ANIM-Menu:	        				0.2s cubic-bezier(0.4, 0, 0.2, 1);
+// $ANIM-Menu-alt:	        			0.2s cubic-bezier(0.4, 0, 0.2, 1);
+// $ANIM-Logo:	        				0.3s ease-out;
+// $ANIM-Foot:	        				0.3s ease-out;
+
+/// THEME COLOURS (use in 0-settings/_variables.scss template)
+/// ----------------------------------------------------
+/// Optional colour theming for body or modules
+//
+// @import "themes";
+
+/// COMPONENT Overrides
+///
+/// BUTTONS
+// ----------------------------------------------------
+$BUTTON-BgColor:                    $COLOR-White;
+$BUTTON-HoverBgColor:               darken($BUTTON-BgColor, 5%);
+$BUTTON-TextColor:                  $COLOR-Grey;
+$BUTTON-HoverTextColor:             $COLOR-Red;
+$BUTTON-BorderColor:                $COLOR-GreyLight;
+$BUTTON-BorderHoverColor:           $COLOR-Red;
+
+$BUTTON-AltBgColor:                 transparent;
+$BUTTON-AltHoverBgColor:            $COLOR-Red;
+$BUTTON-AltTextColor:               $COLOR-White;
+$BUTTON-AltHoverTextColor:          $BUTTON-AltTextColor;
+$BUTTON-AltBorderColor:             $BUTTON-AltTextColor;
+$BUTTON-AltBorderHoverColor:        transparent;
+
+$BUTTON-GENERATE-Altgr:             false;
+$BUTTON-GENERATE-States:            false;
+$BUTTON-GENERATE-Group:             false;
+$BUTTON-GENERATE-ToTop:             false;
+$BUTTON-GENERATE-MobileMainnav:     false;
+
+// GRID
+// ----------------------------------------------------
+$GRID-MaxWidth:                 1260;
+
+$GRID-GutterWidth:              24;
+$GRID-GutterWidth-Md:           18;
+$GRID-GutterWidth-Sm:           12;
+$GRID-GutterWidth-Lg:           50 - $GRID-GutterWidth;
+$GRID-GutterWidth-Xl:           50;
+
+$GRID-GutterHeight:             $GRID-GutterWidth;
+$GRID-GutterHeight-Md:          $GRID-GutterWidth-Md;
+$GRID-GutterHeight-Sm:          $GRID-GutterWidth-Sm;
+$GRID-GutterHeight-Lg:              $GRID-GutterWidth-Lg;
+$GRID-GutterHeight-Xl:              $GRID-GutterWidth-Xl;
+
+// BREAKPOINTS
+// ----------------------------------------------------
+$breakpoints: im-to-em(
+    (
+        'smallest': 340px,
+        'small': 600px,
+        'medium': 800px,
+        'large': 980px,
+        'gridmax': $GRID-MaxWidth * 1px,
+        'larger': 1260px,
+        'largest': 1900px,
+        'menu-small': 400px,
+        'menu-medium': 600px,
+        'menu-large': 1058px,
+        'menu-xlarge': 1124px
+    )
+);
+
+/// Components, Systems & Modules
+/// ----------------------------------------------------
+$SYSTEM-FONTLOADER:             true;
+
+$COMPONENT-ACCORDION:           false;
+$COMPONENT-ALERT:               false;
+$COMPONENT-ANGULAR:             false;
+$COMPONENT-ANIMATIONS:          false;
+$COMPONENT-ANIMATIONS--example: false;
+$COMPONENT-ARTICLE:             false;
+$COMPONENT-BADGE:               false;
+$COMPONENT-BANNER:              false;
+$COMPONENT-BLURMASK:            false;
+$COMPONENT-BOX:                 false;
+$COMPONENT-BREADCRUMB:          false;
+$COMPONENT-BROWSEHAPPY:         false;
+$COMPONENT-BUTTON:              true;
+$COMPONENT-CARD:                false;
+$COMPONENT-CARDFADER:           true;
+$COMPONENT-CARDSLIDER:          false;
+$COMPONENT-CITE:                false;
+$COMPONENT-CREATOR:             false;
+$COMPONENT-FLASH:               false;
+$COMPONENT-FLEXGRID:                false;
+$COMPONENT-FLIP:                false;
+$COMPONENT-FOCUS:               false;
+$COMPONENT-GRIDDER:             false;
+$COMPONENT-HOVERCARD:           false;
+$COMPONENT-IDENT:               false;
+$COMPONENT-IMAGE:               false;
+$COMPONENT-INK:                 false;
+$COMPONENT-LABEL:               false;
+$COMPONENT-LINKS:               true;
+$COMPONENT-LIST:                false;
+$COMPONENT-MAINNAV:             true;
+$COMPONENT-MAP:                 false;
+$COMPONENT-MEDIA:               false;
+$COMPONENT-MENU:                false;
+$COMPONENT-MODAL:               false;
+$COMPONENT-MODELESS:            false;
+$COMPONENT-NAV:                 false;
+$COMPONENT-NAVLIST:             false;
+$COMPONENT-OVERLAY:             false;
+$COMPONENT-PAGE:                false;
+$COMPONENT-PAGINATION:          false;
+$COMPONENT-PANEL:               false;
+$COMPONENT-PARALLAX:            false;
+$COMPONENT-POLYFILL--objectfill:    false;
+$COMPONENT-POPOVER:             false;
+$COMPONENT-RTE:                 false;
+$COMPONENT-SCROLLBAR:           false;
+$COMPONENT-SCROLLSPY:           false;
+$COMPONENT-SECTION:             false;
+$COMPONENT-SIDEMENU:            false;
+$COMPONENT-SLIDER:              false;
+$COMPONENT-STAGE:               false;
+$COMPONENT-STORY:               false;
+$COMPONENT-TABLE:               false;
+$COMPONENT-TABS:                false;
+$COMPONENT-TAGS:                false;
+$COMPONENT-TOAST--2:            false;
+$COMPONENT-TOAST:               false;
+$COMPONENT-TOOLTIP:             false;
+$COMPONENT-TWITTER:             false;
+$COMPONENT-WELL:                false;
+$COMPONENT-WRAPS:               false;
+
+/// Utility classes
+/// ----------------------------------------------------
+$UTILITY-HELPERS-depth:         false;
+$UTILITY-RESPONSIVE:            false;
+$UTILITY-COLUMNS:               false;
+$UTILITY-PRETTYPRINT:           false;

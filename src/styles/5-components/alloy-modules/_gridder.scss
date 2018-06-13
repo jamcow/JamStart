@@ -1,0 +1,78 @@
+/// <reference path="../main.scss" />
+
+////
+/// GRIDDER
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$GRIDDER-Col-normal:    #ff9999;
+$GRIDDER-Col-tall:      #ff1919;
+$GRIDDER-Col-taller:    #ff0000;
+$GRIDDER-Col-tallest:   #7f0000;
+$GRIDDER-Anim:          $ANIM-Curve;
+
+@if $COMPONENT-GRIDDER {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .notransition {
+        transition: none !important;
+    }
+
+    .gridder {
+        @include transition(height, 0.4s, $GRIDDER-Anim);
+
+        .card--gridder {
+            @include transition(all, 0.4s, $GRIDDER-Anim);
+
+            &.normal {
+                background-color: $GRIDDER-Col-normal;
+            }
+
+            &.tall {
+                background-color: $GRIDDER-Col-tall;
+            }
+
+            &.taller {
+                background-color: $GRIDDER-Col-taller;
+            }
+
+            &.tallest {
+                background-color: $GRIDDER-Col-tallest;
+            }
+        }
+    }
+
+    .gridder--alt {
+        @include transition(height, 0.4s, $GRIDDER-Anim);
+
+        .card--gridder {
+            font-size: 1em;
+            opacity: 1;
+
+            @include transition(all, 0.4s, $GRIDDER-Anim);
+
+            &.ignore {
+                opacity: 0;
+            }
+
+            &.small {
+                background-color: adjust-hue($GRIDDER-Col-normal, 250);
+            }
+
+            &.normal {
+                background-color: adjust-hue($GRIDDER-Col-tall, 250);
+            }
+
+            &.tall {
+                background-color: adjust-hue($GRIDDER-Col-taller, 250);
+            }
+
+            &.taller {
+                background-color: adjust-hue($GRIDDER-Col-tallest, 250);
+            }
+        }
+    }
+}

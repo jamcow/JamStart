@@ -1,0 +1,81 @@
+/// <reference path="../main.scss" />
+
+////
+/// C_SKELETON
+///
+/// Shows blanked grey text areas for unloaded text & image content
+////
+
+/// VARIABLES
+/// ----------------------------------------------------
+$C_SKELETON-color:                  $COLOR-GreyLightest;
+$C_SKELETON-coloraccent:            $COLOR-GreyLight;
+
+/// BASE
+/// ----------------------------------------------------
+
+.c-skeleton {
+    display: block;
+    background-color: $C_SKELETON-color;
+
+    &:not(.c-skeleton--img) {
+        height: rem($TYPE-SIZE-M);
+        margin-bottom: rem($TYPE-LineHeight - $TYPE-SIZE-M);
+        width: 100%;
+    }
+
+    &.sm {
+        width: 30%;
+    }
+
+    &.md {
+        width: 60%;
+    }
+
+    &.lg {
+        width: 80%;
+    }
+
+    &.loading {
+        background-image: linear-gradient(90deg, fade-out($C_SKELETON-color, 1) 35%, fade-out($C_SKELETON-coloraccent, 0.7) 50%, fade-out($C_SKELETON-color, 1) 65%);
+        background-size: 400% 400%;
+        animation: skeletonflash 0.8s linear infinite;
+
+        @keyframes skeletonflash {
+            0% { background-position: 100% 0%; }
+            100% { background-position: 0% 100%; }
+        }
+    }
+}
+
+.c-skeleton--img {
+    &.sm {
+        @include size(72px);
+    }
+
+    &.md {
+        @include size(400px);
+    }
+
+    &.lg {
+        @include size(800px);
+    }
+}
+
+// VARIANTS
+// ----------------------------------------------------
+
+// RESPONSIVE
+// ----------------------------------------------------
+
+@include media(screen, "<=small") {
+    //
+}
+
+@include media(screen, ">small", "<=medium") {
+    //
+}
+
+@include media(screen, ">medium", "<=large") {
+    //
+}

@@ -1,0 +1,40 @@
+/// <reference path="../../main.scss" />
+////
+/// COLUMNS
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+$COLUMNS-Gap:                    $TYPE-LineHeight;
+$COLUMNS-MinWidth:               auto;
+$COLUMNS-Rule:                   null;//3px dotted hotpink
+
+// BASE
+// ----------------------------------------------------
+
+@mixin columns ($columnNum: 2, $columnMinWidth: $COLUMNS-MinWidth, $columnGap: $COLUMNS-Gap, $columnRule: $COLUMNS-Rule) {
+    columns: $columnMinWidth $columnNum;
+    column-rule: $columnRule;
+    @include pxrem($columnGap, "column-gap");
+}
+
+// LIST COLUMNS
+// ----------------------------------------------------
+
+// $gap in unitless(percentage)
+
+@mixin list-as-columns($num_cols, $gap) {
+    $totalgap: ($gap * ($num_cols - 1));
+
+    width: ((100% - $totalgap) / $num_cols);
+    margin-right: ($gap * 1%);
+
+    &:nth-child(#{$num_cols}n+#{$num_cols}) {
+        margin-right: 0;
+    }
+
+    &:nth-child(#{$num_cols}n+1) {
+        clear: both;
+    }
+}

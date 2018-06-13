@@ -1,0 +1,142 @@
+/// <reference path="../main.scss" />
+
+////
+/// BREADCRUMB TRAIL
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$BREADCRUMB-NAV-BgColor:        tint($COLOR-Base, 80%) !default;
+$BREADCRUMB-NAV-Color:          contrast-color($BREADCRUMB-NAV-BgColor, $COLOR-Base, tint($COLOR-Base, 90%)) !default;
+
+$BREADCRUMB-BgColor:            $BREADCRUMB-NAV-BgColor !default;
+$BREADCRUMB-Color:              $BREADCRUMB-NAV-Color !default;
+$BREADCRUMB-ActiveColor:        $BREADCRUMB-Color !default;
+$BREADCRUMB-ActiveBgColor:      lighten($BREADCRUMB-BgColor, 20%) !default;
+
+$BREADCRUMB-FontSize:           $TYPE-SIZE-M !default;
+$BREADCRUMB-Separator-FontSize: $BREADCRUMB-FontSize /3 !default;
+$BREADCRUMB-Separator-Color:    fade-out($BREADCRUMB-Color, 0.1) !default;
+$BREADCRUMB-Separator-Width:    $TYPE-LineHeight !default;
+
+// We're using "aria-current" in HTML and phasing out a generic "current" class
+
+@if $COMPONENT-BREADCRUMB {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .breadcrumb {
+        position: relative;
+        color: $BREADCRUMB-NAV-Color;
+        background-color: $BREADCRUMB-NAV-BgColor;
+
+        @include margin-bottom($TYPE-LineHeight /2);
+    }
+
+    .list--breadcrumb {
+        position: relative;
+
+        @include padding(0);
+        @include clearfix;
+
+        .list__item {
+            vertical-align: middle;
+            display: block;
+            float: left;
+            color: $BREADCRUMB-Color;
+            background-color: $BREADCRUMB-BgColor;
+
+            @include font-size-heading($BREADCRUMB-FontSize, 1.5);
+            @include transition(all, 0.1s);
+
+            &:first-of-type {
+                // @include margin-left(40px);
+            }
+
+            &:last-of-type {
+                .list__link {
+                    font-weight: bold;
+
+                    &::after {
+                        content: none;
+                    }
+                }
+            }
+        }
+
+        .list__link {
+            position: relative;
+            display: block;
+            float: left;
+
+            @include link-custom($BREADCRUMB-Color, none, $BREADCRUMB-Color, underline);
+            @include padding($TYPE-LineHeight/4, $TYPE-LineHeight/4, $TYPE-LineHeight/4, $TYPE-LineHeight/2);
+            @include margin-right($BREADCRUMB-Separator-Width);
+
+            &[aria-current] {
+                font-weight: bold;
+            }
+
+            // Dynamically generated SVG ">" shape, with colour
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 100%;
+                right: 0;
+                height: 100%;
+                width: rem($BREADCRUMB-Separator-Width);
+                z-index: $Z-INDEX-Level1;
+                background-color: transparent;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                background-size: rem($BREADCRUMB-Separator-FontSize);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='23px' height='44px' viewBox='0 0 23 44'%3E%3Cpath d='M0.714,0.612L0.714,8.757L13.387,21.317L0.714,34.617L0.714,43.179L22,21.502L0.714,0.612Z' fill='#{$BREADCRUMB-Separator-Color}'/%3E%3C/svg%3E");
+            }
+        }
+    }
+
+    // MOBILE
+    // ----------------------------------------------------
+
+    // @include media(screen, "<=small") {
+    //     // .nav__breadcrumb {
+    //     //     text-overflow: ellipsis;
+    //     //     overflow: hidden;
+    //     //     white-space: nowrap;
+    //     //     width: 100%;
+    //     //
+    //     //     @include inline-block;
+    //     // }
+    //
+    //     .list--breadcrumb {
+    //         li {
+    //             display: block;
+    //             width: 100%;
+    //
+    //             .list__link {
+    //                 &::after {
+    //                     content: ">\0000a0";
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

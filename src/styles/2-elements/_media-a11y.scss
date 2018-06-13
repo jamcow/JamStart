@@ -1,0 +1,36 @@
+/// <reference path="../main.scss" />
+
+////
+/// A11y Helpers
+////
+
+// High contrast
+// .a11y--hi {
+//     html {
+//         background-color: #eeeeee;
+//         filter: invert(100%);
+//     }
+
+//     * {
+//         background-color: inherit;
+//     }
+
+//     img:not([src*=".svg"]),
+//     [style*="url("] {
+//         filter: invert(100%);
+//     }
+// }
+
+@media (prefers-reduced-motion: reduce) {
+    // Adjust potentially harmful animations to be paused or _less_drastic_ here
+    // **Reduced**, not none, else it'll break animated loaders, transitions
+
+    // https://css-tricks.com/introduction-reduced-motion-media-query/#comment-1609188
+    // http://valhead.com/2017/06/23/reduced-motion-query/
+    // https://twitter.com/justmarkup/status/974581638637142016
+
+    // * {
+    //     animation: none !important;
+    //     transition: none !important;
+    // }
+}

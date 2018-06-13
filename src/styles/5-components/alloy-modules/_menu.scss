@@ -1,0 +1,82 @@
+/// <reference path="../main.scss" />
+
+////
+/// MENU
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$DROPDOWN-Color: $COLOR-White;
+$DROPDOWN-BgColor: $COLOR-Base;
+$DROPDOWN-HeadColor: $COLOR-Grey;
+$DROPDOWN-ListColor: $COLOR-Base;
+$DROPDOWN-ListBgColor: $COLOR-White;
+
+@if $COMPONENT-MENU {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        width: 100%;
+        background-color: $DROPDOWN-ListBgColor;
+        z-index: $Z-INDEX-Level3;
+
+        @include depth-1;
+    }
+
+    .list__menu {
+        white-space: normal;
+
+        .list__head {
+            color: $DROPDOWN-HeadColor;
+
+            @include padding($TYPE-LineHeight/4);
+        }
+
+        .list__link {
+            color: $DROPDOWN-ListColor;
+            text-decoration: none;
+            display: block;
+
+            @include padding($TYPE-LineHeight/4);
+
+            &:hover {
+                background-color: darken($DROPDOWN-ListBgColor, 5%);
+            }
+        }
+
+        .list__separator {
+            background-color: darken($DROPDOWN-ListBgColor, 5%);
+            height: 1px;
+        }
+
+        .badge {
+            float: right;
+
+            @include margin-top(3);
+        }
+    }
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

@@ -1,0 +1,50 @@
+/// <reference path="../../main.scss" />
+
+////
+/// GENERAL MIXINS
+/// @group General Mixins
+////
+
+/// Generate custom link
+/// @param {*} $link [$LINK-Alt-Link]
+/// @param {*} $linkdecor [underline]
+/// @param {*} $linkhover [$LINK-Alt-Hover]
+/// @param {*} $linkhoverdecor [none]
+/// @example
+///   a {
+///     @include link-custom(black, underline, blue, none);
+///   }
+
+@mixin link-custom(
+    $link: $LINK-Alt-Link,
+    $linkdecor: underline,
+    $linkhover: $LINK-Alt-Hover,
+    $linkhoverdecor: none,
+    $visited: $link,
+    $focus: $linkhover,
+    $active: $link) {
+    color: $link;
+    text-decoration: $linkdecor;
+
+    &:link {
+        color: $link;
+    }
+
+    &:visited {
+        color: $visited;
+    }
+
+    &:hover {
+        color: $linkhover;
+        text-decoration: $linkhoverdecor;
+    }
+
+    &:focus {
+        color: $focus;
+        text-decoration: $linkhoverdecor;
+    }
+
+    &:active {
+        color: $active;
+    }
+}

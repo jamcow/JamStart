@@ -1,0 +1,12 @@
+/// <reference path="1-abstracts/__base.scss" />
+/// <reference path="3-systems/icons/__base.scss" />
+
+////
+/// ALLOY MAIN - DESIGN LANGUAGE
+////
+
+/// ABSTRACTS - Purely abstract - no css should output
+@import "1-abstracts/_base";
+
+/// SYSTEMS
+@import "3-systems/icons/iconsCMS";

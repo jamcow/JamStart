@@ -1,0 +1,81 @@
+/// <reference path="../main.scss" />
+
+////
+/// RESPONSIVE UTILITIES
+////
+
+/// Device sizes
+/// Maybe use or rewrite https://github.com/eduardoboucas/include-media-hidden-classes
+
+// RESPONSIVE
+// ----------------------------------------------------
+
+.u-show--s {
+    @include media(screen, ">small") {
+        display: none;
+    }
+}
+
+.u-show--m {
+    @include media(screen, "<=small") {
+        display: none;
+    }
+}
+
+.u-vh--s {
+    @include media(screen, ">small") {
+        @include hidden-text;
+    }
+}
+
+.u-vh--m {
+    @include media(screen, "<=small") {
+        @include hidden-text;
+    }
+}
+
+@if $UTILITY-RESPONSIVE {
+
+    // Desktop
+    .show-lg {
+        display: inherit !important;
+    }
+
+    .hide-lg,
+    .show-sm,
+    .show-md {
+        display: none !important;
+    }
+
+    // Mobile
+    @include media(screen, "<=small") {
+        .hide-lg,
+        .show-sm {
+            display: inherit !important;
+        }
+
+        .hide-sm,
+        .show-lg,
+        .show-md {
+            display: none !important;
+        }
+    }
+
+    // Tablet
+    @include media(screen, ">small", "<=medium") {
+        .show-md,
+        .hide-lg {
+            display: inherit !important;
+        }
+
+        .hide-md,
+        .show-sm,
+        .show-lg {
+            display: none !important;
+        }
+    }
+
+    @include media(screen, ">large") {
+        //
+    }
+}

@@ -1,0 +1,105 @@
+/// <reference path="../main.scss" />
+
+////
+/// TWITTER
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+@if $COMPONENT-TWITTER {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .tweets.cardslider {
+        width: 100%;
+        margin: 0;
+
+        .cardslider__tray,
+        .cardslider__card {
+            width: 100% !important;
+        }
+    }
+
+    .tweet {
+        @include margin(10, 0);
+    }
+
+    .tweet__avatar,
+    .tweet__body {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .tweet__avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        float: left;
+
+        @include margin-right(20);
+    }
+
+    .tweet__body {
+        width: calc(100% - 70px);
+    }
+
+    .tweet__author,
+    .tweet__handle,
+    .tweet__time {
+        @include inline-block;
+        @include margin(0, 20, 0, 0);
+    }
+
+    .tweet__time {
+        //
+    }
+
+    .tweet__author {
+        color: $COLOR-Black;
+        float: left;
+        @include font-family($TYPE-HeadingsAltFontFamily, $FONTLOADER-HeadingsAltFontFamily, 700);
+
+        span {
+            color: $COLOR-Grey;
+            font-weight: 400;
+        }
+    }
+
+    .tweet__actions {
+        a {
+            text-decoration: none;
+
+            @include margin(0, 10);
+            @include transition(all, 0.2s, ease);
+
+            &:first-of-type {
+                @include margin-left(0);
+            }
+
+            &:last-of-type {
+                @include margin-left(0);
+            }
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

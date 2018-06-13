@@ -1,0 +1,57 @@
+﻿/// <reference path="../main.scss" />
+
+////
+/// INK
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+$INK-Color:         rgba(255, 255, 255, 0.2);
+$INK-Anim:          $ANIM-Curve;
+
+@if $COMPONENT-INK {
+
+    // BASE
+    // ----------------------------------------------------
+
+    // TODO
+    [data-ink] {
+        position: relative;
+        overflow: hidden;
+
+        .ink {
+            display: block;
+            position: absolute;
+            background-color: $INK-Color;
+            border-radius: 50%;
+            transform: scale(0);
+
+            &.animate {
+                animation: ripple 0.35s $INK-Anim;
+            }
+        }
+    }
+
+    @keyframes ripple {
+        100% {
+            opacity: 0;
+            transform: scale(2.5);
+        }
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

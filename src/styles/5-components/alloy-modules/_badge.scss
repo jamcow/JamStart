@@ -1,0 +1,114 @@
+/// <reference path="../main.scss" />
+
+////
+/// BADGE
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$BADGE-BgColor:                  $COLOR-GreyDark !default;
+$BADGE-TextColor:                $COLOR-White !default;
+$BADGE-SuccessBgColor:           $COLOR-Green !default;
+$BADGE-InfoBgColor:              $COLOR-Blue !default;
+$BADGE-WarningBgColor:           $COLOR-Orange !default;
+$BADGE-DangerBgColor:            $COLOR-Red !default;
+
+@if $COMPONENT-BADGE {
+
+    // BADGE BASE
+    // ----------------------------------------------------
+
+    .badge {
+        @include inline-block;
+        @include padding(3, $TYPE-FontSize/2);
+        @include border-radius(10);
+        @include font-size($TYPE-SIZE-XXS);
+
+        color: $BADGE-TextColor;
+        background-color: $BADGE-BgColor;
+        line-height: 1;
+        min-width: 10px;
+        text-align: center;
+        white-space: nowrap;
+        font-family: $TYPE-MonoSpaceFontFamily;
+    }
+
+    .button {
+        .badge {
+            color: $BADGE-BgColor;
+            background-color: $BADGE-TextColor;
+            font-weight: bold;
+        }
+    }
+
+    // STATUSES
+    // ----------------------------------------------------
+
+    .badge {
+        &.success {
+            background-color: $BADGE-SuccessBgColor;
+        }
+
+        &.info {
+            background-color: $BADGE-InfoBgColor;
+        }
+
+        &.warn {
+            background-color: $BADGE-WarningBgColor;
+        }
+
+        &.danger {
+            background-color: $BADGE-DangerBgColor;
+        }
+
+        &.xsmall {
+            @include font-size(($TYPE-FontSize - 4));
+        }
+
+        &.small {
+            @include font-size(($TYPE-FontSize - 2));
+        }
+
+        &.large {
+            @include font-size(($TYPE-FontSize + 2));
+        }
+
+        &.xlarge {
+            @include font-size(($TYPE-FontSize + 4));
+        }
+    }
+
+    .button {
+        &.success {
+            color: $BADGE-SuccessBgColor;
+            background-color: $BADGE-TextColor;
+        }
+
+        &.info {
+            color: $BADGE-InfoBgColor;
+            background-color: $BADGE-TextColor;
+        }
+
+        &.warn {
+            color: $BADGE-WarningBgColor;
+            background-color: $BADGE-TextColor;
+        }
+
+        &.danger {
+            color: $BADGE-DangerBgColor;
+            background-color: $BADGE-TextColor;
+        }
+    }
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

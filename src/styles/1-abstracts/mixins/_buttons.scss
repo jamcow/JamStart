@@ -1,0 +1,71 @@
+/// <reference path="../../main.scss" />
+////
+/// BUTTONS
+////
+
+/// Generate custom button
+/// Has a span element inside - gives a gradient background that looks like a border.
+
+@mixin button-create(
+    $Bg,
+    $BgHover,
+    //
+    $TextColor: contrast-color($Bg),
+    $TextHoverColor: $TextColor,
+    $decoration: null,
+    $HoverDecoration: null,
+    //
+    $visited: null,
+    $focus: null,
+    $BgActiveColor: $BgHover,
+    $TextActiveColor: $TextHoverColor,
+    $BorderColor: null,
+    $BorderHoverColor: null,
+    $BorderWidth: 1) {
+
+    //
+    color: $TextColor;
+    text-decoration: $decoration;
+
+    @if $BorderColor {
+        border: ($BorderWidth * 1px) solid $BorderColor;
+        padding: 0;
+    }
+
+    &:link,
+    &:visited {
+        color: $TextColor;
+    }
+
+    &:visited {
+        color: $visited;
+    }
+
+    span {
+        background-color: $Bg;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $TextHoverColor;
+        text-decoration: $HoverDecoration;
+        border-color: $BorderHoverColor;
+
+        span {
+            background-color: $BgHover;
+        }
+    }
+
+    &:focus {
+        color: $focus;
+    }
+
+    &:active {
+        color: $TextActiveColor;
+
+        span {
+            background-color: $BgActiveColor;
+        }
+    }
+}

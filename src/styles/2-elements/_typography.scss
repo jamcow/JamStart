@@ -1,0 +1,138 @@
+/// <reference path="../../main.scss" />
+
+////
+/// TYPOGRAPHY
+////
+
+html {
+    line-height: 1.6;
+}
+
+body {
+    @include font-family($TYPE-FontFamily, $FONTLOADER-FontFamily);
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+// HEADINGS
+// ----------------------------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @include font-family($TYPE-HeadingsFontFamily, $FONTLOADER-HeadingsFontFamily, 700);
+    @include margin(0, 0, $TYPE-LineHeight, 0);
+
+    text-rendering: optimizelegibility;
+}
+
+h1 {
+    @include font-size-heading($TYPE-SIZE-XXXL, 1.5);
+}
+
+h2 {
+    @include font-size-heading($TYPE-SIZE-XXL, 1.5);
+}
+
+h3 {
+    @include font-size-heading($TYPE-SIZE-XL, 1.5);
+}
+
+h4 {
+    @include font-size-heading($TYPE-SIZE-L, 1.5);
+}
+
+h5 {
+    @include font-size-heading($TYPE-SIZE-M, 1.5);
+}
+
+h6 {
+    @include font-size-heading($TYPE-SIZE-M, 1.5);
+}
+
+// BODY
+// ----------------------------------------------------
+p {
+    @include margin(0, 0, $TYPE-LineHeight, 0);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+blockquote {
+    @include padding(0, 0, 0, $TYPE-LineHeight);
+    @include margin(0, 0, $TYPE-LineHeight, 0);
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid $COLOR-GG-GreyLighter;
+    padding: 0;
+
+    @include margin($TYPE-LineHeight, 0);
+}
+
+ins {
+    background: #ffff00;
+    color: contrast-color(#ffff00);
+    text-decoration: none;
+}
+
+pre,
+code,
+kbd,
+samp {
+    font-family: $TYPE-CodeFontFamily;
+
+    @include font-size($TYPE-FontSize);
+}
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+
+    code {
+        display: block;
+
+        @include padding($TYPE-FontSize);
+    }
+}
+
+code {
+    @include padding(0, $TYPE-FontSize);
+}
+
+q {
+    quotes: none;
+
+    &::before,
+    &::after {
+        content: "";
+        content: none;
+    }
+}
+
+small,
+.small {
+    font-weight: normal;
+    font-size: 80%;
+}
+
+summary {
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

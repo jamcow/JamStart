@@ -1,0 +1,42 @@
+/// <reference path="../main.scss" />
+
+////
+/// WRAPS
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+$WRAP-NAV-BgColor:				$COLOR-Base;
+$WRAP-NAV-Color:				$NAVIGATION-Color !default;
+
+@if $COMPONENT-WRAPS {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .w {
+        //
+    }
+
+    .w--nav {
+        color: $WRAP-NAV-Color;
+        background-color: $WRAP-NAV-BgColor;
+    }
+
+    // Sticky menu
+    // ------------------------------------
+    $STICKY-Offset:         0;// 8px;
+
+    .sticky {
+        margin-top: -$STICKY-Offset;
+        margin-bottom: $STICKY-Offset;
+    }
+
+    .stuck {
+        width: 100%;
+        display: block;
+        z-index: $Z-INDEX-Level5;
+        background-color: $COLOR-White;
+    }
+}

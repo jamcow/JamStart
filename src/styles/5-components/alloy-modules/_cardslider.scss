@@ -1,0 +1,61 @@
+﻿/// <reference path="../main.scss" />
+
+////
+/// CARDSLIDER
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$CARDSLIDERCONTROL-ActiveColor:     $COLOR-Primary !default;
+$CARDSLIDERCONTROL-InactiveColor:   $COLOR-Secondary !default;
+
+@if $COMPONENT-CARDSLIDER {
+
+    // BASE
+    // ----------------------------------------------------
+
+    /// @TODO: everything
+    .cardslider {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        overflow: hidden;
+    }
+
+    .cardslider__tray {
+        position: relative;
+        // @TODO: This value gets overridden by JS when the tray is loaded in
+        width: 1000000px;
+
+        @include transition (left, 0.4s, $ANIM-Curve);
+
+        &.no-transition {
+            @include transition (none);
+        }
+
+        .cardslider__card {
+            display: inline-block;
+        }
+    }
+
+    .cardslider__controls {
+        //
+    }
+
+    .cardslider__control {
+        text-decoration: none;
+
+        &:not(.icon) {
+            display: inline-block;
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+            background-color: $CARDSLIDERCONTROL-InactiveColor;
+            margin: 5px;
+
+            &.current {
+                background-color: $CARDSLIDERCONTROL-ActiveColor;
+            }
+        }
+    }
+}

@@ -1,0 +1,381 @@
+/// <reference path="../main.scss" />
+
+////
+/// GRID
+////
+
+// .g = grid
+// .gc = gridcell (previously c__ column)
+// .o-w = wrapper
+
+// BASE
+// ----------------------------------------------------
+
+/// WRAP
+/// Surrounds any grid, provides sectional wrapping
+.o-w {
+    margin: 0 auto;
+    width: 100%;
+    max-width: em($GRID-MaxWidth);
+}
+
+.o-w--full {
+    max-width: 100%;
+}
+
+.o-w--wide {
+    // max-width: em($GRID-MaxWidth * (12 / 10));
+    max-width: em($GRID-MaxWidth * (11 / 9));
+}
+
+.o-w--tight {
+    // max-width: em($GRID-MaxWidth * (10 / 12));
+    max-width: em($GRID-MaxWidth - 300);
+}
+
+.o-w--tighter {
+    // max-width: em($GRID-MaxWidth * (8 / 12));
+    max-width: em($GRID-MaxWidth - 450);
+}
+
+.o-w--tightest {
+    // max-width: em($GRID-MaxWidth * (6 / 12));
+    max-width: em($GRID-MaxWidth - 600);
+}
+
+/// GRID
+.g {
+    // Allows us to easily "remove" flex in order to test older browsers
+    @if $BOOL-flexsupport {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include media(screen, ">small") {
+        // Adds extra spacing on x-axis (for Design reasons)
+        @if unitless($GRID-Padding-Md) and $GRID-Padding-Md != 0 {
+            @include padding-x($GRID-Padding-Md);
+        }
+    }
+
+    @include media(screen, ">medium") {
+        // Adds extra spacing on x-axis (for Design reasons)
+        @if unitless($GRID-Padding) and $GRID-Padding != 0 {
+            @include padding-x($GRID-Padding);
+        }
+    }
+}
+
+/// GRID CELL
+/// These go inside the grid, the parent (grid) parameters can dictate overall sizing
+/// or the individual gridcell can have overriding classes
+.gc {
+    flex: 1;
+
+    // Make cell content flex also
+    .g--flex > & {
+        @if $BOOL-flexsupport {
+            display: flex;
+        }
+    }
+
+    .g--fit > & {
+        flex: 1;
+    }
+
+    .g--autosize & {
+        flex: none;
+        max-width: percentage(1 / 1);
+    }
+
+    .g--full > & {
+        flex: 0 0 percentage(1 / 1);
+        max-width: percentage(1 / 1);
+    }
+
+    .g--1-2 > & {
+        flex: 0 0 percentage(1 / 2);
+        max-width: percentage(1 / 2);
+    }
+
+    .g--1-3 > & {
+        flex: 0 0 percentage(1 / 3);
+        max-width: percentage(1 / 3);
+    }
+
+    .g--1-4 > & {
+        flex: 0 0 percentage(1 / 4);
+        max-width: percentage(1 / 4);
+    }
+
+    @include media(screen, "<=small") {
+        .g__sm--fit > & {
+            flex: 1;
+        }
+
+        .g__sm--1 > & {
+            flex: 0 0 percentage(1 / 1);
+            max-width: percentage(1 / 1);
+        }
+
+        .g__sm--1-2 > & {
+            flex: 0 0 percentage(1 / 2);
+            max-width: percentage(1 / 2);
+        }
+
+        .g__sm--1-3 > & {
+            flex: 0 0 percentage(1 / 3);
+            max-width: percentage(1 / 3);
+        }
+
+        .g__sm--1-4 > & {
+            flex: 0 0 percentage(1 / 4);
+            max-width: percentage(1 / 4);
+        }
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        .g__md--fit > & {
+            flex: 1;
+        }
+
+        .g__md--1 > & {
+            flex: 0 0 percentage(1 / 1);
+            max-width: percentage(1 / 1);
+        }
+
+        .g__md--1-2 > & {
+            flex: 0 0 percentage(1 / 2);
+            max-width: percentage(1 / 2);
+        }
+
+        .g__md--1-3 > & {
+            flex: 0 0 percentage(1 / 3);
+            max-width: percentage(1 / 3);
+        }
+
+        .g__md--1-4 > & {
+            flex: 0 0 percentage(1 / 4);
+            max-width: percentage(1 / 4);
+        }
+    }
+
+    @include media(screen, ">medium") {
+        .g__lg--fit > & {
+            flex: 1;
+        }
+
+        .g__lg--1 > & {
+            flex: 0 0 percentage(1 / 1);
+            max-width: percentage(1 / 1);
+        }
+
+        .g__lg--1-2 > & {
+            flex: 0 0 percentage(1 / 2);
+            max-width: percentage(1 / 2);
+        }
+
+        .g__lg--1-3 > & {
+            flex: 0 0 percentage(1 / 3);
+            max-width: percentage(1 / 3);
+        }
+
+        .g__lg--1-4 > & {
+            flex: 0 0 percentage(1 / 4);
+            max-width: percentage(1 / 4);
+        }
+
+        .g__lg--1-5 > & {
+            flex: 0 0 percentage(1 / 5);
+            max-width: percentage(1 / 5);
+        }
+    }
+}
+
+/// Grid cell overrides
+/// Specificity in order to override the parent class modifiers.
+.g {
+    @include media(screen, "<=small") {
+        .gc__sm--1 {
+            flex: 0 0 (100% / 1);
+            max-width: (100% / 1);
+        }
+
+        .gc__sm--1-2 {
+            flex: 0 0 (100% / 2);
+            max-width: (100% / 2);
+        }
+
+        .gc__sm--1-3 {
+            flex: 0 0 (100% / 3);
+            max-width: (100% / 3);
+        }
+
+        .gc__sm--2-3 {
+            flex: 0 0 (200% / 3);
+            max-width: (200% / 3);
+        }
+        .gc__sm--1-4 {
+            flex: 0 0 (100% / 4);
+            max-width: (100% / 4);
+        }
+        .gc__sm--3-4 {
+            flex: 0 0 (300% / 4);
+            max-width: (300% / 4);
+        }
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        .gc__md--1 {
+            flex: 0 0 (100% / 1);
+            max-width: (100% / 1);
+        }
+
+        .gc__md--1-2,
+        .gc__md--2-4 {
+            flex: 0 0 (100% / 2);
+            max-width: (100% / 2);
+        }
+
+        .gc__md--1-3 {
+            flex: 0 0 (100% / 3);
+            max-width: (100% / 3);
+        }
+
+        .gc__md--2-3 {
+            flex: 0 0 (200% / 3);
+            max-width: (200% / 3);
+        }
+
+        .gc__md--1-4 {
+            flex: 0 0 (100% / 4);
+            max-width: (100% / 4);
+        }
+
+        .gc__md--3-4 {
+            flex: 0 0 (300% / 4);
+            max-width: (300% / 4);
+        }
+    }
+
+    @include media(screen, ">medium") {
+        .gc__lg--1 {
+            flex: 0 0 (100% / 1);
+            max-width: (100% / 1);
+        }
+
+        .gc__lg--1-2,
+        .gc__lg--2-4 {
+            flex: 0 0 (100% / 2);
+            max-width: (100% / 2);
+        }
+
+        .gc__lg--1-3 {
+            flex: 0 0 (100% / 3);
+            max-width: (100% / 3);
+        }
+
+        .gc__lg--2-3 {
+            flex: 0 0 (200% / 3);
+            max-width: (200% / 3);
+        }
+
+        .gc__lg--1-4 {
+            flex: 0 0 (100% / 4);
+            max-width: (100% / 4);
+        }
+
+        .gc__lg--3-4 {
+            flex: 0 0 (300% / 4);
+            max-width: (300% / 4);
+        }
+
+        .gc__lg--1-5 {
+            flex: 0 0 (100% / 5);
+            max-width: (100% / 5);
+        }
+
+        .gc__lg--2-5 {
+            flex: 0 0 (200% / 5);
+            max-width: (200% / 5);
+        }
+
+        .gc__lg--3-5 {
+            flex: 0 0 (300% / 5);
+            max-width: (300% / 5);
+        }
+
+        .gc__lg--4-5 {
+            flex: 0 0 (400% / 5);
+            max-width: (400% / 5);
+        }
+    }
+}
+
+// VARIANTS
+// ----------------------------------------------------
+
+.g--top,
+.g .gc--top {
+    align-items: flex-start;
+}
+
+.g--bottom,
+.g .gc--bottom {
+    align-items: flex-end;
+}
+
+.g--middle,
+.g .gc--middle {
+    align-items: center;
+}
+
+.g--center,
+.g .gc--center {
+    justify-content: center;
+}
+
+.g .gc--autosize {
+    flex: none;
+    max-width: percentage(1 / 1);
+}
+
+.g .gc--full {
+    flex: 0 0 percentage(1 / 1);
+    max-width: percentage(1 / 1);
+}
+
+.g--rtl,
+.g .gc--rtl {
+    flex-direction: row-reverse;
+}
+
+// -----------------------------------------------------------------------
+// Set the desktop first, as this has fallbacks, so more likely desktops (IE) can use it
+.g--gutters {
+    @include margin(-$GRID-GutterHeight-Sm, 0, $GRID-GutterHeight-Sm, -$GRID-GutterWidth-Sm);
+
+    & > .gc {
+        @include padding($GRID-GutterHeight-Sm, 0, 0, $GRID-GutterWidth-Sm);
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        @include margin(-$GRID-GutterHeight-Md, 0, $GRID-GutterHeight-Md, -$GRID-GutterWidth-Md);
+
+        & > .gc {
+            @include padding($GRID-GutterHeight-Md, 0, 0, $GRID-GutterWidth-Md);
+        }
+    }
+
+    @include media(screen, ">medium") {
+        @include margin(-$GRID-GutterHeight, 0, $GRID-GutterHeight, -$GRID-GutterWidth);
+
+        & > .gc {
+            @include padding($GRID-GutterHeight, 0, 0, $GRID-GutterWidth);
+        }
+    }
+}

@@ -1,0 +1,35 @@
+/// <reference path="../main.scss" />
+
+////
+/// BROWSEHAPPY
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$BROWSEHAPPY-Color:				$COLOR-White !default;
+$BROWSEHAPPY-BgColor:			$COLOR-RedDark !default;
+
+@if $COMPONENT-BROWSEHAPPY {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .browsehappy {
+        color: $BROWSEHAPPY-Color;
+        background-color: $BROWSEHAPPY-BgColor;
+        font-weight: bold;
+        text-align: center;
+
+        @include margin(0);
+        @include padding($TYPE-LineHeight/2);
+
+        a {
+            color: $BROWSEHAPPY-Color;
+
+            &:link,
+            &:visited {
+                color: $BROWSEHAPPY-Color;
+            }
+        }
+    }
+}

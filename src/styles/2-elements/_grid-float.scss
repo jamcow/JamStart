@@ -1,0 +1,296 @@
+/// <reference path="../main.scss" />
+
+////
+/// GRID
+////
+
+// Float-based grid in percentages
+// -------------------------------------------------
+
+// .g = grid
+// .c = column
+// .w = wrapper
+
+@mixin columnmaker ($columns, $sizeprefix) {
+    @each $totalColumns in $columns {
+        @for $column from 1 through ($totalColumns - 1) {
+            //.
+            .#{$sizeprefix}--#{$column}-#{$totalColumns} {
+
+                // Single column
+                // = 1023 / 2
+                // 1314 / 3 = 438
+                $singlecPx: ($GRID-MaxWidth - 1) / $totalColumns;
+                // = 100% * (511.5 / 1024)
+                // = 100% * (438 / 1315)
+                $singleColPercentage: percentage($singlecPx / $GRID-MaxWidth);
+
+                // This column offset
+                // = 49.951171875 * 1
+                $thisColWidth: $singleColPercentage * $column;
+
+                // All together
+                width: $thisColWidth;
+            }
+        }
+    }
+}
+
+@mixin offsetmaker ($columns, $sizeprefix, $offsets: 1) {
+    @each $totalColumns in $columns {
+        @for $column from 1 through $offsets {
+            .#{$sizeprefix}--#{$column}-#{$totalColumns} {
+
+                // Single c
+                $singlecPx: ($GRID-MaxWidth - 1) / $totalColumns;
+                $singleColPercentage: percentage($singlecPx / $GRID-MaxWidth);
+
+                // This c offset
+                $thisColWidth: $singleColPercentage * $column;
+
+                // All together
+                margin-left: $thisColWidth;
+            }
+        }
+    }
+}
+
+// COLUMN GUTTERS
+// ----------------------------------------------------
+
+@mixin gutterPadding() {
+    // Gutters
+    $horizontalPadding: $GRID-GutterWidth / 2;
+    $verticalPadding: $GRID-GutterHeight / 2;
+
+    @include padding(ceil($verticalPadding), floor($horizontalPadding), floor($verticalPadding), ceil($horizontalPadding));
+}
+
+@mixin gutterMarginReverse() {
+    // Gutters
+    $horizontalMargin: $GRID-GutterWidth / 2;
+    $verticalMargin: $GRID-GutterHeight / 2;
+
+    @include margin(ceil(-$verticalMargin), floor(-$horizontalMargin), floor(-$verticalMargin), ceil(-$horizontalMargin));
+}
+
+/// Container Gutters
+/// Applies same gutter widths and heights as grid system, but used specifically for Flexbox items.
+/// Because Flexbox doesn't "use" the margin (which affects width), we apply a negative margin on the parent container.
+@mixin containerGuttersSetup($arglist...) {
+    $map : keywords($arglist);
+    $width-sm:  map-get($map, width-sm)  or nth-or-null($arglist, 7) or $GRID-GutterWidth-Sm;
+    $width-md:  map-get($map, width-md)  or nth-or-null($arglist, 6) or $GRID-GutterWidth-Md;
+    $width:     map-get($map, width)     or nth-or-null($arglist, 5) or $GRID-GutterWidth;
+    $height-sm: map-get($map, height-sm) or nth-or-null($arglist, 4) or $TYPE-LineHeight / 2;
+    $height-md: map-get($map, height-md) or nth-or-null($arglist, 3) or $TYPE-LineHeight;
+    $height:    map-get($map, height)    or nth-or-null($arglist, 2) or $TYPE-LineHeight * 2;
+    $half:      map-get($map, half)      or nth-or-null($arglist, 1) or 2;
+
+    & {
+        @include margin($height /$half, $width /$half);
+    }
+
+    @include media(screen, "<=small") {
+        & {
+            @include margin($height-sm /$half, $width-sm /$half);
+        }
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        & {
+            @include margin($height-md /$half, $width-md /$half);
+        }
+    }
+}
+
+@mixin containerGutters ($arglist...) {
+    @include containerGuttersSetup($half: -2, $arglist...);
+}
+
+@mixin itemGutters ($arglist...) {
+    @include containerGuttersSetup($half: 2, $arglist...);
+}
+
+// BASE
+// ----------------------------------------------------
+
+.w {
+    margin: 0 auto;
+    width: 100%;
+
+    @include clearfix;
+}
+
+.g {
+    position: relative;
+    margin: 0 auto;
+
+    @include clearfix;
+
+    .g {
+        padding: 0;
+
+        @include gutterMarginReverse;
+    }
+}
+
+[class*="c__"],
+[class*="c--"] {
+    width: 100%;
+    display: inline;
+    float: left;
+
+    @include gutterPadding;
+}
+
+@each $device in $grid_columns {
+    $media_size: nth($device, 1);
+    $columns: nth($device, 2);
+    $offsets: nth($device, 3);
+
+    @if $media_size == "sm" {
+        @include media(screen, "<=small") {
+            @include columnmaker($columns, c__#{$media_size});
+        }
+    }
+
+    @if $media_size == "md" {
+        @include media(screen, ">small", "<=large") {
+            @include columnmaker($columns, c__#{$media_size});
+            @include offsetmaker($offsets, o__#{$media_size});
+        }
+    }
+
+    @if $media_size == "lg" {
+        @include media(screen, ">large") {
+            @include columnmaker($columns, c__#{$media_size});
+            @include offsetmaker($offsets, o__#{$media_size});
+        }
+    }
+}
+
+// VARIANTS
+// ----------------------------------------------------
+
+.g--rtl {
+    [class*="c__"],
+    [class*="c--"] {
+        float: right;
+    }
+}
+
+.g--nogutter {
+    [class*='c__'] {
+        padding: 0;
+    }
+}
+
+.g--quartgutter {
+    [class*='c__'] {
+        @include padding($GRID-GutterHeight / 4, $GRID-GutterWidth /4);
+    }
+}
+
+.g--halfgutter {
+    [class*='c__'] {
+        @include padding($GRID-GutterHeight / 2, $GRID-GutterWidth / 2);
+    }
+}
+
+// MOBILE
+// ----------------------------------------------------
+
+@include media(screen, "<=small") {
+    .g {
+        .g {
+            [class*="c--"] {
+                padding-top: ceil($GRID-GutterHeight);
+
+                &:first-child {
+                    padding-top: 0;
+                }
+            }
+        }
+
+        [class*='c__'] {
+            @include padding($GRID-GutterHeight-Sm /2, $GRID-GutterWidth-Sm /2);
+        }
+    }
+
+    .g--nogutter {
+        [class*='c__'] {
+            padding: 0;
+        }
+    }
+}
+
+// TABLET
+// ----------------------------------------------------
+
+@include media(screen, ">small") {
+    .g {
+        margin: 0 auto;
+
+        @include padding-x($GRID-Padding-Md);
+    }
+}
+
+@include media(screen, ">small", "<=medium") {
+    .g {
+        [class*='c__'] {
+            @include padding($GRID-GutterHeight-Md /2, $GRID-GutterWidth-Md /2);
+        }
+    }
+
+    .g--nogutter {
+        [class*='c__'] {
+            padding: 0;
+        }
+    }
+}
+
+@include media(screen, ">medium") {
+    .g--center {
+        text-align: center;
+
+        [class*='c__'] {
+            display: inline-block;
+            float: none;
+        }
+
+        &::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    }
+}
+
+// DESKTOP
+// ----------------------------------------------------
+
+@include media(screen, ">medium") {
+    .g {
+        max-width: em($GRID-MaxWidth);
+        margin: 0 auto;
+
+        @include padding-x($GRID-Padding);
+    }
+
+    .g--tight {
+        max-width: em($GRID-MaxWidth * (10 / 12));
+    }
+
+    .g--tighter {
+        max-width: em($GRID-MaxWidth * (8 / 12));
+    }
+
+    .g--tightest {
+        max-width: em($GRID-MaxWidth * (6 / 12));
+    }
+
+    .g--wide {
+        max-width: em($GRID-MaxWidth * (12 / 10));
+    }
+}

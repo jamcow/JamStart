@@ -1,0 +1,153 @@
+/// <reference path="../../main.scss" />
+
+////
+/// ICON
+////
+
+/// HTML for icons:
+
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--search"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--alert"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--warning"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--arrowup"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--arrowdown"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--arrowleft"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--arrowright"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--bag"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--bagplus"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--fabric"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--reinvest"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--percent"></use></svg>
+// <svg class="icon" aria-hidden="true"><use xlink:href="/Assets/img/symbols.svg#icon--quickshop"></use></svg>
+
+// <svg class="icon icon--menu" aria-hidden="true">
+//     <use class="icon--burger" xlink:href="/Assets/img/symbols.svg#icon--burger"></use>
+//     <use class="icon--close" xlink:href="/Assets/img/symbols.svg#icon--close"></use>
+// </svg>
+
+//<svg class="icon icon--checkbox" aria-hidden="true">
+//     <use class="icon--checkbox__box" xlink:href="/Assets/img/symbols.svg#icon--checkbox"></use>
+//     <use class="icon--checkbox__tick" xlink:href="/Assets/img/symbols.svg#icon--checkbox__tick"></use>
+//</svg>
+
+// <svg class="icon icon--toggle" aria-hidden="true">
+//     <use class="icon--arrowup" xlink:href="/Assets/img/symbols.svg#icon--arrowup"></use>
+//     <use class="icon--arrowdown" xlink:href="/Assets/img/symbols.svg#icon--arrowdown"></use>
+// </svg>
+
+// <svg class="icon icon--toggleAlt" aria-hidden="true">
+//     <use class="icon--arrowdown" xlink:href="/Assets/img/symbols.svg#icon--arrowdown"></use>
+// </svg>
+
+//<svg class="icon icon--warning" aria-hidden="true">
+//    <use class="icon" xlink:href="/Assets/img/symbols.svg#icon--warning"></use>
+//</svg>
+
+// BASE
+// ----------------------------------------------------
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    zoom: 1;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+.icon {
+    .counter {
+        fill: $COLOR-GG-GreyDark;
+        font-size: rem(12.8);
+        @include font-family($TYPE-FontFamily, $FONTLOADER-FontFamily, 400);
+    }
+
+    .counter-bg {
+        fill: $COLOR-GG-Yellow;
+
+        &.sm {
+            width: 16px;
+            // x: 16px;
+        }
+
+        &.md {
+            width: 20px;
+            // x: 14px;
+        }
+
+        &.lg {
+            width: 28px;
+            // x: 10px;
+        }
+    }
+}
+
+// Sprite icon (with image)
+// .icon-sp {
+//     display: inline-block;
+//     @include size(44px);
+//     background-image: url('/assets/img/icon_sprite.png');
+//     background-position: 0 0;
+//     background-repeat: no-repeat;
+// }
+
+// .icon-sp--facebook {
+//     background-position: -10px -10px;
+// }
+
+// .icon-sp--googleplus {
+//     background-position: -74px -10px;
+// }
+
+.icon {
+    &.xs {
+        @include font-size($TYPE-SIZE-XS);
+    }
+
+    &.s {
+        @include font-size($TYPE-SIZE-S);
+    }
+
+    &.m {
+        @include font-size($TYPE-SIZE-M);
+    }
+
+    &.l {
+        @include font-size($TYPE-SIZE-L);
+    }
+
+    &.xl {
+        @include font-size($TYPE-SIZE-XL);
+    }
+
+    &.xxl {
+        @include font-size($TYPE-SIZE-XXL);
+    }
+
+    &.xxxl {
+        @include font-size($TYPE-SIZE-XXXL);
+    }
+
+    &.xxxxl {
+        @include font-size($TYPE-SIZE-XXXXL);
+    }
+}
+
+// VARIANTS
+// --------------------------------------
+
+// RESPONSIVE
+// ----------------------------------------------------
+
+@include media(screen, "<=small") {
+    //
+}
+
+@include media(screen, ">small", "<=medium") {
+    //
+}
+
+@include media(screen, ">medium", "<=large") {
+    //
+}

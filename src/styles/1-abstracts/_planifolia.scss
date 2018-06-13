@@ -1,0 +1,17 @@
+/// Planifolia
+/// [source](https://github.com/xi/sass-planifolia/)
+///
+
+/// If you get error finding these - you need to update your node packages (> yarn install)
+/// or update the path
+
+/// Common mathemetical functions implemented in pure Sass,
+/// based on taylor expansions and thus, very efficient.
+@import "../../../node_modules/sass-planifolia/sass/math";
+
+/// Drop-in replacements for some of the HSL based functions included in Sass.
+@import "../../../node_modules/sass-planifolia/sass/color";
+
+/// Functions to help with contrast as defined by
+/// [WCAG20](https://www.w3.org/TR/WCAG20/#contrast-ratiodef)
+@import "../../../node_modules/sass-planifolia/sass/contrast";

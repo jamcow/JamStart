@@ -1,0 +1,134 @@
+/// <reference path="../main.scss" />
+
+////
+/// C_TABLE
+////
+
+/// VARIABLES
+/// ----------------------------------------------------
+
+$C-Table-Header-Colour:            $COLOR-White;
+$C-Table-Header-BgColour:          $COLOR-Blue;
+$C-Table-Header-BorderColour:      lighten($COLOR-Blue, 10%);
+$C-Table-BorderColour:             $COLOR-Grey;
+$C-Table-Note-Colour:              $COLOR-Pink;
+
+$C-TABLE-RowColor-Odd:             $COLOR-Base;
+$C-TABLE-RowBgColor-Odd:           $COLOR-GreyLightest;
+$C-TABLE-RowColor-Even:            $C-TABLE-RowColor-Odd;
+$C-TABLE-RowBgColor-Even:          $COLOR-White;
+
+/// BASE
+/// ----------------------------------------------------
+
+// Table {} element can not have display:flex/display:block
+// has to be display:table; (default value, as set by the browser)
+// Otherwise will cause accessibility issues (especially screenreader).
+
+// STYLES FOR A STANDARD TABLE ELEMENT
+// ----------------------------------------------------
+
+// SEMANTIC TABLE HTML
+// @url https://inclusive-components.design/data-tables/
+// ----------------------------------------------------
+
+/*
+    // Use JS to add tabindex="0" and <small> in the caption, if table wider than container
+    // Scope values should be defined what what you're looking up, eg, tshirt size (top row) by chest/waist (1st col)
+
+    <div class="tableContainer" tabindex="0" role="group" aria-labelledby="uniqueNum">
+        <table>
+            <caption id="uniqueNum">
+                Shirts Sizes
+                <div><small>(scroll to see more)</small></div>
+            </caption>
+            <tbody>
+                <tr>
+                    <th scope="row">Row Heading</th>
+                    <th scope="col">Value</td>
+                    <th scope="col">Value</td>
+                    <th scope="col">Value</td>
+                </tr>
+                <tr>
+                    <th scope="row">Row Heading</th>
+                    <td>Value</td>
+                    <td>Value</td>
+                    <td>Value</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+*/
+
+.tableContainer {
+    overflow-x: auto;
+    @include margin-bottom($TYPE-LineHeight);
+}
+
+table {
+    border: 1px solid $C-Table-BorderColour;
+    font-weight: normal;
+}
+
+caption {
+    text-align: left;
+}
+
+tr {
+    &:nth-child(odd) {
+        color: $C-TABLE-RowColor-Odd;
+        background-color: $C-TABLE-RowBgColor-Odd;
+    }
+
+    &:nth-child(even) {
+        color: $C-TABLE-RowColor-Even;
+        background-color: $C-TABLE-RowBgColor-Even;
+    }
+}
+
+tr:first-child th {
+    background-color: $C-Table-Header-BgColour;
+    color: $C-Table-Header-Colour;
+    border: 1px solid $C-Table-Header-BorderColour;
+    border-width: 0 1px;
+}
+
+th {
+    border: 1px solid $C-Table-BorderColour;
+    border-width: 0 1px;
+    font-weight: normal;
+    @include padding($TYPE-LineHeight/2, $TYPE-LineHeight);
+}
+
+td {
+    border: 1px solid $C-Table-BorderColour;
+    border-width: 0 1px;
+    font-weight: normal;
+    text-align: center;
+    @include padding($TYPE-LineHeight/2, $TYPE-LineHeight);
+}
+
+tr > th {
+    &:first-child {
+        white-space: nowrap;
+        text-align: left;
+    }
+}
+
+// VARIANTS
+// ----------------------------------------------------
+
+// RESPONSIVE
+// ----------------------------------------------------
+
+@include media(screen, "<=small") {
+    //
+}
+
+@include media(screen, ">small", "<=medium") {
+    //
+}
+
+@include media(screen, ">medium", "<=large") {
+    //
+}

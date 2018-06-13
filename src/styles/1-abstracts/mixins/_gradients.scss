@@ -1,0 +1,45 @@
+/// <reference path="../../main.scss" />
+
+////
+/// GRADIENTS
+////
+
+/// linear-gradient as well as a plain color fallback
+/// @access public
+/// @param {String | List | Angle} $direction - Linear gradient direction
+/// @param {Arglist} $color-stops - List of color-stops composing the gradient
+/// @example
+///   .gradient-1 {
+///     @include linear-gradient(#8fb2aa, #31B7D7, #EDAC7D);
+///   }
+///
+///   // .gradient-1 {
+///   //   background: #31B7D7;
+///   //   background: linear-gradient(#8fb2aa, 180deg, #31B7D7, #EDAC7D);
+///   // }
+/// @info Provide backup background color manually otherwise it's problematic
+///   if we start from transparent, IE won't rotate the gradient
+
+@mixin linear-gradient ($bgcolor, $direction, $color-stops...) {
+    @if is-direction($direction) == false {
+        $color-stops: ($direction, $color-stops);
+        $direction: 180deg;
+    }
+
+    //Fallback background colour if gradient not supported
+    background: $bgcolor;
+    background: linear-gradient($direction, $color-stops);
+}
+
+/// OLD Basic transparent to black gradient generator (old style)
+/// @deprecated Use `linear-gradient` instead
+@mixin gradient($origin: left, $alpha: 0.1) {
+    background-image: linear-gradient($origin, rgba(0, 0, 0, 0), rgba(0, 0, 0, $alpha));
+}
+
+/// OLD Basic transparent to black gradient generator (old style) with fallback colour
+/// @deprecated Use `linear-gradient` instead
+@mixin gradient-custom($origin: left, $start: #ffffff, $stop: #000000) {
+    background-color: mix($start, $stop);
+    background-image: linear-gradient($origin, $start, $stop);
+}

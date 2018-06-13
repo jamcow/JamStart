@@ -1,0 +1,34 @@
+/// <reference path="../main.scss" />
+
+////
+/// UTILITY - COLUMNS
+////
+
+/// Columns
+@if $UTILITY-COLUMNS {
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">small") {
+        .columns-2 {
+            @include columns(2);
+        }
+
+        .columns-3 {
+            @include columns(3);
+        }
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

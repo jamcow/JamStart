@@ -1,0 +1,113 @@
+/// <reference path="../main.scss" />
+
+////
+/// CARDFADER
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+@if $COMPONENT-CARDFADER {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .cardfader {
+        position: relative;
+    }
+
+    .cardfader__card {
+        opacity: 1;
+        width: 100%;
+
+        &.ng-hide-add,
+        &.ng-hide-remove {
+            transition: opacity 0.35s ease-in-out;
+        }
+
+        // Ensure hidden banners are moved in to the correct position
+        &.ng-hide {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+    }
+
+    .cardfader__controls {
+        list-style: none;
+        margin: 0;
+    }
+
+    $BANNER-Control-Width:          1280;
+    $BANNER-Control-Wing:           100;
+    $BANNER-Control-Lg:             ($BANNER-Control-Width + ($BANNER-Control-Wing * 2px));
+
+    .cardfader__control {
+        padding: 0;
+        border: none;
+        background: $COLOR-Base url('/assets/img/arrow_left.png') 0 0 no-repeat;
+        @include button-create($COLOR-Base, $COLOR-Base);
+        background-size: contain;
+
+        @include themer(background-color);
+    }
+
+    .cardfader__control--prev,
+    .cardfader__control--next {
+        opacity: 0.5;
+
+        &:hover,
+        &:focus,
+        &:active {
+            opacity: 1;
+        }
+    }
+
+    .cardfader__control--next {
+        background-image: url('/assets/img/arrow_right.png');
+    }
+
+    @include media(screen, "<=medium") {
+        .cardfader__controls {
+            display: none;
+        }
+    }
+
+    @include media(screen, ">medium", "<#{$BANNER-Control-Lg}") {
+        .cardfader__controls {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            display: flex;
+        }
+
+        .cardfader__control {
+            width: 50px;
+            height: 45px;
+            margin-left: 10px;
+        }
+    }
+
+    @include media(screen, ">#{$BANNER-Control-Lg}") {
+        .cardfader__control {
+            position: absolute;
+            top: 40%;
+            width: 80px;
+            height: 72px;
+        }
+
+        .cardfader__control--prev {
+            left: -($BANNER-Control-Wing * 1px);
+        }
+
+        .cardfader__control--next {
+            right: -($BANNER-Control-Wing * 1px);
+        }
+    }
+
+    .cardfader__control--goto {
+        display: none;
+    }
+}

@@ -1,0 +1,65 @@
+/// <reference path="../../main.scss" />
+
+////
+/// PADDINGS
+////
+
+/// Creates any number of padding arguments, with or without mixed units.
+/// If no arguments supplied, defaults to padding: 0
+/// @param {number} $top [optional]
+/// @param {number} $right [optional]
+/// @param {number} $bottom [optional]
+/// @param {number} $left [optional]
+/// @example
+///   @include padding(72, 13%, 12, 0);
+///   // padding: 72rem, 13%, 12rem, 0;
+@mixin padding($top: 0, $right: null, $bottom: null, $left: null) {
+    $values: ($top, $right, $bottom, $left);
+    $remMap: unitmap($values, rem);
+
+    padding: $remMap;
+}
+
+@mixin padding-none {
+    padding: 0;
+}
+
+/// Applies padding to the top
+@mixin padding-top($size: 0) {
+    @include pxrem($size, "padding-top");
+}
+
+/// Applies padding to the right
+@mixin padding-right($size: 0) {
+    @include pxrem($size, "padding-right");
+}
+
+/// Applies padding to the bottom
+@mixin padding-bottom($size: 0) {
+    @include pxrem($size, "padding-bottom");
+}
+
+/// Applies padding to the left
+@mixin padding-left($size: 0) {
+    @include pxrem($size, "padding-left");
+}
+
+/// Applies paddings only to left and right (x-axis)
+@mixin padding-x($left: 0, $right: $left) {
+    $values: ($left, $right);
+
+    $remMap: unitmap($values, rem);
+
+    padding-left: nth($remMap, 1);
+    padding-right: nth($remMap, 2);
+}
+
+/// Applies paddings only to top and bottom (y-axis)
+@mixin padding-y($top: auto, $bottom: $top) {
+    $values: ($top, $bottom);
+
+    $remMap: unitmap($values, rem);
+
+    padding-top: nth($remMap, 1);
+    padding-bottom: nth($remMap, 2);
+}

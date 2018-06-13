@@ -1,0 +1,223 @@
+/// <reference path="../main.scss" />
+
+////
+/// RTE
+////
+
+@if $COMPONENT-RTE {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .rte {
+		a {
+			// eg, for web links that have long URI's as text
+			@include wrap-words();
+		}
+
+        ol,
+        ul {
+            @include padding-left($TYPE-LineHeight);
+            @include margin($TYPE-LineHeight, 0);
+
+            ol,
+            ul {
+                @include margin($TYPE-LineHeight/2, 0);
+            }
+        }
+
+        ul {
+             list-style-position: inside;
+        }
+
+        ol {
+             list-style-position: inside;
+        }
+
+        strong,
+        b {
+            //
+        }
+
+        i,
+        em {
+            //
+        }
+
+        u {
+            text-decoration: none;
+            border-bottom: 3px solid lighten($COLOR-Base, 20%);
+            box-shadow: inset 0 -3px 0 lighten($COLOR-Base, 20%);
+        }
+
+        blockquote {
+            border-left: 5px solid $COLOR-GreyLight;
+            font-style: italic;
+
+            @include font-size($TYPE-SIZE-XL);
+
+            cite {
+                display: block;
+                font-style: normal;
+                text-align: right;
+
+                @include font-size($TYPE-SIZE-XXS);
+            }
+        }
+
+        cite {
+            //
+        }
+
+        li {
+            //
+        }
+
+        dl {
+            //
+        }
+
+        dd {
+            //
+        }
+
+        dt {
+            //
+        }
+
+        figcaption {
+            font-style: italic;
+
+            @include font-size($TYPE-SIZE-XXS);
+        }
+    }
+
+    // MOBILE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        .rte {
+            .left,
+            .right {
+                float: none;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+
+    // TABLET
+    // ----------------------------------------------------
+
+    @include media(screen, ">small") {
+        .rte {
+            .left,
+            .left--wide {
+                float: left;
+
+                @include margin(0, $TYPE-LineHeight, $TYPE-LineHeight/2, 0);
+            }
+
+            .right,
+            .right--wide {
+                float: right;
+
+                @include margin(0, 0, $TYPE-LineHeight/2, $TYPE-LineHeight);
+            }
+        }
+    }
+
+    @include media(screen, ">small", "<=large") {
+        .rte {
+            .left--wide {
+                @include margin(0, $TYPE-LineHeight, $TYPE-LineHeight/2, 0);
+            }
+
+            .right--wide {
+                @include margin(0, 0, $TYPE-LineHeight/2, $TYPE-LineHeight);
+            }
+
+            blockquote {
+                &.left,
+                &.right,
+                &.left--wide,
+                &.right--wide {
+                    @include margin(0, 0, $TYPE-LineHeight, 0);
+                }
+            }
+        }
+    }
+
+    // DESKTOP
+    // ----------------------------------------------------
+
+    @include media(screen, ">large") {
+        .rte {
+            .left,
+            .right,
+            .left--wide,
+            .right--wide {
+                max-width: 40%;
+            }
+
+            .left--wide {
+                @include margin(0, $TYPE-LineHeight, $TYPE-LineHeight/2, -100);
+            }
+
+            .right--wide {
+                @include margin(0, -100, $TYPE-LineHeight/2, $TYPE-LineHeight);
+            }
+
+            .block {
+                width: 100%;
+            }
+
+            .block--left {
+                @include margin-left(-100);
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .block--right {
+                @include margin-right(-100);
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .block--full {
+                @include margin(0, -100, $TYPE-LineHeight, -100);
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            blockquote {
+                &.left,
+                &.left--wide {
+                    border-left: none;
+                    border-right: 5px solid $COLOR-GreyLight;
+
+                    @include padding(0, $TYPE-LineHeight, 0, 0);
+                }
+
+                &.left {
+                    @include margin(0, $TYPE-LineHeight, $TYPE-LineHeight/2, 0);
+                }
+
+                &.right {
+                    @include margin(0, 0, $TYPE-LineHeight/2, $TYPE-LineHeight);
+                }
+
+                &.full {
+                    @include margin(0, -100, $TYPE-LineHeight, -100);
+                }
+            }
+        }
+    }
+}

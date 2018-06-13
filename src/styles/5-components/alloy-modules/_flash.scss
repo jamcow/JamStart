@@ -1,0 +1,121 @@
+/// <reference path="../main.scss" />
+
+////
+/// FLASH
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$FLASH-Color:       $COLOR-White;
+$FLASH-BgColor:     $COLOR-Grey;
+$FLASH-Info:        $COLOR-Blue;
+$FLASH-Success:     $COLOR-Green;
+$FLASH-Warn:        $COLOR-Orange;
+$FLASH-Danger:      $COLOR-Red;
+$FLASH-Anim:        $ANIM-Curve;
+
+// MIXINS
+// ----------------------------------------------------
+// TODO '_flash-link' mixin should be a generic link mixin and go in the mixin folder
+
+@mixin _flash-link ($color: $COLOR-Base) {
+    color: lighten($color, 20%);
+
+    &:link,
+    &:visited {
+        color: lighten($color, 20%);
+    }
+
+    &:hover,
+    &:focus {
+        color: darken($color, 20%);
+    }
+
+    &:active {
+        color: darken($color, 40%);
+    }
+}
+
+@mixin _flash-action ($color: $COLOR-Base) {
+    background-color: $color;
+
+    .flash__close {
+        @include _flash-link($color);
+    }
+}
+
+@if $COMPONENT-FLASH {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .flash {
+        color: $FLASH-Color;
+        background-color: $FLASH-BgColor;
+        position: relative;
+
+        @include padding($TYPE-LineHeight/2, $TYPE-FontSize);
+
+        + .flash {
+            @include margin-top(10);
+        }
+
+        &.example {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: $Z-INDEX-Level10;
+        }
+
+        &.info {
+            @include _flash-action($FLASH-Info);
+        }
+
+        &.success {
+            @include _flash-action($FLASH-Success);
+        }
+
+        &.warn {
+            @include _flash-action($FLASH-Warn);
+        }
+
+        &.danger {
+            @include _flash-action($FLASH-Danger);
+        }
+
+        .flash__link {
+            color: $FLASH-Color;
+        }
+    }
+
+    .flash__icon {
+        float: left;
+        line-height: 1;
+
+        @include padding-top(8);
+        @include margin-right(10);
+    }
+
+    .flash,
+    .flash__content {
+        overflow: hidden;
+        _overflow: visible;
+        zoom: 1;
+    }
+
+    .flash__content {
+        @include padding(2, 20, 0, 0);
+    }
+
+    .flash__close {
+        @include padding-top(1);
+        @include font-size($TYPE-LineHeight);
+        @include _flash-link($FLASH-BgColor);
+
+        font-weight: bold;
+        text-decoration: none;
+        float: right;
+        display: block;
+        line-height: 1;
+    }
+}

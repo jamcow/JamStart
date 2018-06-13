@@ -1,0 +1,168 @@
+/// <reference path="../main.scss" />
+
+////
+/// FLEXGRID
+/// Used as stop-gap before re-writing a proper flex-based grid/layout
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+@if $COMPONENT-FLEXGRID {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .fg {
+        display: block;
+        display: flex; //flex | inline-flex
+        flex-flow: row wrap; //this is default
+        justify-content: space-between; //flex-start | flex-end | center | space-between | space-around;
+        align-items: stretch; //flex-start | flex-end | center | baseline | stretch;
+        align-content: stretch; //flex-start | flex-end | center | space-between | space-around | stretch;
+
+        @include margin(0, -20);
+
+        @include root(".no-flexwrap") {
+            display: block;
+        }
+    }
+
+    .fi {
+        float: left;
+        flex: 1 0 auto;
+
+        @include padding(20);
+        // &:nth-last-child(2):nth-child(3n-1) {
+        //     min-width: 50%;
+        // }
+    }
+
+    .fi__1-3 {
+        float: left;
+        flex: 1 0 auto;
+        width: 33.333%;
+        min-width: 300px;
+
+        @include padding(10);
+    }
+
+    // .fi__1-4 {
+    //     width: 25%;
+    //     min-width: 230px;
+    // }
+
+    .fg--footer {
+        @include margin(-12, -20);
+
+        .fi {
+            width: calc((100% /2) - 230px);
+            flex: 1 1 320px;
+
+            @include padding(10);
+        }
+
+        .fi--sa {
+            width: 500px;
+            max-width: 100%;
+
+            @include media(screen, ">#{em(550)}", "<#{em(909)}") {
+                flex-basis: 100%;
+            }
+        }
+
+        .fi--tweets {
+            width: 320px;
+        }
+
+        .fi--contact {
+            width: 230px;
+            flex: 0 1 auto;
+        }
+
+        @include root(".no-flexwrap") {
+            .fi {
+                display: block;
+                float: left;
+                width: 100%;
+            }
+
+            .fi--tweets,
+            .fi--contact {
+                width: 50%;
+
+                @include media(screen, "<medium") {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .fg--newscards {
+        // width: 100%;
+
+        /// break out of padding of the grid
+        @include margin(-12, -20);
+
+        .fi {
+            width: 320px;
+            flex: 1 1 auto;
+
+            @include padding(5);
+        }
+    }
+
+    .fg--cardNews {
+        @include clearfix;
+        @include margin(-12, -20);// break out of padding of the grid
+
+        .fi {
+            // width: 33.333%;
+            width: 320px;
+            flex: 1 1 auto;
+
+            // &:nth-last-child(2):nth-child(3n-1) {
+            //     min-width: 50%;
+            // }
+
+            @include media(screen, "<medium") {
+                @include padding(10);
+            }
+        }
+
+        .fi__2-3 {
+            @include media(screen, ">=medium") {
+                width: calc(66.666% - 120px);
+                flex: 1 0 auto;
+            }
+        }
+
+        @include root(".no-flexwrap") {
+            .fi,
+            .fi__2-3 {
+                display: block;
+                float: left;
+                width: 100%;
+
+                @include media(screen, ">small") {
+                    @include list-as-columns(2, 2);
+                }
+            }
+        }
+    }
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        //
+    }
+
+    @include media(screen, ">small", "<=medium") {
+        //
+    }
+
+    @include media(screen, ">medium", "<=large") {
+        //
+    }
+}

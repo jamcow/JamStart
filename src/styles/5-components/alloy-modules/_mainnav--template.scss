@@ -1,0 +1,143 @@
+/// <reference path="../main.scss" />
+
+////
+/// NAVIGATION
+/// @TODO: rename nav to navigation, then add variant for "nav--main", "nav--footer" etc...
+/// @TODO: navigation floats to be flexbox
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$NAVIGATION-BgColor:       $COLOR-Base !default;
+$NAVIGATION-Color:         contrast-color($NAVIGATION-BgColor) !default;
+$NAVIGATION-Border:        transparent !default;
+
+/// Hover state (also Focus default state)
+// Focus compliments "hover" state, think keyboard-focus with an outline style
+$NAVIGATION-HoverBgColor:  lighten($NAVIGATION-BgColor, 5%) !default;
+$NAVIGATION-HoverColor:    $NAVIGATION-Color !default;
+$NAVIGATION-HoverBorder:   darken($NAVIGATION-BgColor, 5%) !default;
+
+/// Active/current state
+$NAVIGATION-ActiveBgColor: $NAVIGATION-HoverBgColor !default;
+$NAVIGATION-ActiveColor:   $NAVIGATION-HoverColor !default;
+$NAVIGATION-ActiveBorder:  $NAVIGATION-HoverBorder !default;
+
+$NAVIGATION-Fontsize:                   $TYPE-SIZE-M !default;
+$NAVIGATION-SubContainerBgColor:        $NAVIGATION-BgColor !default;
+$NAVIGATION-SubContainerColor:          $NAVIGATION-Color !default;
+
+@if $COMPONENT-MAINNAV {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .nav {
+        list-style: none;
+        z-index: 1;
+        position: relative;
+
+        @include margin;
+        @include clearfix;
+    }
+
+    .nav__toggle {
+        //
+    }
+
+    .nav__item {
+        position: relative;
+
+        @include font-size($TYPE-SIZE-L);
+
+        /// Rather than add an "active" class, use aria-current in the HTML
+        /// to make it accessible and perform the same class-switching job
+        &[aria-current] .nav__link {
+            color: $NAVIGATION-HoverColor;
+            background-color: $NAVIGATION-HoverBgColor;
+        }
+    }
+
+    .nav__link {
+        color: $NAVIGATION-Color;
+        background-color: $NAVIGATION-BgColor;
+        display: block;
+        text-decoration: none;
+
+        @include padding($TYPE-LineHeight);
+        @include transition(all, 0.1s);
+
+        &:link,
+        &:visited {
+            color: $NAVIGATION-Color;
+            background-color: $NAVIGATION-BgColor;
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:active {
+            color: $NAVIGATION-HoverColor;
+            background-color: $NAVIGATION-HoverBgColor;
+            text-decoration: none;
+        }
+    }
+
+    .nav__submenu {
+        position: relative;
+        display: block;
+        color: $NAVIGATION-SubContainerColor;
+        background-color: $NAVIGATION-SubContainerBgColor;
+    }
+
+    .nav--sub {
+        @include font-size($NAVIGATION-Fontsize);
+        @include transition(all, 0.3s, ease);
+
+        .nav__item {
+            display: block;
+        }
+    }
+
+
+    // VARIANTS
+    // ----------------------------------------------------
+
+    // RESPONSIVE
+    // ----------------------------------------------------
+
+    @include media(screen, "<=small") {
+        .nav__link {
+        }
+    }
+
+    @include media(screen, ">small") {
+        .nav--sub {
+        }
+
+        .nav__item {
+            float: left;
+
+            &:hover {
+                .nav__submenu {
+                    display: block;
+                }
+            }
+        }
+
+        .nav__submenu {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            outline: 2px solid black;
+            display: none;
+
+            @include transition(all, 0.3s, ease);
+        }
+    }
+
+    @include media(screen, ">large") {
+        //
+    }
+}

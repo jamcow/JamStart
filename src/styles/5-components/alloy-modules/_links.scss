@@ -1,0 +1,58 @@
+/// <reference path="../main.scss" />
+
+////
+/// LINKS
+////
+
+// VARIABLES
+// ----------------------------------------------------
+$LINK-Link:                 $STYLE-LinkColor-Link;
+$LINK-Visited:              $STYLE-LinkColor-Visited;
+$LINK-Hover:                $STYLE-LinkColor-Hover;
+$LINK-Focus:                $STYLE-LinkColor-Focus;
+$LINK-Active:               $STYLE-LinkColor-Active;
+
+$LINK-ALT-Link:             $STYLE-LinkAltColor-Link;
+$LINK-ALT-Visited:          $STYLE-LinkAltColor-Visited;
+$LINK-ALT-Hover:            $STYLE-LinkAltColor-Hover;
+$LINK-ALT-Focus:            $STYLE-LinkAltColor-Focus;
+$LINK-ALT-Active:           $STYLE-LinkAltColor-Active;
+
+$LINK-ONDARK-Link:          $STYLE-LinkOnDarkColor-Link;
+$LINK-ONDARK-Visited:       $STYLE-LinkOnDarkColor-Visited;
+$LINK-ONDARK-Hover:         $STYLE-LinkOnDarkColor-Hover;
+$LINK-ONDARK-Focus:         $STYLE-LinkOnDarkColor-Focus;
+$LINK-ONDARK-Active:        $STYLE-LinkOnDarkColor-Active;
+
+$LINK-ONLIGHT-Link:         $STYLE-LinkOnLightColor-Link;
+$LINK-ONLIGHT-Visited:      $STYLE-LinkOnLightColor-Visited;
+$LINK-ONLIGHT-Hover:        $STYLE-LinkOnLightColor-Hover;
+$LINK-ONLIGHT-Focus:        $STYLE-LinkOnLightColor-Focus;
+$LINK-ONLIGHT-Active:       $STYLE-LinkOnLightColor-Active;
+
+// MIXINS
+// ----------------------------------------------------
+
+@if $COMPONENT-LINKS {
+
+    // BASE
+    // ----------------------------------------------------
+
+    a {
+        @include link-custom($LINK-Link, none, $LINK-Hover, underline, $LINK-Visited, $LINK-Focus, $LINK-Active);
+
+        text-decoration-skip: ink;
+    }
+
+    .alt {
+        @include link-custom($LINK-ALT-Link, underline, $LINK-ALT-Hover, none, $LINK-ALT-Visited, $LINK-ALT-Focus, $LINK-ALT-Active);
+    }
+
+    // .link--onlight {
+    //     @include link-custom($LINK-ONDARK-Link, none, $LINK-ONDARK-Hover, underline, $LINK-ONDARK-Visited, $LINK-ONDARK-Focus, $LINK-ONDARK-Active);
+    // }
+
+    // .link--ondark {
+    //     @include link-custom($LINK-ONLIGHT-Link, none, $LINK-ONLIGHT-Hover, underline, $LINK-ONLIGHT-Visited, $LINK-ONLIGHT-Focus, $LINK-ONLIGHT-Active);
+    // }
+}

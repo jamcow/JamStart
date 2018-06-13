@@ -1,0 +1,19 @@
+/// <reference path="../main.scss" />
+
+////
+/// SCROLLSPY
+////
+
+@if $COMPONENT-SCROLLSPY {
+
+    // BASE
+    // ----------------------------------------------------
+
+    .scrollspy__nav {
+        .active {
+            .label {
+                background-color: $LABEL-SuccessBgColor;
+            }
+        }
+    }
+}

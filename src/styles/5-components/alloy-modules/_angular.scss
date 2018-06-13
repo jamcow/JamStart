@@ -1,0 +1,62 @@
+/// <reference path="../main.scss" />
+
+////
+/// ANGULAR
+////
+
+// VARIABLES
+// ----------------------------------------------------
+
+// BASE
+// ----------------------------------------------------
+
+.ng-cloak {
+    display: none;
+}
+
+@if $COMPONENT-ANGULAR {
+
+    // Angular fade
+    // ----------------------------------------------------
+    // as used on custom Alloy homepage template
+
+    #alloy {
+        .fade-wrapper {
+            position: relative;
+            width: 100%;
+
+            .fade-window {
+                width: 100%;
+
+                &.ng-enter,
+                &.ng-leave {
+                    top: 0;
+                    left: 0;
+
+                    @include transition(0.35s $ANIM-Curve all);
+                }
+
+                &.ng-enter {
+                    opacity: 0;
+
+                    &.ng-enter-active {
+                        opacity: 1;
+                    }
+                }
+
+                &.ng-leave {
+                    position: absolute;
+                    opacity: 1;
+
+                    &.ng-leave-active {
+                        opacity: 0;
+                    }
+                }
+            }
+        }
+
+        .component-wrapper {
+            @include margin-top(20);
+        }
+    }
+}

@@ -1,0 +1,47 @@
+﻿/// <reference path="../../main.scss" />
+////
+/// CSS3 - 3D
+/// @access public
+/// @todo Task to be done
+////
+
+/// 3D-Perspective - extra text
+/// @param {*} $perspective [1200px]
+@mixin perspective ($perspective: 1200px) {
+    perspective: $perspective;
+}
+
+/// 3D backface visibility (usually helps to provide anti-aliasing)
+/// @param {*} $visibility [hidden]
+@mixin backface-visibility ($visibility: hidden) {
+    backface-visibility: $visibility;
+}
+
+/// 3D transform style
+/// @param {*} $style [preserve-3d]
+@mixin transform-style ($style: preserve-3d) {
+    transform-style: $style;
+}
+
+/// 3D transform (rotate) about the x-axis
+/// @param {*} $deg [0deg]
+@mixin transform-x ($deg: 0deg) {
+    transform: rotateX($deg);
+}
+
+/// 3D transform (rotate) about the y-axis
+/// @param {*} $deg [180deg]
+@mixin transform-y ($deg: 180deg) {
+    transform: rotateY($deg);
+}
+
+/// Trigger hardware acceleration
+/// @param {boolean} $backface [true]
+/// @param {number} $perspective [1000]
+@mixin hardware ($backface: true, $perspective: 1000px) {
+    @if $backface {
+        @include backface-visibility(hidden);
+    }
+
+    @include perspective($perspective);
+}

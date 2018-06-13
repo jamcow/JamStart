@@ -1,0 +1,101 @@
+/// <reference path="../../main.scss" />
+
+////
+/// SIZES, FITTING AND RATIO MIXINS
+/// @group Sizes and fitting and ratio Mixins
+////
+
+/// Width and Height
+@mixin size($width, $height: $width) {
+    @if is-absolute-length($width) and is-absolute-length($height) {
+        @include pxrem($width, "width");
+        @include pxrem($height, "height");
+    }
+
+    @else {
+        width: $width;
+        height: $height;
+    }
+}
+
+/// Height
+@mixin height($size) {
+    @include pxrem($size, "height");
+}
+
+/// Minimum height
+@mixin min-height($size) {
+    @include pxrem($size, "min-height");
+}
+
+/// Object-Fit
+/// Old iOS Safari supports the fit but not the position
+@mixin object-fit($coverage, $position: '') {
+    object-fit: $coverage;
+
+    @if ($position) {
+        object-position: $position;
+    }
+}
+
+/// Useful to create scalable elements that maintain a ratio (commonly utilised by video).
+/// @param {number} $x
+/// @param {number} $y
+/// @param {*} $pseudo [false]
+/// @example
+///   div {
+///     @include responsive-ratio(16,9);
+///   }
+///   // padding-bottom: 56.25%;
+@mixin responsive-ratio($x, $y, $pseudo: false, $pseudoposition: before) {
+    $padding: percentage($y / $x);
+
+    @if $pseudo {
+        &::#{$pseudoposition} {
+            @include pseudo($position: relative);
+
+            width: 100%;
+            padding-top: $padding;
+        }
+    }
+
+    @else {
+        padding-top: $padding;
+    }
+}
+
+/// ALTERNATIVE TO ABOVE
+/// @link https://codepen.io/jakob-e/pen/WvrJwN
+/// @example
+///   aspect-ratio($ratio or $width, $height);
+/// @example No arguments defaults to a 1:1 ratio
+///   .class { @include aspect-ratio(); }
+/// @example Width and height
+///   .class { @include aspect-ratio(16, 9); }
+/// @example Ratio (calculated width/height)
+///   .class { @include aspect-ratio(1.777778); }
+/// @example Comparable units
+///   .class { @include aspect-ratio(4px, 3px); }
+/// @example Keywords
+///   .class { @include aspect-ratio($ratio: 1.2); }
+@mixin aspect-ratio($arglist...) {
+    $map : keywords($arglist);
+    $height: map-get($map, height) or nth-or-null($arglist, 2);
+    $width:  map-get($map, width)  or nth-or-null($arglist, 1);
+    $ratio:  map-get($map, ratio)  or if($width and $height, $width/$height, nth-or-null($arglist, 1)) or 1;
+    $padding: 1/$ratio * 100%;
+
+    &::before,
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+        width: 1px;
+        margin-left: -1px;
+    }
+
+    &::before {
+        float: left;
+        padding-bottom: $padding;
+    }
+}
