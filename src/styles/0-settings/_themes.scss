@@ -3,7 +3,7 @@
 // This is appended to start of the theme names, eg "t-yellow"
 $SITE-Themeclass:               ".t-";
 
-// SITE THEMES - these mainly set the banners in Girlguiding
+// SITE THEMES - these mainly set the banners in GG
 // Basic contrast levels = 4.5
 // eg, text should be "soft black" on #dc341e (orange)
 // For other projects, we could reduce constrast to 3 simply to fudge it to meet designs
@@ -13,7 +13,7 @@ $SITE-Themes: (
     yellow: (
         primary: $COLOR-GG-Yellow,
         primaryalt: contrast-threshold($COLOR-GG-Yellow, 4.5),
-        texture: "brownies.png",//brownies
+        texture: "1.png",
         textureratio: 1.6,
         texturesize: 420 326,
         textureopacity: 0.2
@@ -21,7 +21,7 @@ $SITE-Themes: (
     darkblue: (
         primary: $COLOR-GG-BlueDark,
         primaryalt: contrast-threshold($COLOR-GG-BlueDark, 4.5),
-        texture: "guides.png",//guides
+        texture: "2.png",
         textureratio: 1.4,
         texturesize: 300 301,
         textureopacity: 0.5
@@ -29,7 +29,7 @@ $SITE-Themes: (
     turquoise: (
         primary: $COLOR-GG-Teal,
         primaryalt: contrast-threshold($COLOR-GG-Teal, 4.5),
-        texture: "rangers.png",//rangers
+        texture: "3.png",
         textureratio: 1.6,
         texturesize: 600 385,
         textureopacity: 0.5
@@ -37,7 +37,7 @@ $SITE-Themes: (
     lightblue: (
         primary: $COLOR-GG-BlueLight,
         primaryalt: contrast-threshold($COLOR-GG-BlueLight, 4.5),
-        texture: "rainbows.png",//rainbows
+        texture: "4.png",
         textureratio: 1.62,
         texturesize: 50 50,
         textureopacity: 0.3
@@ -45,7 +45,7 @@ $SITE-Themes: (
     red: (
         primary: $COLOR-GG-Red,
         primaryalt: contrast-threshold($COLOR-GG-Red, 4.5),
-        texture: "trefoil.png",//trefoil
+        texture: "5.png",
         textureratio: 1.8,
         texturesize: 315 315,
         textureopacity: 0.7
@@ -53,7 +53,7 @@ $SITE-Themes: (
     orange: (
         primary: $COLOR-GG-Orange,
         primaryalt: contrast-threshold($COLOR-GG-Orange, 4.5),
-        texture: "adults_badges.png",//badges
+        texture: "6.png",
         textureratio: 1.7,
         texturesize: 102 102,
         textureopacity: 0.1
@@ -61,7 +61,7 @@ $SITE-Themes: (
     violet: (
         primary: $COLOR-GG-Purple,
         primaryalt: contrast-threshold($COLOR-GG-Purple, 4.5),
-        texture: "gifts.png",//gifts and
+        texture: "7.png",
         textureratio: 1.22,
         texturesize: 420 420,
         textureopacity: 0.4
@@ -69,7 +69,7 @@ $SITE-Themes: (
     green: (
         primary: $COLOR-GG-Green,
         primaryalt: contrast-threshold($COLOR-GG-Green, 4.5),
-        texture: "",
+        texture: "8.png",
         textureratio: 1,
         texturesize: 1 1,
         textureopacity: 1
@@ -77,7 +77,7 @@ $SITE-Themes: (
     blue: (
         primary: $COLOR-GG-Blue,
         primaryalt: contrast-threshold($COLOR-GG-Blue, 4.5),
-        texture: "adults_badges.png",//adults
+        texture: "9.png",
         textureratio: 2,
         texturesize: 102 102,
         textureopacity: 0.3
@@ -88,7 +88,7 @@ $SITE-Themes--search: (
     search: (
         primary: $COLOR-GG-Blue,
         primaryalt: contrast-threshold($COLOR-GG-Blue, 4.5),
-        texture: "adults_badges.png",//adults
+        texture: "10.png",
         textureratio: 2,
         texturesize: 102 102,
         textureopacity: 0.3
@@ -118,7 +118,7 @@ $A11Y-Themes: (
 );
 
 ///
-/// This was from Food For Life - may be better way or doing or simplify for future use...
+/// This was from FFl - may be better way or doing or simplify for future use...
 ///
 
 // $colourscheme2: (
