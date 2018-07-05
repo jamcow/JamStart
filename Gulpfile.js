@@ -40,17 +40,32 @@ const gulp              = require('gulp'),
 
 const
                         // argv.site ? "running proxy" : "running standalone localhost"
-    proxysite           = argv.site ? `${argv.site}`           : "localhost",
-    scss_input_all      = argv.site ? './src/styles/**/*.scss' : './src/styles/**/*.scss',
-    scss_input_root     = argv.site ? './src/styles/*.scss'    : './src/styles/*.scss',
-    css_output          = argv.site ? './dist/css'           : './dist/_site/yourwebsite/assets/css',
-    cleanfolder         = argv.site ? './dist/css/*.css'     : './dist/_site/yourwebsite/assets/css/*.css',
-    wipefolder          = argv.site ? './dist/css'           : './dist/_site/yourwebsite/assets/css/',
-    cssmaps_output      = argv.site ? './maps'                 : '../maps',
-    // svg_input           = './src/svg/**/*.svg',
-    // svg_output          = './dist/_site/assets/img/svg',
-    jekyllcss_output    = 'src/html/yourwebsite/assets/css',
-    jekyll_input_all    = ['src/html/**/*.html', 'src/html/**/*.yml', 'src/html/**/*.php', 'src/html/**/*.md', 'src/html/**/*.mv'];
+    path                    = './',
+    path_src                = path + 'src',
+    path_dist               = path + 'dist',
+    scss_input_all          = path_src + '/styles/**/*.scss',
+    scss_input_root         = path_src + '/styles/*.scss',
+
+    app_folder              = '/_site/yourwebsite',
+    path_app                = argv.site ?       path_dist                   : path_dist + app_folder,
+    app_assets              = argv.site ?       ''                          : '/assets',
+    path_assets             = argv.site ?       path_app                    : path_app + app_assets,
+
+    proxysite               = argv.site ?       `${argv.site}`              : "localhost",
+    css_output              = argv.site ?       path_assets + '/css'        : path_assets + '/css',
+    cleanfiles              = argv.site ?       css_output + '/*.css'       : css_output + '/*.css',
+    wipefolder              = argv.site ?       css_output + ''             : css_output + '/',
+    cssmaps_output          = argv.site ?       './maps'                    : '../maps',
+    svg_input               = path_src + '/img/svg/**/*.svg',
+    svg_output              = path_assets + '/img/svg/',
+
+    jekyll_site             = path_src + '/html',
+    jekyllcss_output        = path_src + app_folder + '/assets/css',
+    jekyll_input_all        = [ jekyll_site + '/**/*.html',
+                                jekyll_site + '/**/*.yml',
+                                jekyll_site + '/**/*.php',
+                                jekyll_site + '/**/*.md',
+                                jekyll_site + '/**/*.mv'];
 
 // alternative to argv
 /////// queries the task name:
@@ -212,7 +227,7 @@ gulp.task('styles_production', function () {
 
 gulp.task('clean', function() {
     if (argv.site) {
-        return gulp.src([cleanfolder], {read: false})
+        return gulp.src([cleanfiles], {read: false})
         .pipe(clean());
     } else {
         return gulp.src([wipefolder], {read: false})
