@@ -1,0 +1,20 @@
+# File: _config.yml
+# https://jekyllrb.com/docs/configuration/
+#exclude: ["node_modules", "package.json", "gulpfile.js", "vendor/gems/", "vendor/ruby/"]
+destination: 'dist/_site'
+source: 'src/html'
+exclude:
+  - package.json
+  - node_modules
+  - gulpfile.js
+  - Gulpfile.js
+  - packages
+keep_files: [.css, .map]
+lsi: false
+permalink: /:slug/
+collections_dir: collections
+collections:
+  collection:
+    output: true
+    permalink: /:collection/:path
+timezone: GB

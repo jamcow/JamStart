@@ -46,7 +46,7 @@ const
     scss_input_all          = path_src + '/styles/**/*.scss',
     scss_input_root         = path_src + '/styles/*.scss',
 
-    app_folder              = '/_site/yourwebsite',
+    app_folder              = '/_site',
     path_app                = argv.site ?       path_dist                   : path_dist + app_folder,
     app_assets              = argv.site ?       ''                          : '/assets',
     path_assets             = argv.site ?       path_app                    : path_app + app_assets,
@@ -60,7 +60,8 @@ const
     svg_output              = path_assets + '/img/svg/',
 
     jekyll_site             = path_src + '/html',
-    jekyllcss_output        = path_src + app_folder + '/assets/css',
+    // Adds CSS to Jekyll's build folder (so it'll be included in Jekylls initial publish)
+    jekyllcss_output        = path_src + '/html' + '/assets/css',
     jekyll_input_all        = [ jekyll_site + '/**/*.html',
                                 jekyll_site + '/**/*.yml',
                                 jekyll_site + '/**/*.php',
@@ -257,7 +258,7 @@ gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
 gulp.task('browser-sync', ['jekyll-build'], function() {
     browserSync.init(null, {
         server: {
-            baseDir: '_site'
+            baseDir: path_app
         },
         notify: false
         // host: 'localhost:' + serverPort
