@@ -1,0 +1,37 @@
+<!doctype html>
+<html class="no-js" lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  {% if page.cssfile %}
+  <link href="{{ page.cssfile }}" rel="stylesheet" media="all" />
+  {% else %}
+  <link href="/brandon/assets/css/main.css" rel="stylesheet" media="all" />
+  {% endif %}
+  <style type="text/css" media="screen">
+  </style>
+</head>
+
+<body class="{{ page.theme }}">
+
+  <div class="o-g o-g--page">
+
+      {% include o-a11y.html %}
+      {% include o-header.html %}
+
+      {{ content }}
+
+      {% include o-twitter.html %}
+      {% include o-contactinfo.html %}
+      {% include o-footer.html %}
+      
+  </div>
+
+  {% include js/js.html %}
+
+</body>
+
+</html>
