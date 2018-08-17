@@ -49,6 +49,7 @@
     "gulp-if": "^2.0.2",
     "gulp-sourcemaps": "^2.6.4",
     "jshint": "^2.9.5",
+    "popmotion": "^8.2.5",
     "portfinder": "^1.0.13",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-cssnext": "^3.1.0",

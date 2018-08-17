@@ -43,13 +43,13 @@ const
     proxysite           = argv.site ? `${argv.site}`           : "localhost",
     scss_input_all      = argv.site ? './src/styles/**/*.scss' : './src/styles/**/*.scss',
     scss_input_root     = argv.site ? './src/styles/*.scss'    : './src/styles/*.scss',
-    css_output          = argv.site ? './dist/css'           : './dist/_site/yourwebsite/assets/css',
-    cleanfolder         = argv.site ? './dist/css/*.css'     : './dist/_site/yourwebsite/assets/css/*.css',
-    wipefolder          = argv.site ? './dist/css'           : './dist/_site/yourwebsite/assets/css/',
-    cssmaps_output      = argv.site ? './maps'                 : '../maps',
+    css_output          = argv.site ? './dist/css'           : './dist/_site/assets/css',
+    cleanfolder         = argv.site ? './dist/css/*.css'     : './dist/_site/assets/css/*.css',
+    wipefolder          = argv.site ? './dist/css'           : './dist/_site/assets/css/',
+    cssmaps_output      = argv.site ? './maps'                 : './maps',
     // svg_input           = './src/svg/**/*.svg',
     // svg_output          = './dist/_site/assets/img/svg',
-    jekyllcss_output    = 'src/html/yourwebsite/assets/css',
+    jekyllcss_output    = 'src/html/assets/css',
     jekyll_input_all    = ['src/html/**/*.html', 'src/html/**/*.yml', 'src/html/**/*.php', 'src/html/**/*.md', 'src/html/**/*.mv'];
 
 // alternative to argv
@@ -242,7 +242,7 @@ gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
 gulp.task('browser-sync', ['jekyll-build'], function() {
     browserSync.init(null, {
         server: {
-            baseDir: '_site'
+            baseDir: 'dist/_site'
         },
         notify: false
         // host: 'localhost:' + serverPort
