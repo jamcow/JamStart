@@ -63,8 +63,8 @@
     width: 1px;
 }
 
-$O_TARGET-fix-md:        83;
-$O_TARGET-fix-lg:        142;
+$O_TARGET-fix-md:        $TARGET-fix-md;
+$O_TARGET-fix-lg:        $TARGET-fix-lg;
 
 /// BASE
 /// ----------------------------------------------------
@@ -73,7 +73,7 @@ $O_TARGET-fix-lg:        142;
 // Or you can intercept with fancy JS
 :target::before {
     content: "";
-    display: block;
+    display: block; // inline-block might be better if it's attached to a display:block parent element
     height: px2rem($O_TARGET-fix-md);
     @include margin(-$O_TARGET-fix-md, 0, 0);
 

@@ -10,13 +10,12 @@
 $DEBUGGER: 						        false;
 $A11YDEBUG: 					        false;
 
-$BOOL-flexsupport:                      true;
-$BOOL-cssgridsupport:                   true;
-
 // Thing to query the @Supports with
 // If we use the variable, we can globally "remove" flexbox or grid in order to test older browsers
 $SUPPORTS-flex:                         wrap;//@supports (flex-wrap: $SUPPORTS-flex) {...}
 $SUPPORTS-grid:                         grid;//@supports (display: $SUPPORTS-grid) {...}
+$BOOL-flexsupport:                      true;
+$BOOL-cssgridsupport:                   true;
 
 /// T3MPLAT3 COLOURS
 // ----------------------------------------------------
@@ -40,7 +39,7 @@ $COLOR-Base:                    $COLOR-T3MPLAT3-BlueGrey;
 $COLOR-BaseLight:               $COLOR-White;
 $COLOR-BaseDark:                $COLOR-Primary;
 
-// $planifolia-contrast-dark-default:  $COLOR-GG-GreyDark;
+// $planifolia-contrast-dark-default:  $COLOR-T3MPLAT3-GreyDark;
 // $planifolia-contrast-light-default: $COLOR-White;
 
 // TYPOGRAPHY
@@ -141,8 +140,8 @@ $GRID-GutterWidth-Xl:           50;
 $GRID-GutterHeight:             $GRID-GutterWidth;
 $GRID-GutterHeight-Md:          $GRID-GutterWidth-Md;
 $GRID-GutterHeight-Sm:          $GRID-GutterWidth-Sm;
-$GRID-GutterHeight-Lg:              $GRID-GutterWidth-Lg;
-$GRID-GutterHeight-Xl:              $GRID-GutterWidth-Xl;
+$GRID-GutterHeight-Lg:          $GRID-GutterWidth-Lg;
+$GRID-GutterHeight-Xl:          $GRID-GutterWidth-Xl;
 
 // BREAKPOINTS
 // ----------------------------------------------------
@@ -161,6 +160,10 @@ $breakpoints: im-to-em(
         'menu-xlarge': 1124px
     )
 );
+
+// :target OFFSET (when scroll position needs to account for a fixed header height obscurring the element)
+$TARGET-fix-md:                 100;
+$TARGET-fix-lg:                 180;
 
 /// Components, Systems & Modules
 /// ----------------------------------------------------

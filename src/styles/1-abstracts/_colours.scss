@@ -132,10 +132,10 @@ $COLOR-GreyDarker:          lighten($COLOR-Black, 13.5%) !default;
 $COLOR-GreyDarkest:         lighten($COLOR-Black, 7%) !default;
 
 // Grey but tinted blue
-$COLOR-GrayBlueLightest:    #e7e9ed !default;
-$COLOR-GrayBlueLighter:     #cbd0d7 !default;
-$COLOR-GrayBlueLight:       #adb4bc !default;
-$COLOR-GrayBlue:            #8a949f !default;
-$COLOR-GrayBlueDark:        #556375 !default;
-$COLOR-GrayBlueDarker:      #324156 !default;
-$COLOR-GrayBlueDarkest:     #1d2c41 !default;
+$COLOR-GrayBlueLightest:    hsl(215, 14%, 92%) !default;
+$COLOR-GrayBlueLighter:     hsl(215, 13%, 82%) !default;
+$COLOR-GrayBlueLight:       hsl(215, 10%, 71%) !default;
+$COLOR-GrayBlue:            hsl(215, 10%, 58%) !default;
+$COLOR-GrayBlueDark:        hsl(215, 16%, 40%) !default;
+$COLOR-GrayBlueDarker:      hsl(215, 26%, 27%) !default;
+$COLOR-GrayBlueDarkest:     hsl(215, 38%, 18%) !default;

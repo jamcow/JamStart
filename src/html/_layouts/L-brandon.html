@@ -19,14 +19,17 @@
 
   <div class="o-g o-g--page">
 
-      {% include o-a11y.html %}
-      {% include o-header.html %}
+      {% if page.title contains "Homepage" %}
+        {% include brandon/o-a11y.html %}
+      {% endif %}
+
+      {% include brandon/o-header.html %}
 
       {{ content }}
 
-      {% include o-twitter.html %}
-      {% include o-contactinfo.html %}
-      {% include o-footer.html %}
+      {% include brandon/o-twitter.html %}
+      {% include brandon/o-contactinfo.html %}
+      {% include brandon/o-footer.html %}
       
   </div>
 

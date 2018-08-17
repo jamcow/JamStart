@@ -4,6 +4,14 @@
 /// GRID
 ////
 
+// For future reference/influence
+// https://github.com/talkingaboutthis/tat-css/
+
+// Or we make a custom CSS Grid with Flex fallback for each new project...
+
+// LIMITATIONS with flex grid below!
+// grid cell must not have an img as an immediate child (flex properties and img properties conflict), put img in a div/figure
+
 // .g = grid
 // .gc = gridcell (previously c__ column)
 // .o-w = wrapper

@@ -214,6 +214,10 @@ $breakpoints: im-to-em(
     )
 ) !default;
 
+// :target OFFSET (when scroll position needs to account for a fixed header height obscurring the element)
+$TARGET-fix-md:                 100 !default;
+$TARGET-fix-lg:                 150 !default;
+
 // PATHS
 // ----------------------------------------------------
 $PATH-Assets:                   "/assets" !default;

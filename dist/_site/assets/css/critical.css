@@ -785,13 +785,13 @@ small {
 :target::before {
   content: "";
   display: block;
-  height: 5.1875rem;
-  margin: -5.1875rem 0 0
+  height: 6.25rem;
+  margin: -6.25rem 0 0
 }
 @media screen and (min-width:66.135em) {
   :target::before {
-    height: 8.875rem;
-    margin: -8.875rem 0 0
+    height: 11.25rem;
+    margin: -11.25rem 0 0
   }
 }
 picture[data-picturesize*=sq]::after,

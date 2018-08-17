@@ -79,6 +79,13 @@ a:link,
 a:visited {
   color: #095fa5
 }
+.button,
+.button > span,
+.g,
+sub,
+sup {
+  position: relative
+}
 .alt:focus,
 .alt:hover,
 .button:link,
@@ -94,14 +101,6 @@ a:hover,
 button:hover,
 summary:hover {
   cursor: pointer
-}
-.button,
-.button > span,
-.c-logo,
-.g,
-sub,
-sup {
-  position: relative
 }
 .truncate,
 .vh,
@@ -823,8 +822,14 @@ small {
 :target::before {
   content: "";
   display: block;
-  height: 5.1875rem;
-  margin: -5.1875rem 0 0
+  height: 6.25rem;
+  margin: -6.25rem 0 0
+}
+@media screen and (min-width:66.135em) {
+  :target::before {
+    height: 11.25rem;
+    margin: -11.25rem 0 0
+  }
 }
 picture[data-picturesize*=sq]::after,
 picture[data-picturesize*=sq]::before {
@@ -1015,6 +1020,10 @@ picture[data-picturesize*=sq]::before {
   stroke: currentColor;
   fill: currentColor
 }
+.button--full,
+.button.block {
+  width: 100%
+}
 .icon.xs {
   font-size: .875rem
 }
@@ -1055,12 +1064,6 @@ picture[data-picturesize*=sq]::before {
 .icon--switch {
   height: .51613em;
   font-size: 4rem
-}
-.button::before,
-.c-logo,
-.c-logo__img {
-  width: 100%;
-  height: 100%
 }
 .icon--switch .icon--switch__back {
   fill: inherit
@@ -1257,6 +1260,8 @@ a:active {
   position: absolute;
   top: 0;
   left: 0;
+  height: 100%;
+  width: 100%;
   opacity: 0;
   z-index: 1;
   transition: opacity .2s cubic-bezier(.4,0,.2,1)
@@ -1276,16 +1281,6 @@ a:active {
   padding-right: 5px;
   font-size: 1.75rem
 }
-.button--alt,
-.button--dark,
-.button--light,
-.button--link span,
-.button--linkAlt span,
-.button--menu span,
-.button--subnav span,
-.nav--actions .button span {
-  padding: 0
-}
 .button.hover,
 .button:active,
 .button:focus,
@@ -1296,7 +1291,8 @@ a:active {
 .button.hover::before,
 .button:active::before,
 .button:focus::before,
-.button:hover::before {
+.button:hover::before,
+.visible {
   opacity: 1
 }
 @media screen and (min-width:37.51em) {
@@ -1359,7 +1355,8 @@ a:active {
 }
 .button--light {
   color: #fff;
-  border: 2px solid #fff
+  border: 2px solid #fff;
+  padding: 0
 }
 .button--light:link,
 .button--light:visited {
@@ -1376,7 +1373,8 @@ a:active {
 }
 .button--dark {
   color: #333;
-  border: 2px solid #333
+  border: 2px solid #333;
+  padding: 0
 }
 .button--dark:link,
 .button--dark:visited {
@@ -1406,7 +1404,8 @@ a:active {
 .button--alt {
   min-width: auto;
   color: #333;
-  border: 0 solid transparent
+  border: 0 solid transparent;
+  padding: 0
 }
 .button--alt:link,
 .button--alt:visited {
@@ -1427,9 +1426,19 @@ a:active {
   min-width: auto;
   display: inline-block
 }
+.button--menu span,
+.button--subnav span,
+.nav--actions .button span {
+  padding: 0
+}
 .button--altprimary {
   color: #fff;
   border: 2px solid #fff;
+  padding: 0
+}
+.vh,
+.vh-un {
+  border: 0;
   padding: 0
 }
 .button--altprimary:link,
@@ -1481,6 +1490,9 @@ a:active {
 .button--linkAlt:visited {
   color: #333
 }
+.button--link span {
+  padding: 0
+}
 .button--linkAlt {
   color: #333;
   min-width: auto
@@ -1490,11 +1502,11 @@ a:active {
 .button--linkAlt:hover {
   color: #cc5e7b
 }
+.button--linkAlt span {
+  padding: 0
+}
 .button--inline {
   display: inline
-}
-.button--full {
-  width: 100%
 }
 .button.xsmall {
   font-size: .75rem
@@ -1510,242 +1522,6 @@ a:active {
 }
 .button.full {
   display: block!important
-}
-.button.block {
-  width: 100%
-}
-.c-logo__img {
-  position: absolute;
-  top: 0;
-  left: 0
-}
-.c-logo .ggIcon,
-.c-logo .ggShop,
-.c-logo .ggTab-large,
-.c-logo .ggTab-small,
-.c-logo .ggTagline,
-.c-logo .ggTitle {
-  transition: none;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d
-}
-.c-logo .ggShop {
-  -webkit-transform-origin: bottom right;
-  transform-origin: bottom right
-}
-.c-logo .ggIcon {
-  -webkit-transform-origin: top left;
-  transform-origin: top left
-}
-.c-logo .ggTab-large,
-.c-logo .ggTab-small {
-  -webkit-transform-origin: top center;
-  transform-origin: top center
-}
-@media screen and (max-width:66.125em) {
-  .is-stuck .c-logo {
-    min-height: 40px
-  }
-  .c-logo {
-    min-height: 43px
-  }
-  .c-logo:hover .ggShop,
-  .is-stuck .c-logo .ggShop {
-    -webkit-transform: translate(-4%,62.9%) scale(2.22);
-    transform: translate(-4%,62.9%) scale(2.22);
-    opacity: 1
-  }
-  .c-logo:hover .ggIcon,
-  .is-stuck .c-logo .ggIcon {
-    -webkit-transform: translate(-13.2%,-36.3%) scale(3.11);
-    transform: translate(-13.2%,-36.3%) scale(3.11)
-  }
-  .c-logo:hover .ggTab-large,
-  .is-stuck .c-logo .ggTab-large {
-    -webkit-transform-origin: left center;
-    transform-origin: left center;
-    -webkit-transform: rotateY(70deg) scale(.1);
-    transform: rotateY(70deg) scale(.1);
-    opacity: 0
-  }
-  .c-logo:hover .ggTab-small,
-  .is-stuck .c-logo .ggTab-small {
-    -webkit-transform-origin: left center;
-    transform-origin: left center;
-    -webkit-transform: scale(.1,.7);
-    transform: scale(.1,.7);
-    opacity: 0
-  }
-  .c-logo .ggTagline,
-  .c-logo .ggTitle,
-  .c-logo:hover .ggShop--small,
-  .c-logo:hover .ggTagline,
-  .c-logo:hover .ggTitle,
-  .c-logo:hover .ggTitle--small,
-  .is-stuck .c-logo .ggShop--small,
-  .is-stuck .c-logo .ggTagline,
-  .is-stuck .c-logo .ggTitle,
-  .is-stuck .c-logo .ggTitle--small {
-    opacity: 0
-  }
-  .c-logo .ggIcon {
-    -webkit-transform: translate(-.9%,-2.4%) scale(1.06);
-    transform: translate(-.9%,-2.4%) scale(1.06)
-  }
-  .c-logo .ggTab-large {
-    -webkit-transform: scale(.97,.7);
-    transform: scale(.97,.7);
-    opacity: 0
-  }
-  .c-logo .ggTab-small {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 1
-  }
-  .c-logo .ggShop {
-    -webkit-transform: translate(0,-21.7%) scale(1);
-    transform: translate(0,-21.7%) scale(1);
-    opacity: 0
-  }
-  .c-logo .ggShop--small,
-  .c-logo .ggTitle--small {
-    opacity: 1
-  }
-}
-.o-header__logo {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex: 0 0 136px;
-  flex: 0 0 136px;
-  max-width: 136px;
-  -webkit-align-items: center;
-  align-items: center;
-  padding-left: 20px;
-  margin-right: 5px;
-  position: relative;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  transition: .3s ease-out;
-  z-index: 200
-}
-.vh,
-.vh-un {
-  border: 0;
-  padding: 0
-}
-@media screen and (min-width:66.135em) {
-  :target::before {
-    height: 8.875rem;
-    margin: -8.875rem 0 0
-  }
-  .is-stuck .c-logo {
-    min-height: 43px
-  }
-  .c-logo {
-    min-height: 80px
-  }
-  .c-logo:hover .ggShop,
-  .is-stuck .c-logo .ggShop {
-    -webkit-transform: translate(-4%,62.9%) scale(2.22);
-    transform: translate(-4%,62.9%) scale(2.22);
-    opacity: 1
-  }
-  .c-logo:hover .ggIcon,
-  .is-stuck .c-logo .ggIcon {
-    -webkit-transform: translate(-13.2%,-36.3%) scale(3.11);
-    transform: translate(-13.2%,-36.3%) scale(3.11)
-  }
-  .c-logo:hover .ggTab-large,
-  .is-stuck .c-logo .ggTab-large {
-    -webkit-transform-origin: left center;
-    transform-origin: left center;
-    -webkit-transform: rotateY(70deg) scale(.1);
-    transform: rotateY(70deg) scale(.1);
-    opacity: 0
-  }
-  .c-logo:hover .ggTab-small,
-  .is-stuck .c-logo .ggTab-small {
-    -webkit-transform-origin: left center;
-    transform-origin: left center;
-    -webkit-transform: scale(.1,.7);
-    transform: scale(.1,.7);
-    opacity: 0
-  }
-  .c-logo .ggShop--small,
-  .c-logo .ggTitle--small,
-  .c-logo:hover .ggShop--small,
-  .c-logo:hover .ggTagline,
-  .c-logo:hover .ggTitle,
-  .c-logo:hover .ggTitle--small,
-  .is-stuck .c-logo .ggShop--small,
-  .is-stuck .c-logo .ggTagline,
-  .is-stuck .c-logo .ggTitle,
-  .is-stuck .c-logo .ggTitle--small {
-    opacity: 0
-  }
-  .c-logo .ggShop {
-    opacity: .5
-  }
-  .c-logo .ggIcon {
-    -webkit-transform: translate(0,0) scale(1);
-    transform: translate(0,0) scale(1)
-  }
-  .c-logo .ggTab-large {
-    -webkit-transform: rotateY(0) scale(1);
-    transform: rotateY(0) scale(1);
-    opacity: 1
-  }
-  .c-logo .ggTab-small {
-    -webkit-transform: scale(.97,.7);
-    transform: scale(.97,.7);
-    opacity: 0
-  }
-  .c-logo .ggTagline,
-  .c-logo .ggTitle {
-    opacity: 1
-  }
-  .o-header__logo {
-    -webkit-flex: 0 0 200px;
-    flex: 0 0 200px;
-    max-width: 200px;
-    transition: .3s ease-out
-  }
-}
-.is-stuck .o-header__logo,
-.o-header__logo:hover {
-  -webkit-flex: 0 0 136px;
-  flex: 0 0 136px;
-  max-width: 136px;
-  transition: .3s ease-out
-}
-.c-logo__img--compact .ggIcon {
-  -webkit-transform: translate(-.9%,-2.4%) scale(1.06);
-  transform: translate(-.9%,-2.4%) scale(1.06)
-}
-.c-logo__img--compact .ggTab-large {
-  -webkit-transform: scale(.97,.7);
-  transform: scale(.97,.7);
-  opacity: 0
-}
-.c-logo__img--compact .ggTab-small {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  opacity: 1
-}
-.c-logo__img--compact .ggShop {
-  -webkit-transform: translate(0,-21.7%) scale(1);
-  transform: translate(0,-21.7%) scale(1);
-  opacity: 0
-}
-.c-logo__img--compact .ggTagline,
-.c-logo__img--compact .ggTitle,
-.invisible {
-  opacity: 0
-}
-.c-logo__img--compact .ggShop--small,
-.c-logo__img--compact .ggTitle--small,
-.visible {
-  opacity: 1
 }
 .truncate {
   text-overflow: ellipsis
@@ -1771,6 +1547,9 @@ a:active {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none
+}
+.invisible {
+  opacity: 0
 }
 .scrollLock {
   overflow-y: hidden
