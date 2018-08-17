@@ -80,7 +80,7 @@ portfinder.basePort = 3000;
 /// -------------------------------------
 const cleancssOptionsBeautify = {
     // https://github.com/jakubpawlowicz/clean-css
-    format: 'beautify',
+    // format: 'beautify',
     level: {
         1: {
             specialComments: '1'
