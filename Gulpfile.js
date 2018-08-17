@@ -20,7 +20,7 @@ const gulp              = require('gulp'),
         postcss_url               = require('postcss-url'),
         postcss_svg               = require('postcss-svg'),
         postcss_cachebuster       = require('postcss-cachebuster'),
-        postcss_cssnext           = require('postcss-cssnext'),
+        postcss_preset_env        = require('postcss-preset-env'),
         postcss_pseudoelements    = require('postcss-pseudoelements'),
         postcss_browser_reporter  = require('postcss-browser-reporter'),
         postcss_reporter          = require('postcss-reporter'),
@@ -80,7 +80,7 @@ portfinder.basePort = 3000;
 /// -------------------------------------
 const cleancssOptionsBeautify = {
     // https://github.com/jakubpawlowicz/clean-css
-    // format: 'beautify',
+    format: 'beautify',
     level: {
         1: {
             specialComments: '1'
@@ -110,16 +110,20 @@ const sassOptions = {
     onError: browserSync.notify
 };
 
-const cssnextOptions = {
-    /// browserslist is now set in package.json so linters and others can access the same config
-    // browsers: ['last 1 Chrome versions'],
-    cascade: false,//use Visual Cascade, if CSS is uncompressed
-    features: {
-        customProperties: {
-            preserve: true,
-            warnings: false
-        }
-    }
+// const cssnextOptions = {
+//     /// browserslist is now set in package.json so linters and others can access the same config
+//     // browsers: ['last 1 Chrome versions'],
+//     cascade: false,//use Visual Cascade, if CSS is uncompressed
+//     features: {
+//         customProperties: {
+//             preserve: true,
+//             warnings: false
+//         }
+//     }
+// };
+
+const csspresetenvOptions = {
+    stage: 2
 };
 
 const plumberOptions = {
@@ -156,7 +160,7 @@ gulp.task('styles', function () {
         .pipe(postcss([
             postcss_import(),
             postcss_url(),
-            postcss_cssnext(cssnextOptions),
+            postcss_preset_env(csspresetenvOptions),
             postcss_pseudoelements({single: false}),
             // postcss_cachebuster(),
             // postcss_reporter(),
@@ -185,7 +189,7 @@ gulp.task('styles_only', function () {
         .pipe(postcss([
             postcss_import(),
             postcss_url(),
-            postcss_cssnext(cssnextOptions),
+            postcss_preset_env(csspresetenvOptions),
             postcss_pseudoelements({single: false}),
         ]))
         .pipe(cleanCSS(cleancssOptionsBeautify, (details) => {
@@ -205,7 +209,7 @@ gulp.task('styles_production', function () {
         .pipe(postcss([
               postcss_import(),
               postcss_url(),
-              postcss_cssnext(cssnextOptions),
+              postcss_preset_env(csspresetenvOptions),
               postcss_pseudoelements({ single: false }),
               postcss_browser_reporter()
         ]))
