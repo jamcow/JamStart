@@ -1,0 +1,17 @@
+{% assign currentPetsize = site.data.example1.petsize[2] %}
+
+<li class="c-list__item">
+
+    <div class="petcard petcard--selection">
+        <div class="petcard__head">
+            <div class="petcard__img">
+                <img src="{{ currentPetsize.img }}" width="100" height="100" alt="" />
+            </div>
+        </div>
+        <div class="petcard__container">
+            <h4 class="petcard__title">{{ currentPetsize.title }}</h4>
+            <p class="petcard__subtitle">{{ currentPetsize.subtitle }}</p>
+        </div>
+    </div>
+
+</li>

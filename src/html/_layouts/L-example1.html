@@ -11,7 +11,7 @@
   {% if page.cssfile %}
   <link href="{{ page.cssfile }}" rel="stylesheet" media="all" />
   {% else %}
-  <link href="/assets/css/main.css" rel="stylesheet" media="all" />
+  <link href="/example1/assets/css/main.css" rel="stylesheet" media="screen" />
   {% endif %}
 
   <style type="text/css" media="screen">
@@ -20,10 +20,20 @@
 
 <body>
 
-{{ content }}
+  <div class="o-grid o-grid--pva">
 
-{% include js/js.html %}
+    {% if page.title contains "Homepage" %}
+      {% include example1/hero.html %}
+    {% endif %}
 
+    <main id="content" class="o-main">
+    
+      {{ content }}
+
+    </main>
+
+  </div>
+  
 </body>
 
 </html>

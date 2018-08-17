@@ -1,0 +1,32 @@
+---
+layout: L-example1
+title: Pick a package
+sidebar: size
+---
+
+<div class="o-content o-content--outer">
+    <div class="c-content">
+        <h2 class="c-content__title">Please pick a package</h2>
+        <div class="c-content__body">
+        </div>
+    </div>
+</div>
+
+<div class="o-content o-content--steps">
+    <div class="c-content">
+
+        <form action="../3-aboutyourself/" class="c-form" id="form-example-default" method="get" name="form-example-default">
+            <div class="c-form__row">
+                <ol class="c-list c-list--packages">
+
+                    {% include example1/petcard--package.html %}
+
+                </ol>
+            </div>
+        </form>
+
+    </div>
+
+    {% include example1/sidebar.html %}
+
+</div>

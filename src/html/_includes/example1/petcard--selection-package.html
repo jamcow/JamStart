@@ -1,0 +1,20 @@
+{% assign currentPackage = site.data.example1.packages[1] %}
+
+<li class="c-list__item">
+
+    <div class="petcard petcard--selection">
+        <div class="petcard__head">
+            <!-- <img src="{{ currentPackage.img }}" alt="" /> -->
+        </div>
+        <div class="petcard__container">
+            <h4 class="petcard__title">{{ currentPackage.title }}</h4>
+            <p class="petcard__subtitle">£{{ currentPackage.price }}</p>
+            <ul class="c-list">
+                {% for protection in currentPackage.protections %}
+                <li>{{ protection.parasite }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</li>

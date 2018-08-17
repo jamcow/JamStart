@@ -1,0 +1,35 @@
+{% assign amount = 0 %}
+{% for pet in site.data.example1.petsize %}
+{% capture amount %}{{ amount | plus:1 }}{% endcapture %}
+
+<li class="c-list__item">
+
+    <div class="petcard petcard--pet">
+        <div class="petcard__head">
+            <div class="petcard__img">
+                <img src="{{ pet.img }}" width="160" height="160" alt="" />
+            </div>
+        </div>
+        <div class="petcard__container">
+            <input type="radio" class="c-input__field c-input__state--radio" id="formrow-radio-{{ amount }}" name="formrow-radio-petsize" aria-labelledby="formrow-label-{{ amount }}" value="{{ pet.title }} - {{ pet.subtitle }}" {{ pet.checked }}>
+
+            <label id="formrow-label-{{ amount }}" class="petcard__label" for="formrow-radio-{{ amount }}">
+                <span class="petcard__title">{{ pet.title }}</span>
+                <span class="petcard__subtitle">{{ pet.subtitle }}</span>
+
+                <span class="c-icon c-icon--radio"></span>
+            </label>
+
+            <div class="petcard__foot">
+                <div class="petcard__actions">
+                    <button class="button button--alt" type="submit">
+                        <span>Continue</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</li>
+
+{% endfor %}

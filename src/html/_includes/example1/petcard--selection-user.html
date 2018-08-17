@@ -1,0 +1,22 @@
+{% assign currentUser = site.data.example1.user[0] %}
+
+<li class="c-list__item">
+
+    <div class="petcard petcard--selection">
+        <div class="petcard__head">
+            <!-- <img src="{{ currentUser.img }}" alt="" /> -->
+        </div>
+        <div class="petcard__container">
+            <h4 class="petcard__title">{{ currentUser.title }} {{ currentUser.firstname }} {{ currentUser.surname }}</h4>
+            <p class="petcard__subtitle">{{ currentUser.phone }}</p>
+            <p class="petcard__subtitle petcard__subtitle--email">{{ currentUser.email }}</p>
+            <p class="petcard__subtitle">{{ currentUser.houseno }} {{ currentUser.street }}<br />
+                {% for addressline in currentUser.address %}
+                    {{ addressline.address }}<br />
+                {% endfor %}
+                {{ currentUser.postcode }}<br />
+            </p>
+        </div>
+    </div>
+
+</li>

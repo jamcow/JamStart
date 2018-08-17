@@ -1,0 +1,25 @@
+---
+layout: L-example1
+title: Start
+---
+
+<div class="o-content o-content--outer">
+	<section class="c-content">
+		<h2 class="c-content__title">Tell us about your pet</h2>
+		<div class="c-content__body">
+            <p>If you have more than one pet, you'll be able to add them after</p>
+		</div>
+
+        <form action="2-package/" class="c-form" id="form-example-default" method="get" name="form-example-default">
+        
+            <div class="c-form__row">
+                <ol class="c-list c-list--pet">
+
+                    {% include example1/petcard--pet.html %}
+
+                </ol>
+            </div>
+        </form>
+
+	</section>
+</div>

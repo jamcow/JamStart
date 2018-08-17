@@ -1,0 +1,39 @@
+{% assign amount = 0 %}
+{% for package in site.data.example1.packages %}
+{% capture amount %}{{ amount | plus:1 }}{% endcapture %}
+
+<li class="c-list__item">
+
+<div class="petcard petcard--package">
+    <div class="petcard__head">
+        <h3 class="petcard__title">{{ package.title }}</h3>
+    </div>
+    <div class="petcard__container">
+
+        <p class="petcard__subtitle">Protection against:</p>
+        <ul class="c-list c-list--protections">
+            {% for protection in package.protections %}
+            <li>{{ protection.parasite }}</li>
+            {% endfor %}
+        </ul>
+
+        <input type="radio" class="c-input__field c-input__state--radio" id="formrow-radio-{{ amount }}" name="formrow-radio-petsize" aria-labelledby="formrow-label-{{ amount }}" value="{{ package.title }} - {{ package.subtitle }}" {{ package.checked }}>
+
+        <label id="formrow-label-{{ amount }}" class="petcard__label" for="formrow-radio-{{ amount }}">
+            <span class="petcard__price">&pound;{{ package.price }} per month</span>
+            <span class="c-icon c-icon--radio"></span>
+        </label>
+
+        <div class="petcard__foot">
+            <div class="petcard__actions">
+                <button class="button button--alt" type="submit">
+                    <span>Continue</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</li>
+
+{% endfor %}

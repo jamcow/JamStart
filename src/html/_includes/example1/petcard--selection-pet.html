@@ -1,0 +1,21 @@
+{% assign currentPet = site.data.example1.pet[0] %}
+
+<li class="c-list__item">
+
+    <div class="petcard petcard--selection">
+        <div class="petcard__head">
+            <!-- <img src="{{ currentPet.img }}" alt="" /> -->
+        </div>
+        <div class="petcard__container">
+            <div class="petcard__title">{{ currentPet.name }}</div>
+            <div class="petcard__subtitle">
+                {{ currentPet.gender }}<br />
+                {{ currentPet.breed }}<br />
+                {{ currentPet.weight }}<br />
+                {{ currentPet.age[0].inyearsmonths }} 
+            </div>
+            <div class="petcard__subtitle">{{ currentPet.conditions[0].condition }}</div>
+        </div>
+    </div>
+
+</li>

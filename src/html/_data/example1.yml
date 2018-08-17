@@ -1,0 +1,72 @@
+user:
+  - title: Ms
+    firstname: Elizabeth
+    surname: Bassethound
+    phone: 01234 321654
+    email: elizabeth.bassethound@woofbark.co.uk
+
+    protections:
+      - parasite: Fleas
+      - parasite: Ticks
+      - parasite: Tapeworm
+      - parasite: Roundworm
+    houseno: 123
+    street: Leafy Lane
+    address:
+      - address: Leaf Village
+      - address: Branchford
+      - address: Trunkshire
+    postcode: BS4 3EH
+pet:
+  - name: Tuck
+    gender: female
+    breed: Basset Hound
+    weight: 21kg
+    age:
+      - day: 09
+        month: 11
+        year: 2016
+        inyearsmonths: 2 years 3 months
+    conditions:
+      - condition: Arthritis of the elbow joint.
+
+petsize:
+  - img: http://pic.jcmserv3.net/160x160/fff/ccc.png&amp;text=+Pet+Cat+
+    title: Cat
+    subtitle: 
+    checked: 
+
+  - img: http://pic.jcmserv3.net/160x160/fff/ccc.png&amp;text=+Pet+S-Dog+
+    title: Small Dog
+    subtitle: (2-10kg)
+    checked: 
+
+  - img: http://pic.jcmserv3.net/160x160/fff/ccc.png&amp;text=+Pet+M-Dog+
+    title: Medium Dog
+    subtitle: (10-20kg)
+    checked: 
+
+  - img: http://pic.jcmserv3.net/160x160/fff/ccc.png&amp;text=+Pet+L-Dog+
+    title: Large Dog
+    subtitle: (20-40kg)
+    checked: 
+
+  - img: http://pic.jcmserv3.net/160x160/fff/ccc.png&amp;text=+Pet+X-Dog+
+    title: XLarge Dog
+    subtitle: (40-60kg)
+    checked: 
+
+packages:
+  - title: Package A
+    protections:
+      - parasite: Fleas
+      - parasite: Ticks
+    price: 6.99
+
+  - title: Package B
+    protections:
+      - parasite: Fleas
+      - parasite: Ticks
+      - parasite: Tapeworm
+      - parasite: Roundworm
+    price: 8.99

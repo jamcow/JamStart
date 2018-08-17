@@ -1,0 +1,107 @@
+---
+layout: L-example1
+title: Tell us about yourself
+sidebar: package
+---
+
+<div class="o-content o-content--outer">
+    <div class="c-content">
+        <h2 class="c-content__title">Tell us about yourself</h2>
+        <div class="c-content__body">
+        </div>
+    </div>
+</div>
+
+<div class="o-content o-content--steps">
+    <div class="c-content">
+
+        <form action="../4-aboutyourpet/" class="c-form" id="form-example-default" method="get" name="form-example-default">
+
+            <h3 class="c-form__title">
+                <span>Enter your name</span>
+            </h3>
+            <div class="c-form__row">
+                <div class="c-input__group c-input__group--text">
+                    <label class="c-input c-input--xs">
+                        <span class="c-input__item">Title</span>
+                        <span class="c-input__wrap">
+                            <input type="text" class="c-input__field c-input__field--text" />
+                        </span>
+                    </label>
+                    <label class="c-input c-input--m">
+                        <span class="c-input__item">First Name</span>
+                        <span class="c-input__wrap">
+                            <input type="text" class="c-input__field c-input__field--text" />
+                        </span>
+                    </label>
+                    <label class="c-input c-input--m">
+                        <span class="c-input__item">Surname</span>
+                        <span class="c-input__wrap">
+                            <input type="text" class="c-input__field c-input__field--text" />
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <h3 class="c-form__title">
+                <span>Enter your contact details</span>
+            </h3>
+            <div class="c-form__row">
+                <label class="c-input c-input--full">
+                    <span class="c-input__item">Telephone</span>
+                    <span class="c-input__wrap">
+                        <input type="text" class="c-input__field c-input__field--text" />
+                    </span>
+                </label>
+            </div>
+            <div class="c-form__row">
+                <label class="c-input c-input--full">
+                    <span class="c-input__item">Email</span>
+                    <span class="c-input__wrap">
+                        <input type="text" class="c-input__field c-input__field--text" />
+                    </span>
+                </label>
+            </div>
+            <div class="c-form__row">
+                <label class="c-input c-input--full">
+                    <span class="c-input__item">Confirm Email</span>
+                    <span class="c-input__wrap">
+                        <input type="text" class="c-input__field c-input__field--text" />
+                    </span>
+                </label>
+            </div>
+            
+            <h3 class="c-form__title">
+                <span>Enter your delivery informaton</span>
+            </h3>
+            <div class="c-form__row">
+                <label class="c-input">
+                    <span class="c-input__item">Postcode</span>
+                    <span class="c-input__wrap">
+                        <input type="text" class="c-input__field c-input__field--text" />
+                    </span>
+                </label>
+            </div>
+
+
+            <div class="c-form__row">
+
+                <input type="checkbox" class="c-input__state c-input__state--checkbox" id="formrow-checkbox-terms1" name="formrow-checkbox-petsize" aria-labelledby="formrow-label-terms1" value="{{ package.title }} - {{ package.subtitle }}" {{ package.checked }}>
+
+                <label id="formrow-label-terms1" class="c-form__label c-form__label--terms" for="formrow-checkbox-terms1">
+                    <span class="c-icon c-icon--checkbox"></span>
+                    <span class="c-input__item">I have read and accept the <a href="/terms" rel="noopener" target="_blank">Terms and Conditions</a></span>
+                </label>
+            </div>
+
+            <div class="c-form__actions">
+                <button type="submit" class="button button--alt">Continue</button>
+            </div>
+    
+        </form>
+
+    </div>
+
+    {% include example1/sidebar.html %}
+
+</div>

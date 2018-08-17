@@ -1,0 +1,133 @@
+---
+layout: L-example1
+title: Tell us about your pet
+sidebar: user
+---
+
+<div class="o-content o-content--outer">
+    <div class="c-content">
+        <h2 class="c-content__title">Tell us about your pet</h2>
+        <div class="c-content__body">
+        </div>
+    </div>
+</div>
+
+<div class="o-content o-content--steps">
+    <div class="c-content">
+        <form action="../5-summary/" class="c-form" id="form-example-default" method="get" name="form-example-default">
+
+            <div class="c-form__row">
+                <p class="c-form__label">
+                    <span>Enter your pets details</span>
+                </p>
+            </div>
+            <div class="c-form__row">
+                <label class="c-input c-input--full">
+                    <span class="c-input__item">Name</span>
+                    <span class="c-input__wrap">
+                        <input type="text" class="c-input__field c-input__field--text" />
+                    </span>
+                </label>
+            </div>
+            <div class="c-form__row">
+                <label class="c-input c-input--full">
+                    <span class="c-input__item">Gender</span>
+                    <span class="c-input__wrap">
+                        <input type="text" class="c-input__field c-input__field--text" />
+                    </span>
+                </label>
+            </div>
+            <div class="c-form__row">
+                <label class="c-input c-input--full">
+                    <span class="c-input__item">Breed</span>
+                    <span class="c-input__wrap">
+                        <input type="text" class="c-input__field c-input__field--text" />
+                    </span>
+                </label>
+            </div>
+            <div class="c-form__row">
+                <label class="c-input c-input--full">
+                    <span class="c-input__item">Weight</span>
+                    <span class="c-input__wrap">
+                        <input type="text" class="c-input__field c-input__field--text" />
+                    </span>
+                </label>
+            </div>
+    
+            <div class="c-form__row">
+                <p class="c-form__label">
+                    <span>Age</span>
+                </p>
+            </div>
+            <div class="c-form__row">
+                <div class="c-input__group c-input__group--text">
+                    <label class="c-input c-input--xs">
+                        <span class="c-input__item">Day</span>
+                        <span class="c-input__wrap">
+                            <input type="number" class="c-input__field c-input__field--text" min="1" max="31" />
+                        </span>
+                    </label>
+                    <label class="c-input c-input--s">
+                        <span class="c-input__item">Month</span>
+                        <span class="c-input__wrap">
+                            <input type="number" class="c-input__field c-input__field--text" min="1" max="12" />
+                        </span>
+                    </label>
+                    <label class="c-input c-input--s">
+                        <span class="c-input__item">Year</span>
+                        <span class="c-input__wrap">
+                            <input type="number" class="c-input__field c-input__field--text" min="1900" />
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            
+            <div class="c-form__row">
+                <p class="c-form__label">
+                    <span>Does your pet have any other condition</span>
+                </p>
+            </div>
+            <div class="c-form__row">
+
+                <div class="c-input__group c-input__group--radios">
+
+                    <input type="radio" class="c-input__field c-input__state--radio" id="formrow-radio-7878" name="formrow-radio-conditions" aria-labelledby="formrow-label-8787" value="No conditions">
+
+                    <label id="formrow-label-8787" for="formrow-radio-7878" class="c-input c-input--xs">
+                        <span class="c-icon c-icon--radio"></span>
+                        <span class="c-input__item">No</span>
+                    </label>
+
+                    <input type="radio" class="c-input__field c-input__state--radio" id="formrow-radio-4646" name="formrow-radio-conditions" aria-labelledby="formrow-label-6464" value="Yes conditions">
+
+                    <label id="formrow-label-6464" for="formrow-radio-4646" class="c-input c-input--xs">
+                        <span class="c-icon c-icon--radio"></span>
+                        <span class="c-input__item">Yes</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="c-form__row">
+
+                <label class="c-input c-input--full">
+                    <span class="c-input__item">Condition</span>
+                    <span class="c-input__wrap">
+                        <textarea class="c-input__field c-input__field--textarea"></textarea>
+                    </span>
+                </label>
+
+            </div>
+
+            <div class="c-form__actions">
+                <button type="submit" class="button button--alt">Continue</button>
+            </div>
+    
+        </form>
+
+    </div>
+
+{% include example1/sidebar.html %}
+
+</div>

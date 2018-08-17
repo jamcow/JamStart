@@ -1,0 +1,40 @@
+---
+layout: L-example1
+title: Summary
+---
+
+<div class="o-content o-content--outer">
+    <div class="c-content">
+        <h2 class="c-content__title">Summary</h2>
+        <div class="c-content__body">
+        </div>
+    </div>
+</div>
+
+<div class="o-content o-content--outer">
+    <div class="c-content">
+        <form action="../6-payment/" class="c-form" id="form-example-default" method="get" name="form-example-default">
+        
+            <div class="c-form__row">
+
+                <ol class="c-list c-list--summary">
+
+                    {% include example1/petcard--selection-size.html %}
+                    {% include example1/petcard--selection-package.html %}
+                    {% include example1/petcard--selection-user.html %}
+                    {% include example1/petcard--selection-pet.html %}
+        
+                </ol>
+                
+            </div>
+
+            <div class="c-form__actions">
+                <a href="../" class="button">Add another pet</a>
+
+                <button type="submit" class="button button--alt">Continue</button>
+            </div>
+
+        </form>
+
+	</div>
+</div>

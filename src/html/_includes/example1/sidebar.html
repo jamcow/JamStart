@@ -1,0 +1,25 @@
+<aside class="o-sidebar">
+	<div class="c-content c-content--side">
+		<h3>Your selections</h3>
+
+		<ol class="c-list c-list--selection">
+
+			{% if page.sidebar == "size" %}
+				{% include example1/petcard--selection-size.html %}
+			{% endif %}
+
+			{% if page.sidebar == "package" %}
+				{% include example1/petcard--selection-size.html %}
+				{% include example1/petcard--selection-package.html %}
+			{% endif %}
+
+			{% if page.sidebar == "user" %}
+				{% include example1/petcard--selection-size.html %}
+				{% include example1/petcard--selection-package.html %}
+				{% include example1/petcard--selection-user.html %}
+			{% endif %}
+
+		</ol>
+
+	</div>
+</aside>
