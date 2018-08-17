@@ -21,6 +21,14 @@
 //     }
 // }
 
+// pseudo high contrast:
+// color: var(--C_A11y-bg);
+// filter: #{"grayscale(1) contrast(20000%) invert(100%)"};
+
+// color: var(--C_A11y-color);
+// filter: #{"grayscale(1) contrast(20000%)"};
+
+// PREFERS-REDUCED-MOTION
 @media (prefers-reduced-motion: reduce) {
     // Adjust potentially harmful animations to be paused or _less_drastic_ here
     // **Reduced**, not none, else it'll break animated loaders, transitions

@@ -1,0 +1,38 @@
+/// <reference path="../main.scss" />
+
+////
+/// ROOT CSS Vars
+////
+
+:root {
+    // DEFAULT COLOURS
+    // ----------------------------------------------------
+    --COLOR-Primary: #{$COLOR-Primary};
+    --COLOR-Secondary: #{$COLOR-Secondary};
+    --COLOR-Tertiary: #{$COLOR-Tertiary};
+    --COLOR-Accent: #{$COLOR-Accent};
+    --COLOR-Base: #{$COLOR-Base};
+    --COLOR-BaseLight: #{$COLOR-BaseLight};
+    --COLOR-BaseDark: #{$COLOR-BaseDark};
+
+    // TYPOGRAPHY SIZES
+    // ----------------------------------------------------
+    --TYPE-FontSize: #{rem($TYPE-FontSize)};
+    --TYPE-LineHeight: #{rem($TYPE-LineHeight)};
+    --TYPE-SIZE-XXXXL: calc(var(--TYPE-FontSize, 1rem) * #{$TYPE-SIZE-XXXXL / $TYPE-FontSize});
+    --TYPE-SIZE-XXXL: calc(var(--TYPE-FontSize, 1rem) * #{$TYPE-SIZE-XXXL / $TYPE-FontSize});
+    --TYPE-SIZE-XXL: calc(var(--TYPE-FontSize, 1rem) * #{$TYPE-SIZE-XXL / $TYPE-FontSize});
+    --TYPE-SIZE-XL: calc(var(--TYPE-FontSize, 1rem) * #{$TYPE-SIZE-XL / $TYPE-FontSize});
+    --TYPE-SIZE-L: calc(var(--TYPE-FontSize, 1rem) * #{$TYPE-SIZE-L / $TYPE-FontSize});
+    --TYPE-SIZE-M: calc(var(--TYPE-FontSize, 1rem) * #{$TYPE-SIZE-M / $TYPE-FontSize});
+    --TYPE-SIZE-S: calc(var(--TYPE-FontSize, 1rem) * #{$TYPE-SIZE-S / $TYPE-FontSize});
+    --TYPE-SIZE-XS: calc(var(--TYPE-FontSize, 1rem) * #{$TYPE-SIZE-XS / $TYPE-FontSize});
+    --TYPE-SIZE-XXS: calc(var(--TYPE-FontSize, 1rem) * #{$TYPE-SIZE-XXS / $TYPE-FontSize});
+
+    // TYPOGRAPHY COLORS
+    // ----------------------------------------------------
+    --TYPE-FontColor: #{$TYPE-FontColor};
+    --TYPE-AltFontColor: #{$TYPE-AltFontColor};
+    --TYPE-HeadingsColor: #{$TYPE-HeadingsColor};
+    --TYPE-HeadingsAltColor: #{$TYPE-HeadingsAltColor};
+}

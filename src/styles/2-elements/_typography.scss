@@ -32,27 +32,27 @@ h6 {
 }
 
 h1 {
-    @include font-size-heading($TYPE-SIZE-XXXL, 1.5);
+    @include font-size-heading($TYPE-SIZE-XXXL, $TYPE-HeadingsLineHeight);
 }
 
 h2 {
-    @include font-size-heading($TYPE-SIZE-XXL, 1.5);
+    @include font-size-heading($TYPE-SIZE-XXL, $TYPE-HeadingsLineHeight);
 }
 
 h3 {
-    @include font-size-heading($TYPE-SIZE-XL, 1.5);
+    @include font-size-heading($TYPE-SIZE-XL, $TYPE-HeadingsLineHeight);
 }
 
 h4 {
-    @include font-size-heading($TYPE-SIZE-L, 1.5);
+    @include font-size-heading($TYPE-SIZE-L, $TYPE-HeadingsLineHeight);
 }
 
 h5 {
-    @include font-size-heading($TYPE-SIZE-M, 1.5);
+    @include font-size-heading($TYPE-SIZE-M, $TYPE-HeadingsLineHeight);
 }
 
 h6 {
-    @include font-size-heading($TYPE-SIZE-M, 1.5);
+    @include font-size-heading($TYPE-SIZE-M, $TYPE-HeadingsLineHeight);
 }
 
 // BODY

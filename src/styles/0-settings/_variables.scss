@@ -70,6 +70,7 @@ $Z-INDEX-Level10:				2000;	// System
 $TYPE-BaseFontSize:             16;// For calculations
 $TYPE-FontSize:                 16 !default;
 $TYPE-LineHeight:               24 !default;
+$TYPE-HeadingsLineHeight:       1.3 !default;
 $TYPE-FONT-Weight:              400 !default;
 $TYPE-root-sizing:              false !default;
 
@@ -247,7 +248,6 @@ $COMPONENT-CARDSLIDER:          true !default;
 $COMPONENT-CITE:                true !default;
 $COMPONENT-CREATOR:             true !default;
 $COMPONENT-FLASH:               true !default;
-$COMPONENT-FLEXGRID:                true !default;
 $COMPONENT-FLIP:                true !default;
 $COMPONENT-FOCUS:               true !default;
 $COMPONENT-GRIDDER:             true !default;

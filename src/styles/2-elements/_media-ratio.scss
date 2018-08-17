@@ -1,0 +1,23 @@
+/// <reference path="../main.scss" />
+
+////
+/// MEDIA Ratio
+////
+
+// While we're waiting for the images to download on a heavy page
+// this inflates the picture element ready for the image and helps
+// with browser redraw/paint
+picture[data-picturesize*="sq"] {
+    @include aspect-ratio();
+}
+
+//
+// This exists in a proposed browser feature:
+
+// Specify intrinsic size (therefore maintain aspect ratio) for media elements (<img>, <video>)
+// https://www.chromestatus.com/feature/4704436815396864
+// https://github.com/ojanvafai/intrinsicsize-attribute
+
+// [intrinicsize="400x300"] {
+//     @include aspect-ratio(400, 300);
+// }
