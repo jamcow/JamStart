@@ -11,12 +11,13 @@
     "last 20 Chrome versions",
     "Samsung >= 7",
     "Firefox ESR",
-    "last 7 Firefox major versions",
+    "last 16 Firefox major versions",
     "Safari >= 8",
     "iOS >= 8",
     "last 4 Edge major versions",
-    "ie >= 11",
-    "> 2.5% in GB"
+    "ie >= 10",
+    "> 1.7% in GB",
+    "not dead"
   ],
   "devDependencies": {
     "browser-sync": "^2.24.5",

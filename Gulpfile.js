@@ -145,14 +145,13 @@ const sassOptions = {
 };
 
 const csspresetenvOptions = {
-    // cascade: false,//use Visual Cascade, if CSS is uncompressed
+    stage: 3
     // features: {
     //     'custom-properties': {
     //         preserve: true,
     //         warnings: false
     //     }
-    // },
-    stage: 2
+    // }
 };
 
 const plumberOptions = {
