@@ -3,13 +3,22 @@
 #exclude: ["node_modules", "package.json", "gulpfile.js", "vendor/gems/", "vendor/ruby/"]
 destination: 'dist/_site'
 source: 'src/html'
+include: ["_pages"]
 exclude:
   - package.json
   - node_modules
   - gulpfile.js
   - Gulpfile.js
   - packages
-keep_files: [.css, .map]
+  - scripts
+  - assets/css
+  - assets/css/maps
+  - assets/js
+keep_files: 
+  - assets/css
+  - assets/css/maps
+  - assets/js
+  - assets/js/maps
 lsi: false
 permalink: /:slug/
 collections_dir: collections

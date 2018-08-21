@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.ts"],"names":[],"mappings":"AACA,CAAC;IACG,OAAO,CAAC,MAAM,CAAC,KAAK,EAAE,CAAC,cAAc,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,EAAE,CAAC","file":"../app.js","sourcesContent":["\r\n(() => {\r\n    angular.module('app', ['appDirective']);\r\n})();\r\n"]}

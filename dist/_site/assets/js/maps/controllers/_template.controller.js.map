@@ -1,0 +1,1 @@
+{"version":3,"sources":["controllers/_template.controller.ts"],"names":[],"mappings":"","file":"../../controllers/_template.controller.js","sourcesContent":["// (() => {\r\n//     angular.module('app', [''])\r\n//         .controller('appCtrl', ['$scope', ($scope) => {}]);\r\n// })();\r\n"]}

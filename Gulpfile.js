@@ -7,6 +7,8 @@ const gulp              = require('gulp'),
     concat              = require('gulp-concat'),
     svgo                = require('gulp-svgo'),
     clean               = require('gulp-clean'),
+    del                 = require('del'),
+    useref              = require('gulp-useref'),
     sourcemaps          = require('gulp-sourcemaps'),
     plumber             = require('gulp-plumber'),
     portfinder          = require('portfinder'),
@@ -26,12 +28,16 @@ const gulp              = require('gulp'),
         postcss_browser_reporter  = require('postcss-browser-reporter'),
         postcss_reporter          = require('postcss-reporter'),
 
+    /// JS/Typescript
+    typescript          = require('gulp-typescript'),
+    tslint              = require('gulp-tslint'),
+
     doiuse              = require('doiuse'),
     argv                = require('yargs').argv,
     notify              = require('gulp-notify'),
     browserSync         = require('browser-sync').create(),
     childProcess        = require('child_process'),
-    reload              = browserSync.reload;
+    reload              = require('browser-sync').reload;
 
 /// PATHS
 /// -------------------------------------
@@ -40,73 +46,44 @@ const gulp              = require('gulp'),
 //  - if we're running a proxy site, only generate CSS from Sass, by outputting /styles to /css (Gulpfile.js should be within the "assets" folder).
 //  - if we're running a standlone site, everything (html, templates and styles) is in "app" folder and outputs to separate "_site"
 
-const
-                        // argv.site ? "running proxy" : "running standalone localhost"
-    path                    = './',
-    path_src                = path + 'src',
-    path_dist               = path + 'dist',
-    scss_input_all          = path_src + '/styles/**/*.scss',
-    scss_input_root         = path_src + '/styles/*.scss',
-
-    app_folder              = '/_site',
-    path_app                = argv.site ?       path_dist                   : path_dist + app_folder,
-    app_assets              = argv.site ?       ''                          : '/assets',
-    path_assets             = argv.site ?       path_app                    : path_app + app_assets,
-
-    proxysite               = argv.site ?       `${argv.site}`              : "localhost",
-    css_output              = argv.site ?       path_assets + '/css'        : path_assets + '/css',
-    cleanfiles              = argv.site ?       css_output + '/*.css'       : css_output + '/*.css',
-    wipefolder              = argv.site ?       css_output + ''             : css_output + '/',
-    cssmaps_output          = argv.site ?       './maps'                    : '../maps',
-    svg_input               = path_src + '/img/svg/**/*.svg',
-    svg_output              = path_assets + '/img/svg/',
-
-    jekyll_site             = path_src + '/html',
-    // Adds CSS to Jekyll's build folder (so it'll be included in Jekylls initial publish)
-    jekyllcss_output        = path_src + '/html' + '/assets/css',
-    jekyll_input_all        = [ jekyll_site + '/**/*.html',
-                                jekyll_site + '/**/*.js',
-                                jekyll_site + '/**/*.yml',
-                                jekyll_site + '/**/*.php',
-                                jekyll_site + '/**/*.inc',
-                                jekyll_site + '/**/*.svg',
-                                jekyll_site + '/**/*.md',
-                                jekyll_site + '/**/*.mv'];
+var config = require('./config.json');
+var cfg = argv.site ? config.settings_siteproxy : config.settings_jekyllsite;
+var proxysite = argv.site ? `${argv.site}` : "localhost";
 
 /// Server Port
 /// -------------------------------------
 
-// It will automatically find a free port to run from, but starting from this number:
+// It will automatically find a free port to run from, but starting from this port number:
 portfinder.basePort = 3000;
 
 /// MAIN TASKS
 /// -------------------------------------
 
 // start it with:
-// "gulp sass" if you're running Jekyll
-// "gulp sass --site www.sitename.test" to run as a proxy
-// "gulp sass --site www.sitename.test --no-notify" to run as a proxy and without "Browsersync connected" popup
+// "gulp start" if you're running Jekyll
+// "gulp start --site www.sitename.test" to run as a proxy
+// "gulp start --site www.sitename.test --no-notify" to run as a proxy and without "Browsersync connected" popup
 
-gulp.task('sass', ['clean'], function () {
+gulp.task('start', ['t_clear'], function () {
     if(argv.site){
         // Build Sass and browserSync as proxy, doesn't run jekyll
-        gulp.start('styles', 'browser-syncproxy', 'watchstyles', 'info');
+        gulp.start('t_styles_sass', 't_htmly', 't_typescript', 't_browserSyncProxy', 't_watch-files', 't_info');
     } else {
         // Build Sass and browserSync, includes Autoprefixes and Sourcemaps
-        gulp.start('styles', 'browser-sync', 'watchstyles', 'watchhtml', 'info');
+        gulp.start('t_styles_sass', 't_typescript', 't_browserSyncJekyll', 't_watch-files', 't_watch-JekyllHtml', 't_info');
     }
 });
 
 // Uncompressed CSS-only (no site or proxy)
 // "gulp sassonly --site none"
-gulp.task('sassonly', ['clean'], function () {
-    gulp.start('styles_only', 'watchstyles', 'info');
+gulp.task('sassonly', ['t_clear'], function () {
+    gulp.start('t_styles_only', 't_watch-files', 't_info');
 });
 
 // Compressed CSS-only (no site or proxy, no sass maps)
 // "gulp production --site none"
-gulp.task('production', ['clean'], function () {
-    gulp.start('styles_production', 'watchstyles', 'info');
+gulp.task('production', ['t_clear'], function () {
+    gulp.start('t_styles_production', 't_watch-files', 't_info');
 });
 
 /// CSS and PLUGIN OPTIONS
@@ -154,7 +131,7 @@ const csspresetenvOptions = {
     // }
 };
 
-const plumberOptions = {
+const plumberOptionsSass = {
     errorHandler: function (err) {
         console.log(err);
         browserSync.notify("<div style='font-family: Comic Sans MS, Comic Sans, cursive;font-size: 22px;margin-bottom: 10px;'><img src='" + img1 + "' style='vertical-align:text-bottom;'' /> There's an <span style='color: hotpink'>error </span> with your Sass...</div>More details in your console <br><br><pre style='font-size: 15px;text-align: left;'>" + err.message + "</pre>", 6000);
@@ -162,10 +139,18 @@ const plumberOptions = {
     }
 };
 
+const plumberOptionsJS = {
+    errorHandler: function (err) {
+        console.log(err);
+        browserSync.notify("<div style='font-family: Comic Sans MS, Comic Sans, cursive;font-size: 22px;margin-bottom: 10px;'>There's an <span style='color: hotpink'>Typescript/JS error </span>...</div><br><br><pre style='font-size: 15px;text-align: left;'>" + err.message + "</pre>", 4000);
+        this.emit('end');
+    }
+};
+
 /// TASKS
 /// -------------------------------------
 
-gulp.task('info', function () {
+gulp.task('t_info', function () {
     console.log('############################################');
     console.log('Your Node Version: ' + process.version);
     console.log('This process is pid ' + process.pid);
@@ -180,9 +165,28 @@ gulp.task('info', function () {
     console.log('############################################');
 });
 
-gulp.task('styles', function () {
-    return gulp.src(scss_input_root)
-        .pipe(plumber(plumberOptions))
+/// Compile Typescript
+/// -------------------------------------
+
+var tsProject = typescript.createProject('./tsconfig.json');
+
+gulp.task('t_typescript', function() {
+    return gulp.src(cfg.ts_input_all)
+    .pipe(plumber(plumberOptionsJS))
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(tslint())
+    .pipe(tsProject())
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest(cfg.js_output, {"mode": "0777"}))
+    .pipe(browserSync.reload({stream: true}));
+});
+
+/// Compile Styles (SCSS to CSS)
+/// -------------------------------------
+
+gulp.task('t_styles_sass', function () {
+    return gulp.src(cfg.scss_input_root)
+        .pipe(plumber(plumberOptionsSass))
         .pipe(sourcemaps.init())
         .pipe(sass(sassOptions))
         .pipe(postcss([
@@ -202,16 +206,17 @@ gulp.task('styles', function () {
                 // console.warn(`CleanCSS Warnings: ${details.warnings}`);
             }
         }))
-        .pipe(sourcemaps.write(cssmaps_output))
-        .pipe(gulp.dest(css_output, {"mode": "0777"}))
-        // Run Jekyll, only if no site argument from the commandline
-        .pipe(gulpif(!argv.site, gulp.dest(jekyllcss_output, {"mode": "0777"})))
+        .pipe(sourcemaps.write(cfg.cssmaps_output))
+        .pipe(gulp.dest(cfg.css_output, {"mode": "0777"}))
         .pipe(browserSync.stream());
 });
 
-gulp.task('styles_only', function () {
-    return gulp.src(scss_input_root)
-        .pipe(plumber(plumberOptions))
+/// Compile Styles (SCSS to CSS) no proxy or site
+/// -------------------------------------
+
+gulp.task('t_styles_only', function () {
+    return gulp.src(cfg.scss_input_root)
+        .pipe(plumber(plumberOptionsSass))
         .pipe(sourcemaps.init())
         .pipe(sass(sassOptions))
         .pipe(postcss([
@@ -225,14 +230,17 @@ gulp.task('styles_only', function () {
                 console.error(`\nCleanCSS Errors: ${details.errors}`);
             }
         }))
-        .pipe(sourcemaps.write(cssmaps_output))
-        .pipe(gulp.dest(css_output, {"mode": "0777"}))
+        .pipe(sourcemaps.write(cfg.cssmaps_output))
+        .pipe(gulp.dest(cfg.css_output, {"mode": "0777"}))
         .pipe(browserSync.stream());
 });
 
-gulp.task('styles_production', function () {
-    return gulp.src(scss_input_root)
-        .pipe(plumber(plumberOptions))
+/// Compile Styles (SCSS to CSS) no proxy or site, production settings (no sourcesmaps etc)
+/// -------------------------------------
+
+gulp.task('t_styles_production', function () {
+    return gulp.src(cfg.scss_input_root)
+        .pipe(plumber(plumberOptionsSass))
         .pipe(sass(sassOptions))
         .pipe(postcss([
               postcss_import(),
@@ -254,22 +262,29 @@ gulp.task('styles_production', function () {
                 console.error(`CleanCSS Warnings: ${details.warnings}`);
             }
         }))
-        .pipe(gulp.dest(css_output, { "mode": "0777" }))
+        .pipe(gulp.dest(cfg.css_output, { "mode": "0777" }))
         .pipe(browserSync.stream());
 });
 
-gulp.task('clean', function() {
+/// Clearing up (delete files/folder)
+/// -------------------------------------
+
+gulp.task('t_clear', function(cb) {
     if (argv.site) {
-        return gulp.src([cleanfiles], {read: false})
+        return gulp.src(cfg.cleanfiles, {read: false})
         .pipe(clean());
     } else {
-        return gulp.src([wipefolder], {read: false})
-        .pipe(clean());
+        // return gulp.src(cfg.wipefolder, {read: false})
+        // .pipe(clean());
+        return del(cfg.wipefolder, cb);
+        // return del(cfg.cleanfiles, cb);
     }
 });
 
 /// Build the Jekyll Site
-gulp.task('jekyll-build', function (done) {
+/// -------------------------------------
+
+gulp.task('t_jekyll-build', function (done) {
     // Detect if Windows to run the correct Jekyll
     const jekyllSystem = process.platform === "win32" ? "jekyll.bat" : "jekyll";
 
@@ -279,26 +294,29 @@ gulp.task('jekyll-build', function (done) {
 });
 
 /// Rebuild Jekyll & do page reload
-gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
+/// -------------------------------------
+
+gulp.task('t_jekyllRebuild', ['t_jekyll-build'], function () {
     // An issue with Jekyll, when run, it scraps all the contents of the _site directory.
-    // So we output a second copy of the CSS (using styles task) to the Jekyll HTML folder,
-    // so it includes with the html files, then reload
+    // So we tell _config.yml to ignore folders (JS, and CSS)
     browserSync.reload();
 });
 
 /// Wait for jekyll-build, then launch the Server
-gulp.task('browser-sync', ['jekyll-build'], function() {
+/// -------------------------------------
+
+gulp.task('t_browserSyncJekyll', ['t_jekyll-build'], function() {
     browserSync.init(null, {
         server: {
-            baseDir: path_app
+            baseDir: cfg.jekyll_path_app
         },
-        notify: false
+        notify: true
         // host: 'localhost:' + serverPort
     });
 });
 
 /// launch the server via proxy
-gulp.task('browser-syncproxy', function() {
+gulp.task('t_browserSyncProxy', function() {
     portfinder.getPort(function (err, port) {
         serverPort = port;
 
@@ -307,19 +325,28 @@ gulp.task('browser-syncproxy', function() {
             host: proxysite,
             proxy: proxysite,
             port: serverPort,//3000
-            notify: false
+            notify: true
         });
     });
 });
 
-gulp.task('watchstyles', function () {
-    // Watch .sass files
-    gulp.watch(scss_input_all, ['styles']);
+gulp.task('t_htmly', function() {
+    gulp.src(cfg.html_input_all)
+        // .pipe(reload({stream: true}));
+        .pipe(browserSync.stream());
 });
 
-gulp.task('watchhtml', function () {
+gulp.task('t_watch-files', function () {
+    // Watch .sass files
+    // Absolute paths prevent new files from being watched, thus use {cwd: './'} to solve
+    gulp.watch(cfg.ts_input_all, {cwd: './'}, ['t_typescript']);
+    gulp.watch(cfg.scss_input_all, {cwd: './'}, ['t_styles_sass']);
+    gulp.watch(cfg.html_input_all, {cwd: './'}, ['t_htmly']);
+});
+
+gulp.task('t_watch-JekyllHtml', function () {
     // Watch .html files
-    gulp.watch([jekyll_input_all], ['jekyll-rebuild']);
+    gulp.watch([cfg.jekyll_input_all], {cwd: './'}, ['t_jekyllRebuild']);
 });
 
 // TASKS

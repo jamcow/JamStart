@@ -1,0 +1,63 @@
+{
+    "settings_siteproxy" : {
+        "html_input_all":   [
+                            "index.html",
+                            "Views/**/*.cshtml",
+                            "Views/**/*.html",
+                            "ngTemplates/**/*.html"
+        ],
+        "ts_input_all":     [
+                            "scripts/**/*.ts",
+                            "scripts/**/*.js"
+        ],
+        "scss_input_all":   "assets/styles/**/*.scss",
+        "scss_input_root":  "assets/styles/*.scss",
+    
+        "css_output":       "assets/css",
+        "cssmaps_output":   "./maps",
+        "js_output":        "assets/js",
+
+        "cleanfiles":       "assets/css/*.css",
+        "wipefolder":       "assets/css/"
+    },
+
+    "settings_jekyllsite" : {
+        "html_input_all":   [
+                            "src/html/**/*.html",
+                            "src/html/**/*.cshtml"
+        ],
+        "ts_input_all":     [
+                            "src/scripts/**/*.ts",
+                            "src/scripts/**/*.js"
+        ],
+        "scss_input_all":   "src/styles/**/*.scss",
+        "scss_input_root":  "src/styles/*.scss",
+    
+        "jekyll_input_all": [
+                            "src/html/**/*.html",
+                            "src/html/**/*.cshtml",
+                            "src/html/**/*.js",
+                            "src/html/**/*.yml",
+                            "src/html/**/*.php",
+                            "src/html/**/*.inc",
+                            "src/html/**/*.svg",
+                            "src/html/**/*.md",
+                            "src/html/**/*.mv"
+        ],
+    
+        "jekyll_path_app":  "dist/_site",
+        "css_output":       "dist/_site/assets/css",
+        "cssmaps_output":   "./maps",
+        "js_output":        "dist/_site/assets/js",
+
+        "cleanfiles":       [
+                            "dist/_site/assets/css/**/*",
+                            "dist/_site/assets/js/**/*",
+                            "src/html/assets/css/**/*",
+                            "src/html/assets/js/**/*"
+        ],
+        "wipefolder":       [
+                            "dist/_site"
+        ]
+    }
+}
