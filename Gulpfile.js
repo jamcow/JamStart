@@ -60,7 +60,8 @@ portfinder.basePort = 3000;
 /// -------------------------------------
 
 // start it with:
-// "gulp start" if you're running Jekyll
+// "gulp start" to run Jekyll
+// "gulp start --ts" to run with Typescript and Jekyll
 // "gulp start --site www.sitename.test" to run as a proxy
 // "gulp start --site www.sitename.test --no-notify" to run as a proxy and without "Browsersync connected" popup
 
@@ -171,14 +172,17 @@ gulp.task('t_info', function () {
 var tsProject = typescript.createProject('./tsconfig.json');
 
 gulp.task('t_typescript', function() {
-    return gulp.src(cfg.ts_input_all)
-    .pipe(plumber(plumberOptionsJS))
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(tslint())
-    .pipe(tsProject())
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest(cfg.js_output, {"mode": "0777"}))
-    .pipe(browserSync.reload({stream: true}));
+    if(argv.ts){
+        return gulp.src(cfg.ts_input_all)
+        .pipe(plumber(plumberOptionsJS))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(tslint())
+        .pipe(tsProject())
+        .pipe(sourcemaps.write('./maps'))
+        .pipe(gulp.dest(cfg.js_output, {"mode": "0777"}))
+        .pipe(browserSync.reload({stream: true}));
+    } else {
+    }
 });
 
 /// Compile Styles (SCSS to CSS)

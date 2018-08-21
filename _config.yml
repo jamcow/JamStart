@@ -14,7 +14,7 @@ exclude:
   - assets/css
   - assets/css/maps
   - assets/js
-keep_files: 
+keep_files:
   - assets/css
   - assets/css/maps
   - assets/js
