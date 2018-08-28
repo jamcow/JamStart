@@ -63,7 +63,6 @@ Configure/Extend/Experiment
 
 - Might need to curb cssnext some more, to not be too overzealous with next gen CSS like [CSS variables](https://github.com/MoOx/postcss-cssnext/issues/186#issuecomment-269934734)
 - Look into cssnext options more and disable anything that can cause us issues
-- Migrate setup to [postcss-preset-env](https://github.com/csstools/postcss-preset-env) due to [deprecation of cssnext](https://moox.io/blog/deprecating-cssnext/)
 - Write it well, modularly, using @supports and fallbacks, using linters, and ensure it's all compatible, accessibile, readable, usable.
 - Look into `parker` and `gulp-parker2`
 - WCAG 2.x
