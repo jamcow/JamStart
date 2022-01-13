@@ -62,8 +62,8 @@
   },
   "dependencies": {
     "@types/angular": "^1.6.50",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "popmotion": "^8.3.6",
-    "tsd": "^0.6.5"
+    "tsd": "^0.7.0"
   }
 }
